@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace football_manager_backend.Controllers
+namespace FootballManager.Backend.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
