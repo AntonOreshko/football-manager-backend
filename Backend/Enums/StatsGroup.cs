@@ -2,6 +2,6 @@
 {
     public enum StatsGroup
     {
-        Speed, Shooting, Passing, Technique, Defence, Physical
+        Speed, Shooting, Passing, Technique, Defending, Physical
     }
 }

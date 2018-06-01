@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using Backend.Builders;
 using Backend.Enums;
 
 namespace Backend.Models.PlayerModels
@@ -19,30 +20,30 @@ namespace Backend.Models.PlayerModels
         {
             Stats = new List<PlayerStat>()
             {
-                new PlayerStat("Acceleration", StatsGroup.Speed, f => Acceleration = f, () => Acceleration),
-                new PlayerStat("SprintSpeed", StatsGroup.Speed, f => SprintSpeed = f, () => SprintSpeed),
+                new PlayerStat(PlayerBuilder.ACCELERATION, StatsGroup.Speed, f => Acceleration = f, () => Acceleration),
+                new PlayerStat(PlayerBuilder.SPRINT_SPEED, StatsGroup.Speed, f => SprintSpeed = f, () => SprintSpeed),
 
-                new PlayerStat("Shots", StatsGroup.Shooting, f => Shots = f, () => Shots),
-                new PlayerStat("LongShots", StatsGroup.Shooting, f => LongShots = f, () => LongShots),
-                new PlayerStat("Penalties", StatsGroup.Shooting, f => Penalties = f, () => Penalties),
-                new PlayerStat("FreeKicks", StatsGroup.Shooting, f => FreeKicks = f, () => FreeKicks),
+                new PlayerStat(PlayerBuilder.SHOTS, StatsGroup.Shooting, f => Shots = f, () => Shots),
+                new PlayerStat(PlayerBuilder.LONG_SHOTS, StatsGroup.Shooting, f => LongShots = f, () => LongShots),
+                new PlayerStat(PlayerBuilder.PENALTIES, StatsGroup.Shooting, f => Penalties = f, () => Penalties),
+                new PlayerStat(PlayerBuilder.FREE_CICKS, StatsGroup.Shooting, f => FreeKicks = f, () => FreeKicks),
 
-                new PlayerStat("ShortPassing", StatsGroup.Passing, f => ShortPassing = f, () => ShortPassing),
-                new PlayerStat("LongPassing", StatsGroup.Passing, f => LongPassing = f, () => LongPassing),
-                new PlayerStat("Crossing", StatsGroup.Passing, f => Crossing = f, () => Crossing),
+                new PlayerStat(PlayerBuilder.SHORT_PASSING, StatsGroup.Passing, f => ShortPassing = f, () => ShortPassing),
+                new PlayerStat(PlayerBuilder.LONG_PASSING, StatsGroup.Passing, f => LongPassing = f, () => LongPassing),
+                new PlayerStat(PlayerBuilder.CROSSING, StatsGroup.Passing, f => Crossing = f, () => Crossing),
 
-                new PlayerStat("Agility", StatsGroup.Technique, f => Agility = f, () => Agility),
-                new PlayerStat("BallControl", StatsGroup.Technique, f => BallControl = f, () => BallControl),
-                new PlayerStat("Tricks", StatsGroup.Technique, f => Tricks = f, () => Tricks),
+                new PlayerStat(PlayerBuilder.AGILITY, StatsGroup.Technique, f => Agility = f, () => Agility),
+                new PlayerStat(PlayerBuilder.BALL_CONTROL, StatsGroup.Technique, f => BallControl = f, () => BallControl),
+                new PlayerStat(PlayerBuilder.TRICKS, StatsGroup.Technique, f => Tricks = f, () => Tricks),
 
-                new PlayerStat("Interceptions", StatsGroup.Defence, f => Interceptions = f, () => Interceptions),
-                new PlayerStat("StandingTackles", StatsGroup.Defence, f => StandingTackles = f, () => StandingTackles),
-                new PlayerStat("SlidingTackles", StatsGroup.Defence, f => SlidingTackles = f, () => SlidingTackles),
+                new PlayerStat(PlayerBuilder.INTERCEPTIONS, StatsGroup.Defending, f => Interceptions = f, () => Interceptions),
+                new PlayerStat(PlayerBuilder.STANDING_TACKLES, StatsGroup.Defending, f => StandingTackles = f, () => StandingTackles),
+                new PlayerStat(PlayerBuilder.SLIDING_TACKLES, StatsGroup.Defending, f => SlidingTackles = f, () => SlidingTackles),
 
-                new PlayerStat("Jumping", StatsGroup.Physical, f => Jumping = f, () => Jumping),
-                new PlayerStat("Strength", StatsGroup.Physical, f => Strength = f, () => Strength),
-                new PlayerStat("Heading", StatsGroup.Physical, f => Heading = f, () => Heading),
-                new PlayerStat("Stamina", StatsGroup.Physical, f => Stamina = f, () => Stamina),
+                new PlayerStat(PlayerBuilder.JUMPING, StatsGroup.Physical, f => Jumping = f, () => Jumping),
+                new PlayerStat(PlayerBuilder.STRENGTH, StatsGroup.Physical, f => Strength = f, () => Strength),
+                new PlayerStat(PlayerBuilder.HEADING, StatsGroup.Physical, f => Heading = f, () => Heading),
+                new PlayerStat(PlayerBuilder.STAMINA, StatsGroup.Physical, f => Stamina = f, () => Stamina),
             };
         }
 
