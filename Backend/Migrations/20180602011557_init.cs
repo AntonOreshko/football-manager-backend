@@ -118,13 +118,17 @@ namespace Backend.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     AGE = table.Column<int>(nullable: false),
+                    BODY_TYPE = table.Column<int>(nullable: false),
                     CLUB_ID = table.Column<int>(nullable: false),
                     COUNTRY = table.Column<int>(nullable: false),
                     FIRST_NAME = table.Column<string>(maxLength: 64, nullable: false),
                     FIRST_POSITION = table.Column<int>(nullable: false),
+                    HEIGHT = table.Column<int>(nullable: false),
+                    HEIGHT_TYPE = table.Column<int>(nullable: false),
                     LAST_NAME = table.Column<string>(maxLength: 64, nullable: false),
                     SECOND_POSITION = table.Column<int>(nullable: false),
-                    THIRD_POSITION = table.Column<int>(nullable: false)
+                    THIRD_POSITION = table.Column<int>(nullable: false),
+                    WEIGHT = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -162,22 +166,26 @@ namespace Backend.Migrations
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false),
-                    ACCELERATION = table.Column<int>(nullable: false),
-                    AGILITY = table.Column<int>(nullable: false),
-                    BALL_CONTROL = table.Column<int>(nullable: false),
-                    CROSSING = table.Column<int>(nullable: false),
-                    FREE_CICKS = table.Column<int>(nullable: false),
-                    HEADING = table.Column<int>(nullable: false),
-                    INTERCEPTIONS = table.Column<int>(nullable: false),
-                    LONG_PASSING = table.Column<int>(nullable: false),
-                    LONG_SHOTS = table.Column<int>(nullable: false),
-                    PENALTIES = table.Column<int>(nullable: false),
-                    SHORT_PASSING = table.Column<int>(nullable: false),
-                    SHOTS = table.Column<int>(nullable: false),
-                    SPRINT_SPEED = table.Column<int>(nullable: false),
-                    STRENGTH = table.Column<int>(nullable: false),
-                    TACKLES = table.Column<int>(nullable: false),
-                    TALENT = table.Column<int>(nullable: false)
+                    ACCELERATION = table.Column<float>(nullable: false),
+                    AGILITY = table.Column<float>(nullable: false),
+                    BALL_CONTROL = table.Column<float>(nullable: false),
+                    CROSSING = table.Column<float>(nullable: false),
+                    FREE_CICKS = table.Column<float>(nullable: false),
+                    HEADING = table.Column<float>(nullable: false),
+                    INTERCEPTIONS = table.Column<float>(nullable: false),
+                    JUMPING = table.Column<float>(nullable: false),
+                    LONG_PASSING = table.Column<float>(nullable: false),
+                    LONG_SHOTS = table.Column<float>(nullable: false),
+                    PENALTIES = table.Column<float>(nullable: false),
+                    SHORT_PASSING = table.Column<float>(nullable: false),
+                    SHOTS = table.Column<float>(nullable: false),
+                    SLIDING_TACKLES = table.Column<float>(nullable: false),
+                    SPRINT_SPEED = table.Column<float>(nullable: false),
+                    STAMINA = table.Column<float>(nullable: false),
+                    STANDING_TACKLES = table.Column<float>(nullable: false),
+                    STRENGTH = table.Column<float>(nullable: false),
+                    TALENT = table.Column<float>(nullable: false),
+                    TRICKS = table.Column<float>(nullable: false)
                 },
                 constraints: table =>
                 {

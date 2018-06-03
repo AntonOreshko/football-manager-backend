@@ -7,6 +7,7 @@ using Backend.Models;
 using Backend.Models.Context;
 using Backend.Models.PlayerModels;
 using Backend.Enums;
+using Backend.ViewModels;
 
 namespace Backend.Controllers
 {
@@ -49,12 +50,26 @@ namespace Backend.Controllers
 
         // GET: api/Club/5/Players
         [HttpGet("{id}/Players")]
-        public IEnumerable<Player> GetPlayers([FromRoute] int id)
+        public async Task<JsonResult> GetPlayers([FromRoute] int id)
         {
-            return _context.Players.Where(p => p.ClubId == id);
+            var players = await _context.Players
+                                .Include(p => p.Stats)
+                                .Include(p => p.TemporaryStats)
+                                .Where(p => p.ClubId == id)
+                                .ToListAsync();
+
+
+            List<PlayerViewModel> playerViewModels = new List<PlayerViewModel>();
+            foreach(var player in players)
+            {
+                if (player.FirstPosition != PlayerPosition.GK)
+                    playerViewModels.Add(new PlayerViewModel(player));
+            }
+
+            return Json(playerViewModels);
         }
 
-        // GET: api/Club/5/Players
+        // GET: api/Club/5/Players/2
         [HttpGet("{id}/Players/{position}")]
         public IEnumerable<Player> GetPlayersWithPosition([FromRoute] int id, [FromRoute] PlayerPosition position)
         {

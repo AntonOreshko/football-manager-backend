@@ -22,6 +22,9 @@ namespace Backend.Models.PlayerModels
         [Required, Column("AGE")]
         public int Age { get; set; }
 
+        [Required, Column("TALENT")]
+        public int Talent { get; set; }
+
         [Required, Column("COUNTRY")]
         public Country Country { get; set; }
 
@@ -33,6 +36,18 @@ namespace Backend.Models.PlayerModels
 
         [Column("THIRD_POSITION")]
         public PlayerPosition ThirdPosition { get; set; }
+
+        [Column("HEIGHT_TYPE")]
+        public HeightType HeightType { get; set; }
+
+        [Column("BODY_TYPE")]
+        public BodyType BodyType { get; set; }
+
+        [Column("HEIGHT")]
+        public int Height { get; set; }
+
+        [Column("WEIGHT")]
+        public int Weight { get; set; }
 
         [Column("CLUB_ID")]
         public int ClubId { get; set; }

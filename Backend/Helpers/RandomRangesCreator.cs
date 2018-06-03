@@ -9,7 +9,9 @@ namespace Backend.Helpers
 
         public RandomRangesCreator(List<T> types, List<int> ranges)
         {
-            if (CheckRanges(ranges))
+            int sum;
+
+            if (CheckRanges(ranges, out sum))
             {
                 Ranges = new List<KeyValuePair<T, KeyValuePair<int, int>>>();
 
@@ -17,14 +19,17 @@ namespace Backend.Helpers
                 int idx = 0;
                 foreach (var r in ranges)
                 {
-                    Ranges.Add(new KeyValuePair<T, KeyValuePair<int, int>>(types[idx], new KeyValuePair<int, int>(currentDownLimit, currentDownLimit + r)));
-                    currentDownLimit += r;
+                    if (r > 0)
+                    {
+                        Ranges.Add(new KeyValuePair<T, KeyValuePair<int, int>>(types[idx], new KeyValuePair<int, int>(currentDownLimit, currentDownLimit + r)));
+                        currentDownLimit += r;
+                    }
                     idx++;
                 }
             }
             else
             {
-                throw new Exception("Ranges sum must be 100");
+                throw new Exception("Ranges sum must be 100, but sum = " + sum);
             }
         }
 
@@ -46,7 +51,7 @@ namespace Backend.Helpers
             return result;
         }
 
-        private bool CheckRanges(List<int> ranges)
+        private bool CheckRanges(List<int> ranges, out int totalSum)
         {
             var sum = 0;
 
@@ -55,7 +60,9 @@ namespace Backend.Helpers
                 sum += r;
             }
 
-            return sum == 1;
+            totalSum = sum;
+
+            return sum == 100;
         }
     }
 }

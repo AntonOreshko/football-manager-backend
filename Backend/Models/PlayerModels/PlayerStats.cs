@@ -14,6 +14,7 @@ namespace Backend.Models.PlayerModels
         [Key, Column("ID")]
         public int Id { get; set; }
 
+        [NotMapped]
         public List<PlayerStat> Stats { get; set; }
 
         public PlayerStats()

@@ -5,27 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20180526223350_init.cs" />
-    <Compile Remove="Migrations\20180526223350_init.Designer.cs" />
-    <Compile Remove="Migrations\20180527003357_init.cs" />
-    <Compile Remove="Migrations\20180527003357_init.Designer.cs" />
-    <Compile Remove="Migrations\20180527003610_init.cs" />
-    <Compile Remove="Migrations\20180527003610_init.Designer.cs" />
-    <Compile Remove="Migrations\20180527003749_init.cs" />
-    <Compile Remove="Migrations\20180527003749_init.Designer.cs" />
-    <Compile Remove="Migrations\20180527003834_init.cs" />
-    <Compile Remove="Migrations\20180527003834_init.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.3" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
   </ItemGroup>
 

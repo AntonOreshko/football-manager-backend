@@ -64,7 +64,7 @@ namespace Backend.Models.Context
 
         public FootballManagerContext(DbContextOptions<FootballManagerContext> options) : base(options)
         {
-
+            
         }
 
     }

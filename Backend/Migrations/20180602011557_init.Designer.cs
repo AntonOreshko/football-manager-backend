@@ -13,7 +13,7 @@ using System;
 namespace Backend.Migrations
 {
     [DbContext(typeof(FootballManagerContext))]
-    [Migration("20180527004007_init")]
+    [Migration("20180602011557_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,6 +75,9 @@ namespace Backend.Migrations
                     b.Property<int>("Age")
                         .HasColumnName("AGE");
 
+                    b.Property<int>("BodyType")
+                        .HasColumnName("BODY_TYPE");
+
                     b.Property<int>("ClubId")
                         .HasColumnName("CLUB_ID");
 
@@ -89,6 +92,12 @@ namespace Backend.Migrations
                     b.Property<int>("FirstPosition")
                         .HasColumnName("FIRST_POSITION");
 
+                    b.Property<int>("Height")
+                        .HasColumnName("HEIGHT");
+
+                    b.Property<int>("HeightType")
+                        .HasColumnName("HEIGHT_TYPE");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnName("LAST_NAME")
@@ -99,6 +108,9 @@ namespace Backend.Migrations
 
                     b.Property<int>("ThirdPosition")
                         .HasColumnName("THIRD_POSITION");
+
+                    b.Property<int>("Weight")
+                        .HasColumnName("WEIGHT");
 
                     b.HasKey("Id");
 
@@ -112,53 +124,65 @@ namespace Backend.Migrations
                     b.Property<int>("Id")
                         .HasColumnName("ID");
 
-                    b.Property<int>("Acceleration")
+                    b.Property<float>("Acceleration")
                         .HasColumnName("ACCELERATION");
 
-                    b.Property<int>("Agility")
+                    b.Property<float>("Agility")
                         .HasColumnName("AGILITY");
 
-                    b.Property<int>("BallControl")
+                    b.Property<float>("BallControl")
                         .HasColumnName("BALL_CONTROL");
 
-                    b.Property<int>("Crossing")
+                    b.Property<float>("Crossing")
                         .HasColumnName("CROSSING");
 
-                    b.Property<int>("FreeKicks")
+                    b.Property<float>("FreeKicks")
                         .HasColumnName("FREE_CICKS");
 
-                    b.Property<int>("Heading")
+                    b.Property<float>("Heading")
                         .HasColumnName("HEADING");
 
-                    b.Property<int>("Interceptions")
+                    b.Property<float>("Interceptions")
                         .HasColumnName("INTERCEPTIONS");
 
-                    b.Property<int>("LongPassing")
+                    b.Property<float>("Jumping")
+                        .HasColumnName("JUMPING");
+
+                    b.Property<float>("LongPassing")
                         .HasColumnName("LONG_PASSING");
 
-                    b.Property<int>("LongShots")
+                    b.Property<float>("LongShots")
                         .HasColumnName("LONG_SHOTS");
 
-                    b.Property<int>("Penalties")
+                    b.Property<float>("Penalties")
                         .HasColumnName("PENALTIES");
 
-                    b.Property<int>("ShortPassing")
+                    b.Property<float>("ShortPassing")
                         .HasColumnName("SHORT_PASSING");
 
-                    b.Property<int>("Shots")
+                    b.Property<float>("Shots")
                         .HasColumnName("SHOTS");
 
-                    b.Property<int>("SprintSpeed")
+                    b.Property<float>("SlidingTackles")
+                        .HasColumnName("SLIDING_TACKLES");
+
+                    b.Property<float>("SprintSpeed")
                         .HasColumnName("SPRINT_SPEED");
 
-                    b.Property<int>("Strength")
+                    b.Property<float>("Stamina")
+                        .HasColumnName("STAMINA");
+
+                    b.Property<float>("StandingTackles")
+                        .HasColumnName("STANDING_TACKLES");
+
+                    b.Property<float>("Strength")
                         .HasColumnName("STRENGTH");
 
-                    b.Property<int>("Tackles")
-                        .HasColumnName("TACKLES");
-
-                    b.Property<int>("Talent")
+                    b.Property<float>("Talent")
                         .HasColumnName("TALENT");
+
+                    b.Property<float>("Tricks")
+                        .HasColumnName("TRICKS");
 
                     b.HasKey("Id");
 

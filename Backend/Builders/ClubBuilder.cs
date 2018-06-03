@@ -18,15 +18,11 @@ namespace Backend.Builders
             club.User = user;
 
             var squad = SquadBuilder.GetSquad(club, FormationBuilder.GetRandomFormation());
+
             club.Squads = new List<Squad>();
             club.Squads.Add(squad);
 
-            var formationData = squad.FormationData;
-            club.Players = new List<Player>();
-            foreach(var fp in formationData.FormationPositions)
-            {
-                club.Players.Add(PlayerBuilder.GetPlayer(club, fp));
-            }
+            SquadBuilder.AddStartPlayersToSquad(club, squad.FormationData);
 
             return club;
         }
