@@ -1,5 +1,4 @@
 ﻿using Backend.Enums;
-using Backend.Models.PlayerModels;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -21,10 +20,10 @@ namespace Backend.Models.SquadModels
         [Column("PLAYER_ID")]
         public int PlayerId { get; set; }
 
-        [Required, Column("FORMATION_DATA_ID")]
-        public int FormationDataId { get; set; }
+        [Required, Column("SQUAD_ID")]
+        public int SquadId { get; set; }
 
-        [ForeignKey(nameof(FormationDataId))]
-        public FormationData FormationData { get; set; }
+        [ForeignKey(nameof(SquadId))]
+        public Squad Squad { get; set; }
     }
 }

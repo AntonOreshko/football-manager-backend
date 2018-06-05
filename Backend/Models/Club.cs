@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Backend.Enums;
 
 namespace Backend.Models
 {
@@ -19,6 +20,9 @@ namespace Backend.Models
 
         [Required, Column("NAME"), MaxLength(64)]
         public string Name { get; set; }
+
+        [Required, Column("COUNTRY")]
+        public Country Country { get; set; }
 
         [Required, Column("FOUNDATION_DATE")]
         public DateTime FoundationDate { get; set; }

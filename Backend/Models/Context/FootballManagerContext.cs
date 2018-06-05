@@ -16,8 +16,6 @@ namespace Backend.Models.Context
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<UserRegisterData> UsersRegisterData { get; set; }
-
         public DbSet<Club> Clubs { get; set; }
 
         public DbSet<Player> Players { get; set; }

@@ -7,92 +7,80 @@ namespace Backend.Builders
 {
     public class FormationBuilder
     {
-        public static FormationData GetFormationData(Squad squad, Formation formation)
+        public static FormationPosition GetFormationPosition(PlayerPosition playerPosition)
         {
-            var formationData = new FormationData();
-
-            formationData.Squad = squad;
-            formationData.Formation = formation;
-
-            AddFormationPositions(formationData);
-
-            return formationData;
-        }
-
-        public static FormationPosition GetFormationPosition(FormationData formationData, PlayerPosition playerPosition)
-        {
-            var formationPosition = new FormationPosition();
-
-            formationPosition.FormationData = formationData;
-            formationPosition.PlayerPosition = playerPosition;
+            var formationPosition = new FormationPosition
+            {
+                PlayerPosition = playerPosition
+            };
 
             return formationPosition;
         }
 
-        public static void AddFormationPositions(FormationData formationData)
+        public static void AddFormationPositions(Squad squad)
         {
-            switch (formationData.Formation)
+            switch (squad.Formation)
             {
                 case Formation.F___3_4_1_2:
-                    Fill_F___3_4_1_2(formationData);
+                    GetFormationPositions_3_4_1_2(squad);
                     break;
                 case Formation.F___3_4_3:
-                    Fill_F___3_4_3(formationData);
+                    GetFormationPositions_3_4_3(squad);
                     break;
                 case Formation.F___3_5_2:
-                    Fill_F___3_5_2(formationData);
+                    GetFormationPositions_3_5_2(squad);
                     break;
                 case Formation.F___4_1_2_1_2_A:
-                    Fill_F___4_1_2_1_2_A(formationData);
+                    GetFormationPositions_4_1_2_1_2_A(squad);
                     break;
                 case Formation.F___4_1_2_1_2_B:
-                    Fill_F___4_1_2_1_2_B(formationData);
+                    GetFormationPositions_4_1_2_1_2_B(squad);
                     break;
                 case Formation.F___4_2_3_1_A:
-                    Fill_F___4_2_3_1_A(formationData);
+                    GetFormationPositions_4_2_3_1_A(squad);
                     break;
                 case Formation.F___4_2_3_1_B:
-                    Fill_F___4_2_3_1_B(formationData);
+                    Fill_F___4_2_3_1_B(squad);
                     break;
                 case Formation.F___4_2_2_2:
-                    Fill_F___4_2_2_2(formationData);
+                    Fill_F___4_2_2_2(squad);
                     break;
                 case Formation.F___4_3_1_2:
-                    Fill_F___4_3_1_2(formationData);
+                    Fill_F___4_3_1_2(squad);
                     break;
                 case Formation.F___4_3_3_A:
-                    Fill_F___4_3_3_A(formationData);
+                    Fill_F___4_3_3_A(squad);
                     break;
                 case Formation.F___4_3_3_B:
-                    Fill_F___4_3_3_B(formationData);
+                    Fill_F___4_3_3_B(squad);
                     break;
                 case Formation.F___4_3_3_C:
-                    Fill_F___4_3_3_C(formationData);
+                    Fill_F___4_3_3_C(squad);
                     break;
                 case Formation.F___4_3_3_D:
-                    Fill_F___4_3_3_D(formationData);
+                    Fill_F___4_3_3_D(squad);
                     break;
                 case Formation.F___4_4_2_A:
-                    Fill_F___4_4_2_A(formationData);
+                    Fill_F___4_4_2_A(squad);
                     break;
                 case Formation.F___4_4_2_B:
-                    Fill_F___4_4_2_B(formationData);
+                    Fill_F___4_4_2_B(squad);
                     break;
                 case Formation.F___5_2_1_2:
-                    Fill_F___5_2_1_2(formationData);
+                    Fill_F___5_2_1_2(squad);
                     break;
                 case Formation.F___5_2_2_1:
-                    Fill_F___5_2_2_1(formationData);
+                    Fill_F___5_2_2_1(squad);
                     break;
                 case Formation.F___5_3_2:
-                    Fill_F___5_3_2(formationData);
+                    Fill_F___5_3_2(squad);
                     break;
             }
         }
 
         #region Formations Filling
 
-        public static void Fill_F___3_4_1_2(FormationData formationData)
+        public static void GetFormationPositions_3_4_1_2(Squad squad)
         {
             var positions = new List<FormationPosition>()
             {
@@ -117,12 +105,12 @@ namespace Backend.Builders
                 new FormationPosition { PlayerPosition = PlayerPosition.ST },
             };
 
-            FillFormationPositionCommonData(positions, formationData);
+            FillFormationPositionCommonData(positions, squad);
 
-            formationData.FormationPositions = positions;
+            squad.FormationPositions = positions;
         }
 
-        public static void Fill_F___3_4_3(FormationData formationData)
+        public static void GetFormationPositions_3_4_3(Squad squad)
         {
             var positions = new List<FormationPosition>()
             {
@@ -147,12 +135,12 @@ namespace Backend.Builders
                 new FormationPosition { PlayerPosition = PlayerPosition.ST },
             };
 
-            FillFormationPositionCommonData(positions, formationData);
+            FillFormationPositionCommonData(positions, squad);
 
-            formationData.FormationPositions = positions;
+            squad.FormationPositions = positions;
         }
 
-        public static void Fill_F___3_5_2(FormationData formationData)
+        public static void GetFormationPositions_3_5_2(Squad squad)
         {
             var positions = new List<FormationPosition>()
             {
@@ -177,12 +165,12 @@ namespace Backend.Builders
                 new FormationPosition { PlayerPosition = PlayerPosition.ST },
             };
 
-            FillFormationPositionCommonData(positions, formationData);
+            FillFormationPositionCommonData(positions, squad);
 
-            formationData.FormationPositions = positions;
+            squad.FormationPositions = positions;
         }
 
-        public static void Fill_F___4_1_2_1_2_A(FormationData formationData)
+        public static void GetFormationPositions_4_1_2_1_2_A(Squad squad)
         {
             var positions = new List<FormationPosition>()
             {
@@ -207,12 +195,12 @@ namespace Backend.Builders
                 new FormationPosition { PlayerPosition = PlayerPosition.ST },
             };
 
-            FillFormationPositionCommonData(positions, formationData);
+            FillFormationPositionCommonData(positions, squad);
 
-            formationData.FormationPositions = positions;
+            squad.FormationPositions = positions;
         }
 
-        public static void Fill_F___4_1_2_1_2_B(FormationData formationData)
+        public static void GetFormationPositions_4_1_2_1_2_B(Squad squad)
         {
             var positions = new List<FormationPosition>()
             {
@@ -237,12 +225,12 @@ namespace Backend.Builders
                 new FormationPosition { PlayerPosition = PlayerPosition.ST },
             };
 
-            FillFormationPositionCommonData(positions, formationData);
+            FillFormationPositionCommonData(positions, squad);
 
-            formationData.FormationPositions = positions;
+            squad.FormationPositions = positions;
         }
 
-        public static void Fill_F___4_2_3_1_A(FormationData formationData)
+        public static void GetFormationPositions_4_2_3_1_A(Squad squad)
         {
             var positions = new List<FormationPosition>()
             {
@@ -267,12 +255,12 @@ namespace Backend.Builders
                 new FormationPosition { PlayerPosition = PlayerPosition.ST },
             };
 
-            FillFormationPositionCommonData(positions, formationData);
+            FillFormationPositionCommonData(positions, squad);
 
-            formationData.FormationPositions = positions;
+            squad.FormationPositions = positions;
         }
 
-        public static void Fill_F___4_2_3_1_B(FormationData formationData)
+        public static void Fill_F___4_2_3_1_B(Squad squad)
         {
             var positions = new List<FormationPosition>()
             {
@@ -297,12 +285,12 @@ namespace Backend.Builders
                 new FormationPosition { PlayerPosition = PlayerPosition.ST },
             };
 
-            FillFormationPositionCommonData(positions, formationData);
+            FillFormationPositionCommonData(positions, squad);
 
-            formationData.FormationPositions = positions;
+            squad.FormationPositions = positions;
         }
 
-        public static void Fill_F___4_2_2_2(FormationData formationData)
+        public static void Fill_F___4_2_2_2(Squad squad)
         {
             var positions = new List<FormationPosition>()
             {
@@ -327,12 +315,12 @@ namespace Backend.Builders
                 new FormationPosition { PlayerPosition = PlayerPosition.ST },
             };
 
-            FillFormationPositionCommonData(positions, formationData);
+            FillFormationPositionCommonData(positions, squad);
 
-            formationData.FormationPositions = positions;
+            squad.FormationPositions = positions;
         }
 
-        public static void Fill_F___4_3_1_2(FormationData formationData)
+        public static void Fill_F___4_3_1_2(Squad squad)
         {
             var positions = new List<FormationPosition>()
             {
@@ -357,12 +345,12 @@ namespace Backend.Builders
                 new FormationPosition { PlayerPosition = PlayerPosition.ST },
             };
 
-            FillFormationPositionCommonData(positions, formationData);
+            FillFormationPositionCommonData(positions, squad);
 
-            formationData.FormationPositions = positions;
+            squad.FormationPositions = positions;
         }
 
-        public static void Fill_F___4_3_3_A(FormationData formationData)
+        public static void Fill_F___4_3_3_A(Squad squad)
         {
             var positions = new List<FormationPosition>()
             {
@@ -387,12 +375,12 @@ namespace Backend.Builders
                 new FormationPosition { PlayerPosition = PlayerPosition.RF },
             };
 
-            FillFormationPositionCommonData(positions, formationData);
+            FillFormationPositionCommonData(positions, squad);
 
-            formationData.FormationPositions = positions;
+            squad.FormationPositions = positions;
         }
 
-        public static void Fill_F___4_3_3_B(FormationData formationData)
+        public static void Fill_F___4_3_3_B(Squad squad)
         {
             var positions = new List<FormationPosition>()
             {
@@ -417,12 +405,12 @@ namespace Backend.Builders
                 new FormationPosition { PlayerPosition = PlayerPosition.RF },
             };
 
-            FillFormationPositionCommonData(positions, formationData);
+            FillFormationPositionCommonData(positions, squad);
 
-            formationData.FormationPositions = positions;
+            squad.FormationPositions = positions;
         }
 
-        public static void Fill_F___4_3_3_C(FormationData formationData)
+        public static void Fill_F___4_3_3_C(Squad squad)
         {
             var positions = new List<FormationPosition>()
             {
@@ -447,12 +435,12 @@ namespace Backend.Builders
                 new FormationPosition { PlayerPosition = PlayerPosition.RF },
             };
 
-            FillFormationPositionCommonData(positions, formationData);
+            FillFormationPositionCommonData(positions, squad);
 
-            formationData.FormationPositions = positions;
+            squad.FormationPositions = positions;
         }
 
-        public static void Fill_F___4_3_3_D(FormationData formationData)
+        public static void Fill_F___4_3_3_D(Squad squad)
         {
             var positions = new List<FormationPosition>()
             {
@@ -477,12 +465,12 @@ namespace Backend.Builders
                 new FormationPosition { PlayerPosition = PlayerPosition.RF },
             };
 
-            FillFormationPositionCommonData(positions, formationData);
+            FillFormationPositionCommonData(positions, squad);
 
-            formationData.FormationPositions = positions;
+            squad.FormationPositions = positions;
         }
 
-        public static void Fill_F___4_4_2_A(FormationData formationData)
+        public static void Fill_F___4_4_2_A(Squad squad)
         {
             var positions = new List<FormationPosition>()
             {
@@ -507,12 +495,12 @@ namespace Backend.Builders
                 new FormationPosition { PlayerPosition = PlayerPosition.ST },
             };
 
-            FillFormationPositionCommonData(positions, formationData);
+            FillFormationPositionCommonData(positions, squad);
 
-            formationData.FormationPositions = positions;
+            squad.FormationPositions = positions;
         }
 
-        public static void Fill_F___4_4_2_B(FormationData formationData)
+        public static void Fill_F___4_4_2_B(Squad squad)
         {
             var positions = new List<FormationPosition>()
             {
@@ -537,12 +525,12 @@ namespace Backend.Builders
                 new FormationPosition { PlayerPosition = PlayerPosition.ST },
             };
 
-            FillFormationPositionCommonData(positions, formationData);
+            FillFormationPositionCommonData(positions, squad);
 
-            formationData.FormationPositions = positions;
+            squad.FormationPositions = positions;
         }
 
-        public static void Fill_F___5_2_1_2(FormationData formationData)
+        public static void Fill_F___5_2_1_2(Squad squad)
         {
             var positions = new List<FormationPosition>()
             {
@@ -567,12 +555,12 @@ namespace Backend.Builders
                 new FormationPosition { PlayerPosition = PlayerPosition.ST },
             };
 
-            FillFormationPositionCommonData(positions, formationData);
+            FillFormationPositionCommonData(positions, squad);
 
-            formationData.FormationPositions = positions;
+            squad.FormationPositions = positions;
         }
 
-        public static void Fill_F___5_2_2_1(FormationData formationData)
+        public static void Fill_F___5_2_2_1(Squad squad)
         {
             var positions = new List<FormationPosition>()
             {
@@ -597,12 +585,12 @@ namespace Backend.Builders
                 new FormationPosition { PlayerPosition = PlayerPosition.RF },
             };
 
-            FillFormationPositionCommonData(positions, formationData);
+            FillFormationPositionCommonData(positions, squad);
 
-            formationData.FormationPositions = positions;
+            squad.FormationPositions = positions;
         }
 
-        public static void Fill_F___5_3_2(FormationData formationData)
+        public static void Fill_F___5_3_2(Squad squad)
         {
             var positions = new List<FormationPosition>()
             {
@@ -627,16 +615,15 @@ namespace Backend.Builders
                 new FormationPosition { PlayerPosition = PlayerPosition.ST },
             };
 
-            FillFormationPositionCommonData(positions, formationData);
+            FillFormationPositionCommonData(positions, squad);
 
-            formationData.FormationPositions = positions;
+            squad.FormationPositions = positions;
         }
 
-        private static void FillFormationPositionCommonData(List<FormationPosition> positions, FormationData formationData)
+        private static void FillFormationPositionCommonData(List<FormationPosition> positions, Squad squad)
         {
             for (int i = 0; i < 18; i++)
             {
-                positions[i].FormationData = formationData;
                 if (i < 11)
                 {
                     positions[i].FormationPositionType = FormationPositionType.Start;

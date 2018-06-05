@@ -1,28 +1,20 @@
 ﻿using Backend.Models;
-using Backend.Models.PlayerModels;
-using Backend.Models.SquadModels;
-using Backend.Models.UserModels;
 using System;
-using System.Collections.Generic;
+using Backend.Builders.Data;
 
 namespace Backend.Builders
 {
     public class ClubBuilder
     {
-        public static Club GetClub(User user)
+        public static Club GetClub(ClubBuilderData builderData)
         {
-            var club = new Club();
+            var club = new Club
+            {
+                Name = builderData.Name,
+                Country = builderData.Country,
+                FoundationDate = DateTime.Now
+            };
 
-            club.Name = user.FirstName + "'s Club";
-            club.FoundationDate = DateTime.Now;
-            club.User = user;
-
-            var squad = SquadBuilder.GetSquad(club, FormationBuilder.GetRandomFormation());
-
-            club.Squads = new List<Squad>();
-            club.Squads.Add(squad);
-
-            SquadBuilder.AddStartPlayersToSquad(club, squad.FormationData);
 
             return club;
         }

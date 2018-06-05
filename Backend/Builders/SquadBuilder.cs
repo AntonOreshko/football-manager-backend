@@ -1,27 +1,27 @@
 ﻿using Backend.Enums;
 using Backend.Helpers;
-using Backend.Models;
 using Backend.Models.PlayerModels;
 using Backend.Models.SquadModels;
 using System.Collections.Generic;
+using Backend.Builders.Data;
 
 namespace Backend.Builders
 {
     public class SquadBuilder
     {
-        public static Squad GetSquad(Club club, Formation formation)
+        public static Squad GetSquad(SquadBuilderData squadBuilderData)
         {
             var squad = new Squad();
 
-            squad.Club = club;
-            squad.IsActive = true;
+            squad.IsActive = squadBuilderData.IsActive;
+            squad.Formation = squadBuilderData.Formation;
 
-            squad.FormationData = FormationBuilder.GetFormationData(squad, formation);
+
 
             return squad;
         }
 
-        public static void AddStartPlayersToSquad(Club club, FormationData formationData)
+        public static void AddStartPlayersToSquad(Squad squad, Formation formation)
         {
             RandomShuffleListCreator<FormationPosition> shuffledPositions = new RandomShuffleListCreator<FormationPosition>(formationData.FormationPositions);
 

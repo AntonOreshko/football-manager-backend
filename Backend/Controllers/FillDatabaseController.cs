@@ -1,8 +1,7 @@
-﻿using Backend.Builders;
+﻿using System.Threading.Tasks;
+using Backend.Builders;
 using Backend.Models.Context;
-using Backend.Models.UserModels;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace Backend.Controllers
 {
@@ -17,33 +16,33 @@ namespace Backend.Controllers
             _context = context;
         }
 
-        // GET: api/Users
-        [HttpGet]
-        public string Fill()
+        // GET: api/clearcontext
+        [HttpGet("clearcontext")]
+        public async Task<IActionResult> ClearContext()
         {
-            List<User> users = new List<User>();
+            _context.Users.RemoveRange(_context.Users);
 
-            foreach(var user in _context.Users)
-            {
-                users.Add(user);
-            }
+            await _context.SaveChangesAsync();
 
-            foreach(var user in users)
-            {
-                _context.Users.Remove(user);
-            }
-
-            _context.SaveChanges();
-
-            for (int i = 0; i < 10; i++)
-            {
-                _context.Users.Add(UserBuilder.GetUser());
-            }
-
-            _context.SaveChanges();
-
-            return "TRUE";
+            return Ok("context cleared");
         }
 
+        // GET: api/addusers/10
+        [HttpGet("{count}")]
+        public async Task<IActionResult> AddUsers([FromRoute] int count)
+        {
+            _context.Users.RemoveRange(_context.Users);
+
+            await _context.SaveChangesAsync();
+
+            for (int i = 0; i < count; i++)
+            {
+                _context.Users.Add(UserBuilder.GetRandomUser());
+            }
+
+            _context.SaveChanges();
+
+            return Ok("users added");
+        }
     }
 }

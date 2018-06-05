@@ -1,6 +1,7 @@
 ﻿using Backend.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Backend.ViewModels;
 
 namespace Backend.Models.UserModels
 {
@@ -26,8 +27,26 @@ namespace Backend.Models.UserModels
         [Required, Column("BOOSTERS")]
         public int Boosters { get; set; }
 
-        public UserRegisterData UserRegisterData { get; set; }
+        [Required, Column("LOGIN"), MaxLength(64)]
+        public string Login { get; set; }
+
+        [Required, Column("PASSWORD"), MaxLength(64)]
+        public string Password { get; set; }
 
         public Club Club { get; set; }
+
+        public UserViewModel GetViewModel()
+        {
+            var viewModel = new UserViewModel
+            {
+                FirstName = FirstName,
+                LastName = LastName,
+                Country = Country,
+                Boosters = Boosters,
+                Coins = Coins
+            };
+
+            return viewModel;
+        }
     }
 }
