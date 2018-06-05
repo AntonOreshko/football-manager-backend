@@ -16,7 +16,7 @@ namespace Backend.Builders.Data
             {
                 Name = userBuilderData.FirstName + "'s Club",
                 Country = userBuilderData.UserCountry,
-                Formation = FormationBuilder.GetRandomFormation()
+                Formation = SquadBuilder.GetRandomFormation()
             };
             return builderData;
         }

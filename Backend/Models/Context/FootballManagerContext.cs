@@ -26,8 +26,6 @@ namespace Backend.Models.Context
 
         public DbSet<Squad> Squads { get; set; }
 
-        public DbSet<FormationData> FormationData { get; set; }
-
         public DbSet<FormationPosition> FormationPositions { get; set; }
 
         #region Buildings
