@@ -45,6 +45,11 @@ namespace Backend.Models.PlayerModels
                 new PlayerStat(PlayerBuilder.STRENGTH, StatsGroup.Physical, f => Strength = f, () => Strength),
                 new PlayerStat(PlayerBuilder.HEADING, StatsGroup.Physical, f => Heading = f, () => Heading),
                 new PlayerStat(PlayerBuilder.STAMINA, StatsGroup.Physical, f => Stamina = f, () => Stamina),
+
+                new PlayerStat(PlayerBuilder.HAND_PLAY, StatsGroup.Goalkeeping, f => HandPlay = f, () => HandPlay),
+                new PlayerStat(PlayerBuilder.KICKING, StatsGroup.Goalkeeping, f => Kicking = f, () => Kicking),
+                new PlayerStat(PlayerBuilder.REFLEXES, StatsGroup.Goalkeeping, f => Reflexes = f, () => Reflexes),
+                new PlayerStat(PlayerBuilder.POSITIONING, StatsGroup.Goalkeeping, f => Positioning = f, () => Positioning),
             };
         }
 
@@ -128,6 +133,22 @@ namespace Backend.Models.PlayerModels
 
         [Required, Column("STAMINA")]
         public float Stamina { get; set; }
+
+        #endregion
+
+        #region Goalkeepers
+
+        [Required, Column("HAND_PLAY")]
+        public float HandPlay { get; set; }
+
+        [Required, Column("KICKING")]
+        public float Kicking { get; set; }
+
+        [Required, Column("REFLEXES")]
+        public float Reflexes { get; set; }
+
+        [Required, Column("POSITIONING")]
+        public float Positioning { get; set; }
 
         #endregion
 

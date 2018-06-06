@@ -32,7 +32,7 @@ namespace Backend.Builders
             return club;
         }
 
-        public static List<Player> GetStartPlayers(ClubBuilderData data, Squad squad)
+        public static List<Player> GetStartPlayers(ClubBuilderData clubBuilderData, Squad squad)
         {
             var shuffledPositions = new RandomShuffleListCreator<FormationPosition>(squad.FormationPositions);
 
@@ -50,7 +50,10 @@ namespace Backend.Builders
                 var formationPosition = shuffledPositions.Get();
                 var level = shuffledLevels.Get();
 
-                players.Add(PlayerBuilder.CreatePlayer(club, formationPosition, level));
+                players.Add(PlayerBuilder.GetPlayer(new PlayerBuilderData
+                {
+                    Country = clubBuilderData.Country, Level = level, Position = formationPosition.PlayerPosition
+                }));
             }
 
             return players;

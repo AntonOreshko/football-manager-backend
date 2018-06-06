@@ -27,20 +27,29 @@ namespace Backend.Controllers
             return Ok("context cleared");
         }
 
-        // GET: api/addusers/10
-        [HttpGet("{count}")]
-        public async Task<IActionResult> AddUsers([FromRoute] int count)
+        // GET: api/fill/adduser
+        [HttpGet("adduser")]
+        public async Task<IActionResult> AddUser()
         {
-            _context.Users.RemoveRange(_context.Users);
+            var user = UserBuilder.GetRandomUser();
+
+            _context.Users.Add(user);
 
             await _context.SaveChangesAsync();
 
+            return Ok("users added");
+        }
+
+        // GET: api/fill/addusers/10
+        [HttpGet("addusers/{count}")]
+        public async Task<IActionResult> AddUsers([FromRoute] int count)
+        {
             for (int i = 0; i < count; i++)
             {
                 _context.Users.Add(UserBuilder.GetRandomUser());
             }
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return Ok("users added");
         }

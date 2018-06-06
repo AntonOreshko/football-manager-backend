@@ -1,11 +1,10 @@
 ﻿using Backend.Enums;
 using Backend.Helpers;
-using Backend.Models;
 using Backend.Models.PlayerModels;
-using Backend.Models.SquadModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Backend.Builders.Data;
 
 namespace Backend.Builders
 {
@@ -38,6 +37,11 @@ namespace Backend.Builders
         public const string HEADING = "Heading";
         public const string STAMINA = "Stamina";
 
+        public const string HAND_PLAY = "HandPlay";
+        public const string KICKING = "Kicking";
+        public const string REFLEXES = "Reflexes";
+        public const string POSITIONING = "Positioning";
+
         #endregion
 
         public static List<PlayerLevel> PlayerLevels { get; set; }
@@ -58,9 +62,9 @@ namespace Backend.Builders
 
         private static List<ConstitutionDependentBuilder> constitutionDependentBuilders;
 
-        private static List<AgeDependentBuilder> ageDependentBuilders;
+        private static List<AgeDependentBuilder> _ageDependentBuilders;
 
-        private static List<SpecialtyDependentBuilder> specialtyDependentBuilders;
+        private static List<SpecialtyDependentBuilder> _specialtyDependentBuilders;
 
         #endregion
 
@@ -144,6 +148,14 @@ namespace Backend.Builders
                         { JUMPING, 0.2f }, { STRENGTH, 0.5f }, { HEADING, 0.2f }, { STAMINA, 0.1f }
                     }
                 },
+                new StatsGroupDependentBuilder()
+                {
+                    StatsGroup = StatsGroup.Goalkeeping,
+                    StatsGroupCoefficients = new Dictionary<string, float>
+                    {
+                        { HAND_PLAY, 0.25f }, { KICKING, 0.15f }, { REFLEXES, 0.3f }, { POSITIONING, 0.3f }
+                    }
+                },
             };
 
             #endregion
@@ -152,6 +164,32 @@ namespace Backend.Builders
 
             positionDependentBuilders = new List<PlayerPositionDependentBuilder>()
             {
+                new PlayerPositionDependentBuilder()
+                {
+                    PlayerPosition = PlayerPosition.GK,
+                    HeightCreator = new RandomRangesCreator<HeightType>(
+                        new List<HeightType> { HeightType.Little, HeightType.Medium, HeightType.UpperMedium, HeightType.Tall },
+                        new List<int> { 0, 5, 40, 55 }),
+                    BodyCreator = new RandomRangesCreator<BodyType>(
+                        new List<BodyType> { BodyType.Lean, BodyType.Normal, BodyType.Thick },
+                        new List<int> { 30, 60, 10 }),
+                    StatsGenerationMedianas = new Dictionary<StatsGroup, float>
+                    {
+                        { StatsGroup.Speed, 0 }, { StatsGroup.Shooting, 0 }, { StatsGroup.Passing, 0 },
+                        { StatsGroup.Technique, 0 }, { StatsGroup.Defending, 0 }, { StatsGroup.Physical, 0 },
+                        { StatsGroup.Goalkeeping, 50 }
+                    },
+                    StatsOverallCoefficients = new Dictionary<string, float>
+                    {
+                        { ACCELERATION, 0.0f }, { SPRINT_SPEED, 0.0f },
+                        { SHOTS, 0.0f }, { LONG_SHOTS, 0.0f }, { PENALTIES, 0.0f }, { FREE_CICKS, 0.0f },
+                        { CROSSING, 0.0f }, { SHORT_PASSING, 0.0f }, { LONG_PASSING, 0.0f },
+                        { AGILITY, 0.0f }, { BALL_CONTROL, 0.0f }, { TRICKS, 0.0f },
+                        { INTERCEPTIONS, 0.0f }, { STANDING_TACKLES, 0.0f }, { SLIDING_TACKLES, 0.0f },
+                        { JUMPING, 0.0f }, { STRENGTH, 0.0f }, { HEADING, 0.0f }, { STAMINA, 0.0f },
+                        { HAND_PLAY, 0.25f }, { KICKING, 0.15f }, { REFLEXES, 0.3f }, { POSITIONING, 0.3f }
+                    }
+                },
                 new PlayerPositionDependentBuilder()
                 {
                     PlayerPosition = PlayerPosition.LB,
@@ -165,6 +203,7 @@ namespace Backend.Builders
                     {
                         { StatsGroup.Speed, 50 }, { StatsGroup.Shooting, 35 }, { StatsGroup.Passing, 40 },
                         { StatsGroup.Technique, 45 }, { StatsGroup.Defending, 65 }, { StatsGroup.Physical, 55 },
+                        { StatsGroup.Goalkeeping, 0 }
                     },
                     StatsOverallCoefficients = new Dictionary<string, float>
                     {
@@ -174,6 +213,7 @@ namespace Backend.Builders
                         { AGILITY, 0.04f }, { BALL_CONTROL, 0.04f }, { TRICKS, 0.005f },
                         { INTERCEPTIONS, 0.125f }, { STANDING_TACKLES, 0.08f }, { SLIDING_TACKLES, 0.09f },
                         { JUMPING, 0.08f }, { STRENGTH, 0.05f }, { HEADING, 0.05f }, { STAMINA, 0.08f },
+                        { HAND_PLAY, 0.0f }, { KICKING, 0.0f }, { REFLEXES, 0.0f }, { POSITIONING, 0.0f }
                     }
                 },
                 new PlayerPositionDependentBuilder()
@@ -189,6 +229,7 @@ namespace Backend.Builders
                     {
                         { StatsGroup.Speed, 50 }, { StatsGroup.Shooting, 35 }, { StatsGroup.Passing, 40 },
                         { StatsGroup.Technique, 45 }, { StatsGroup.Defending, 65 }, { StatsGroup.Physical, 55 },
+                        { StatsGroup.Goalkeeping, 0 }
                     },
                     StatsOverallCoefficients = new Dictionary<string, float>
                     {
@@ -198,6 +239,7 @@ namespace Backend.Builders
                         { AGILITY, 0.04f }, { BALL_CONTROL, 0.04f }, { TRICKS, 0.005f },
                         { INTERCEPTIONS, 0.125f }, { STANDING_TACKLES, 0.08f }, { SLIDING_TACKLES, 0.09f },
                         { JUMPING, 0.08f }, { STRENGTH, 0.05f }, { HEADING, 0.05f }, { STAMINA, 0.08f },
+                        { HAND_PLAY, 0.0f }, { KICKING, 0.0f }, { REFLEXES, 0.0f }, { POSITIONING, 0.0f }
                     }
                 },
                 new PlayerPositionDependentBuilder()
@@ -213,6 +255,7 @@ namespace Backend.Builders
                     {
                         { StatsGroup.Speed, 45 }, { StatsGroup.Shooting, 35 }, { StatsGroup.Passing, 35 },
                         { StatsGroup.Technique, 35 }, { StatsGroup.Defending, 65 }, { StatsGroup.Physical, 65 },
+                        { StatsGroup.Goalkeeping, 0 }
                     },
                     StatsOverallCoefficients = new Dictionary<string, float>
                     {
@@ -222,6 +265,7 @@ namespace Backend.Builders
                         { AGILITY, 0.03f }, { BALL_CONTROL, 0.03f }, { TRICKS, 0.05f },
                         { INTERCEPTIONS, 0.145f }, { STANDING_TACKLES, 0.1f }, { SLIDING_TACKLES, 0.1f },
                         { JUMPING, 0.09f }, { STRENGTH, 0.08f }, { HEADING, 0.07f }, { STAMINA, 0.07f },
+                        { HAND_PLAY, 0.0f }, { KICKING, 0.0f }, { REFLEXES, 0.0f }, { POSITIONING, 0.0f }
                     }
                 },
                 new PlayerPositionDependentBuilder()
@@ -237,6 +281,7 @@ namespace Backend.Builders
                     {
                         { StatsGroup.Speed, 40 }, { StatsGroup.Shooting, 45 }, { StatsGroup.Passing, 55 },
                         { StatsGroup.Technique, 40 }, { StatsGroup.Defending, 55 }, { StatsGroup.Physical, 55 },
+                        { StatsGroup.Goalkeeping, 0 }
                     },
                     StatsOverallCoefficients = new Dictionary<string, float>
                     {
@@ -246,6 +291,7 @@ namespace Backend.Builders
                         { AGILITY, 0.03f }, { BALL_CONTROL, 0.05f }, { TRICKS, 0.005f },
                         { INTERCEPTIONS, 0.11f }, { STANDING_TACKLES, 0.085f }, { SLIDING_TACKLES, 0.09f },
                         { JUMPING, 0.08f }, { STRENGTH, 0.07f }, { HEADING, 0.05f }, { STAMINA, 0.06f },
+                        { HAND_PLAY, 0.0f }, { KICKING, 0.0f }, { REFLEXES, 0.0f }, { POSITIONING, 0.0f }
                     }
                 },
                 new PlayerPositionDependentBuilder()
@@ -261,6 +307,7 @@ namespace Backend.Builders
                     {
                         { StatsGroup.Speed, 40 }, { StatsGroup.Shooting, 50 }, { StatsGroup.Passing, 65 },
                         { StatsGroup.Technique, 55 }, { StatsGroup.Defending, 45 }, { StatsGroup.Physical, 45 },
+                        { StatsGroup.Goalkeeping, 0 }
                     },
                     StatsOverallCoefficients = new Dictionary<string, float>
                     {
@@ -270,6 +317,7 @@ namespace Backend.Builders
                         { AGILITY, 0.05f }, { BALL_CONTROL, 0.08f }, { TRICKS, 0.005f },
                         { INTERCEPTIONS, 0.07f }, { STANDING_TACKLES, 0.05f }, { SLIDING_TACKLES, 0.04f },
                         { JUMPING, 0.05f }, { STRENGTH, 0.06f }, { HEADING, 0.05f }, { STAMINA, 0.07f },
+                        { HAND_PLAY, 0.0f }, { KICKING, 0.0f }, { REFLEXES, 0.0f }, { POSITIONING, 0.0f }
                     }
                 },
                 new PlayerPositionDependentBuilder()
@@ -285,6 +333,7 @@ namespace Backend.Builders
                     {
                         { StatsGroup.Speed, 55 }, { StatsGroup.Shooting, 50 }, { StatsGroup.Passing, 55 },
                         { StatsGroup.Technique, 60 }, { StatsGroup.Defending, 40 }, { StatsGroup.Physical, 35 },
+                        { StatsGroup.Goalkeeping, 0 }
                     },
                     StatsOverallCoefficients = new Dictionary<string, float>
                     {
@@ -294,6 +343,7 @@ namespace Backend.Builders
                         { AGILITY, 0.1f }, { BALL_CONTROL, 0.1f }, { TRICKS, 0.05f },
                         { INTERCEPTIONS, 0.05f }, { STANDING_TACKLES, 0.015f }, { SLIDING_TACKLES, 0.02f },
                         { JUMPING, 0.05f }, { STRENGTH, 0.04f }, { HEADING, 0.05f }, { STAMINA, 0.09f },
+                        { HAND_PLAY, 0.0f }, { KICKING, 0.0f }, { REFLEXES, 0.0f }, { POSITIONING, 0.0f }
                     }
                 },
                 new PlayerPositionDependentBuilder()
@@ -309,6 +359,7 @@ namespace Backend.Builders
                     {
                         { StatsGroup.Speed, 55 }, { StatsGroup.Shooting, 50 }, { StatsGroup.Passing, 55 },
                         { StatsGroup.Technique, 60 }, { StatsGroup.Defending, 40 }, { StatsGroup.Physical, 35 },
+                        { StatsGroup.Goalkeeping, 0 }
                     },
                     StatsOverallCoefficients = new Dictionary<string, float>
                     {
@@ -318,6 +369,7 @@ namespace Backend.Builders
                         { AGILITY, 0.1f }, { BALL_CONTROL, 0.1f }, { TRICKS, 0.05f },
                         { INTERCEPTIONS, 0.05f }, { STANDING_TACKLES, 0.015f }, { SLIDING_TACKLES, 0.02f },
                         { JUMPING, 0.05f }, { STRENGTH, 0.04f }, { HEADING, 0.05f }, { STAMINA, 0.09f },
+                        { HAND_PLAY, 0.0f }, { KICKING, 0.0f }, { REFLEXES, 0.0f }, { POSITIONING, 0.0f }
                     }
                 },
                 new PlayerPositionDependentBuilder()
@@ -333,6 +385,7 @@ namespace Backend.Builders
                     {
                         { StatsGroup.Speed, 50 }, { StatsGroup.Shooting, 60 }, { StatsGroup.Passing, 65 },
                         { StatsGroup.Technique, 60 }, { StatsGroup.Defending, 35 }, { StatsGroup.Physical, 35 },
+                        { StatsGroup.Goalkeeping, 0 }
                     },
                     StatsOverallCoefficients = new Dictionary<string, float>
                     {
@@ -342,6 +395,7 @@ namespace Backend.Builders
                         { AGILITY, 0.1f }, { BALL_CONTROL, 0.1f }, { TRICKS, 0.005f },
                         { INTERCEPTIONS, 0.025f }, { STANDING_TACKLES, 0.01f }, { SLIDING_TACKLES, 0.01f },
                         { JUMPING, 0.03f }, { STRENGTH, 0.03f }, { HEADING, 0.003f }, { STAMINA, 0.08f },
+                        { HAND_PLAY, 0.0f }, { KICKING, 0.0f }, { REFLEXES, 0.0f }, { POSITIONING, 0.0f }
                     }
                 },
                 new PlayerPositionDependentBuilder()
@@ -357,6 +411,7 @@ namespace Backend.Builders
                     {
                         { StatsGroup.Speed, 65 }, { StatsGroup.Shooting, 55 }, { StatsGroup.Passing, 45 },
                         { StatsGroup.Technique, 60 }, { StatsGroup.Defending, 35 }, { StatsGroup.Physical, 35 },
+                        { StatsGroup.Goalkeeping, 0 }
                     },
                     StatsOverallCoefficients = new Dictionary<string, float>
                     {
@@ -366,6 +421,7 @@ namespace Backend.Builders
                         { AGILITY, 0.12f }, { BALL_CONTROL, 0.12f }, { TRICKS, 0.05f },
                         { INTERCEPTIONS, 0.015f }, { STANDING_TACKLES, 0.01f }, { SLIDING_TACKLES, 0.01f },
                         { JUMPING, 0.03f }, { STRENGTH, 0.04f }, { HEADING, 0.03f }, { STAMINA, 0.1f },
+                        { HAND_PLAY, 0.0f }, { KICKING, 0.0f }, { REFLEXES, 0.0f }, { POSITIONING, 0.0f }
                     }
                 },
                 new PlayerPositionDependentBuilder()
@@ -381,6 +437,7 @@ namespace Backend.Builders
                     {
                         { StatsGroup.Speed, 65 }, { StatsGroup.Shooting, 55 }, { StatsGroup.Passing, 45 },
                         { StatsGroup.Technique, 60 }, { StatsGroup.Defending, 35 }, { StatsGroup.Physical, 35 },
+                        { StatsGroup.Goalkeeping, 0 }
                     },
                     StatsOverallCoefficients = new Dictionary<string, float>
                     {
@@ -390,6 +447,7 @@ namespace Backend.Builders
                         { AGILITY, 0.12f }, { BALL_CONTROL, 0.12f }, { TRICKS, 0.05f },
                         { INTERCEPTIONS, 0.015f }, { STANDING_TACKLES, 0.01f }, { SLIDING_TACKLES, 0.01f },
                         { JUMPING, 0.03f }, { STRENGTH, 0.04f }, { HEADING, 0.03f }, { STAMINA, 0.1f },
+                        { HAND_PLAY, 0.0f }, { KICKING, 0.0f }, { REFLEXES, 0.0f }, { POSITIONING, 0.0f }
                     }
                 },
                 new PlayerPositionDependentBuilder()
@@ -405,6 +463,7 @@ namespace Backend.Builders
                     {
                         { StatsGroup.Speed, 60 }, { StatsGroup.Shooting, 65 }, { StatsGroup.Passing, 35 },
                         { StatsGroup.Technique, 55 }, { StatsGroup.Defending, 35 }, { StatsGroup.Physical, 50 },
+                        { StatsGroup.Goalkeeping, 0 }
                     },
                     StatsOverallCoefficients = new Dictionary<string, float>
                     {
@@ -414,6 +473,7 @@ namespace Backend.Builders
                         { AGILITY, 0.1f }, { BALL_CONTROL, 0.12f }, { TRICKS, 0.005f },
                         { INTERCEPTIONS, 0.015f }, { STANDING_TACKLES, 0.01f }, { SLIDING_TACKLES, 0.01f },
                         { JUMPING, 0.06f }, { STRENGTH, 0.06f }, { HEADING, 0.06f }, { STAMINA, 0.08f },
+                        { HAND_PLAY, 0.0f }, { KICKING, 0.0f }, { REFLEXES, 0.0f }, { POSITIONING, 0.0f }
                     }
                 },
             };
@@ -531,7 +591,7 @@ namespace Backend.Builders
             #region Age dependent builders
 
             // TODO
-            ageDependentBuilders = new List<AgeDependentBuilder>
+            _ageDependentBuilders = new List<AgeDependentBuilder>
             {
                 new AgeDependentBuilder
                 {
@@ -547,7 +607,7 @@ namespace Backend.Builders
 
             #region Specialty dependent builders
 
-            specialtyDependentBuilders = new List<SpecialtyDependentBuilder>
+            _specialtyDependentBuilders = new List<SpecialtyDependentBuilder>
             {
                 new SpecialtyDependentBuilder
                 {
@@ -618,39 +678,40 @@ namespace Backend.Builders
             #endregion
         }
 
-        public static Player CreatePlayer(Club club, FormationPosition formationPosition, int level)
+        public static Player GetPlayer(PlayerBuilderData playerBuilderData)
         {
-            var player = new Player();
-
-            player.Club = club;
-            player.FirstName = NameBuilder.GetFirstName();
-            player.LastName = NameBuilder.GetLastName();
-            player.Country = Country.England;
-            player.FirstPosition = formationPosition.PlayerPosition;
-
-            if (player.FirstPosition != PlayerPosition.GK)
+            var player = new Player
             {
-                var positionDependentBuilder = GetPositionDependentBuilder(player.FirstPosition);
+                FirstName = NameBuilder.GetFirstName(),
+                LastName = NameBuilder.GetLastName(),
+                Country = playerBuilderData.Country,
+                FirstPosition = playerBuilderData.Position
+            };
 
-                player.HeightType = positionDependentBuilder.HeightCreator.GetRandom();
-                player.BodyType = positionDependentBuilder.BodyCreator.GetRandom();
+            var positionDependentBuilder = GetPositionDependentBuilder(player.FirstPosition);
 
-                player.Height = GetRandomHeight(player.HeightType);
-                player.Weight = (int)((player.Height * player.Height) * GetRandomBodyMassIndex(player.BodyType) / 10000.0f);
+            player.HeightType = positionDependentBuilder.HeightCreator.GetRandom();
+            player.BodyType = positionDependentBuilder.BodyCreator.GetRandom();
 
-                player.Age = AgeGenerator.GetRandom();
-                player.Talent = TalentGenerator.GetRandom();
+            player.Height = GetRandomHeight(player.HeightType);
+            player.Weight = (int)((player.Height * player.Height) * GetRandomBodyMassIndex(player.BodyType) / 10000.0f);
 
-                var playerStats = new PlayerStats();
-                playerStats.Id = player.Id;
+            player.Age = AgeGenerator.GetRandom();
+            player.Talent = TalentGenerator.GetRandom();
 
-                positionDependentBuilder.GenerateStats(playerStats);
+            var playerStats = new PlayerStats
+            {
+                Id = player.Id
+            };
 
-                var overallRating = positionDependentBuilder.GetOverallRating(playerStats);
-                var wantedOverallRating = GetPlayerLevel(level).GetRandomRating();
+            positionDependentBuilder.GenerateStats(playerStats);
 
-                player.Stats = playerStats;
-            }
+            var overallRating = positionDependentBuilder.GetOverallRating(playerStats);
+            var wantedOverallRating = GetPlayerLevel(playerBuilderData.Level).GetRandomRating();
+
+            positionDependentBuilder.UpdatePlayerStats(playerStats, overallRating, wantedOverallRating);
+
+            player.Stats = playerStats;
 
             return player;
         }
@@ -762,7 +823,11 @@ namespace Backend.Builders
                 case HEADING:
                 case STAMINA:
                     return StatsGroup.Physical;
-
+                case HAND_PLAY:
+                case KICKING:
+                case REFLEXES:
+                case POSITIONING:
+                    return StatsGroup.Goalkeeping;
             }
 
             throw new Exception("Can't find stat group");
@@ -841,7 +906,12 @@ namespace Backend.Builders
 
                 var mediana = StatsGenerationMedianas[statsGroup];
 
-                var statValue = mediana + rnd.Next(-StatsGenerationDelta, StatsGenerationDelta + 1);
+                float statValue = 0;
+
+                if (mediana > 0)
+                {
+                    statValue = mediana + rnd.Next(-StatsGenerationDelta, StatsGenerationDelta + 1);
+                }
 
                 stat.Value = statValue;
             }
