@@ -1,20 +1,24 @@
 ﻿using Backend.Builders;
 using Backend.Enums;
-using Backend.Models.Context;
 using Backend.Models.PlayerModels;
-using System.Linq;
 
 namespace Backend.ViewModels
 {
     public class PlayerViewModel
     {
-        public Player Player { get; set; }
+        public string FirstName { get; set; }
 
-        public PlayerStats PlayerStats { get; set; }
-
-        //public PlayerTemporaryStats PlayerTemporaryStats { get; set; }
+        public string LastName { get; set; }
 
         public string Position { get; set; }
+
+        public int Age { get; set; }
+
+        public int Talent { get; set; }
+
+        public int Height { get; set; }
+
+        public int Weight { get; set; }
 
         public float OverallRating { get; set; }
 
@@ -30,9 +34,17 @@ namespace Backend.ViewModels
 
         public float Physical { get; set; }
 
+        public float Goalkeeping { get; set; }
+
         public PlayerViewModel(Player player)
         {
-            Player = player;
+            FirstName = player.FirstName;
+            LastName = player.LastName;
+            Age = player.Age;
+            Talent = player.Talent;
+            Height = player.Height;
+            Weight = player.Weight;
+
             Position = player.FirstPosition.ToString();
 
             OverallRating = PlayerBuilder.GetOverallRating(player.FirstPosition, player.Stats);
@@ -43,13 +55,7 @@ namespace Backend.ViewModels
             Technique = PlayerBuilder.GetStatsGroupRating(StatsGroup.Technique, player.Stats);
             Defending = PlayerBuilder.GetStatsGroupRating(StatsGroup.Defending, player.Stats);
             Physical = PlayerBuilder.GetStatsGroupRating(StatsGroup.Physical, player.Stats);
-
-            Player.Stats = null;
-            Player.TemporaryStats = null;
-
-            //PlayerStats = player.Stats;
-            //PlayerStats.Stats = null;
-            //PlayerStats.Player = null;
+            Goalkeeping = PlayerBuilder.GetStatsGroupRating(StatsGroup.Goalkeeping, player.Stats);
         }
     }
 }
