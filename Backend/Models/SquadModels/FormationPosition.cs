@@ -1,6 +1,7 @@
 ﻿using Backend.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Backend.Helpers;
 
 namespace Backend.Models.SquadModels
 {
@@ -11,10 +12,24 @@ namespace Backend.Models.SquadModels
         [Key, Column("ID")]
         public int Id { get; set; }
 
-        [Required, Column("PLAYER_POSITION")]
+        [Required, Column("PLAYER_POSITION"), MaxLength(16)]
+        public string PlayerPositionString
+        {
+            get => PlayerPosition.ToString();
+            private set => PlayerPosition = value.ParseEnum<PlayerPosition>();
+        }
+
+        [NotMapped]
         public PlayerPosition PlayerPosition { get; set; }
 
-        [Required, Column("FORMATION_POSITION_TYPE")]
+        [Required, Column("FORMATION_POSITION_TYPE"), MaxLength(16)]
+        public string FormationPositionTypeString
+        {
+            get => FormationPositionType.ToString();
+            private set => FormationPositionType = value.ParseEnum<FormationPositionType>();
+        }
+
+        [NotMapped]
         public FormationPositionType FormationPositionType { get; set; }
 
         [Column("PLAYER_ID")]

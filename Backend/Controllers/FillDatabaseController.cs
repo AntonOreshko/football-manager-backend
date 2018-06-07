@@ -1,6 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Backend.Builders;
 using Backend.Models.Context;
+using Backend.Models.UserModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
@@ -37,6 +40,10 @@ namespace Backend.Controllers
 
             await _context.SaveChangesAsync();
 
+            ClubBuilder.FillSquad(user.Club.Squads.First(), user.Club.Players);
+
+            await _context.SaveChangesAsync();
+
             return Ok("users added");
         }
 
@@ -44,9 +51,20 @@ namespace Backend.Controllers
         [HttpGet("addusers/{count}")]
         public async Task<IActionResult> AddUsers([FromRoute] int count)
         {
+            var users = new List<User>();
+
             for (int i = 0; i < count; i++)
             {
-                _context.Users.Add(UserBuilder.GetRandomUser());
+                users.Add(UserBuilder.GetRandomUser());
+            }
+
+            _context.Users.AddRange(users);
+
+            await _context.SaveChangesAsync();
+
+            foreach (var user in users)
+            {
+                ClubBuilder.FillSquad(user.Club.Squads.First(), user.Club.Players);
             }
 
             await _context.SaveChangesAsync();

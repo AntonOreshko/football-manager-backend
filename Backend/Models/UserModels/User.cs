@@ -1,6 +1,7 @@
 ﻿using Backend.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Backend.Helpers;
 using Backend.ViewModels;
 
 namespace Backend.Models.UserModels
@@ -18,7 +19,14 @@ namespace Backend.Models.UserModels
         [Required, Column("LAST_NAME"), MaxLength(64)]
         public string LastName { get; set; }
 
-        [Required, Column("COUNTRY")]
+        [Required, Column("COUNTRY"), MaxLength(16)]
+        public string CountryString
+        {
+            get => Country.ToString();
+            private set => Country = value.ParseEnum<Country>();
+        }
+
+        [NotMapped]
         public Country Country { get; set; }
 
         [Required, Column("COINS")]

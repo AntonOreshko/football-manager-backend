@@ -13,6 +13,6 @@ namespace Backend.Models.BuildingModels
         public int Level { get; set; }
 
         [ForeignKey(nameof(Id))]
-        public virtual Club Club { get; set; }
+        public Club Club { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Enums;
+using Backend.Helpers;
 
 namespace Backend.Models
 {
@@ -21,7 +22,14 @@ namespace Backend.Models
         [Required, Column("NAME"), MaxLength(64)]
         public string Name { get; set; }
 
-        [Required, Column("COUNTRY")]
+        [Required, Column("COUNTRY"), MaxLength(16)]
+        public string CountryString
+        {
+            get => Country.ToString();
+            private set => Country = value.ParseEnum<Country>();
+        }
+
+        [NotMapped]
         public Country Country { get; set; }
 
         [Required, Column("FOUNDATION_DATE")]

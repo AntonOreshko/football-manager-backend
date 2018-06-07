@@ -1,6 +1,7 @@
 ﻿using Backend.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Backend.Builders.Data;
 using Backend.Helpers;
 using Backend.Models.PlayerModels;
@@ -55,8 +56,22 @@ namespace Backend.Builders
                     Country = clubBuilderData.Country, Level = level, Position = formationPosition.PlayerPosition
                 }));
             }
-
+            
             return players;
+        }
+
+        public static void FillSquad(Squad squad, List<Player> players)
+        {
+            var addedPlayers = new List<Player>();
+
+            foreach (var pos in squad.FormationPositions)
+            {
+                var pl = players.Where(p => p.FirstPosition == pos.PlayerPosition && !addedPlayers.Contains(p))
+                    .OrderByDescending(p => p.OverallRating)
+                    .First();
+
+                pos.PlayerId = pl.Id;
+            }
         }
     }
 }

@@ -4,14 +4,16 @@ using Backend.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Backend.Migrations
 {
     [DbContext(typeof(FootballManagerContext))]
-    partial class FootballManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20180606122758_enums to string")]
+    partial class enumstostring
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -288,7 +290,7 @@ namespace Backend.Migrations
                     b.Property<string>("FormationString")
                         .IsRequired()
                         .HasColumnName("FORMATION")
-                        .HasMaxLength(64);
+                        .HasMaxLength(16);
 
                     b.Property<bool>("IsActive")
                         .HasColumnName("IS_ACTIVE");

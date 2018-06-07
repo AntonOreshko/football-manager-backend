@@ -4,14 +4,16 @@ using Backend.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Backend.Migrations
 {
     [DbContext(typeof(FootballManagerContext))]
-    partial class FootballManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20180606114531_Country string")]
+    partial class Countrystring
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,10 +46,8 @@ namespace Backend.Migrations
                         .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CountryString")
-                        .IsRequired()
-                        .HasColumnName("COUNTRY")
-                        .HasMaxLength(16);
+                    b.Property<int>("Country")
+                        .HasColumnName("COUNTRY");
 
                     b.Property<DateTime>("FoundationDate")
                         .HasColumnName("FOUNDATION_DATE");
@@ -78,52 +78,43 @@ namespace Backend.Migrations
                     b.Property<int>("Age")
                         .HasColumnName("AGE");
 
-                    b.Property<string>("BodyTypeString")
-                        .IsRequired()
-                        .HasColumnName("BODY_TYPE")
-                        .HasMaxLength(16);
+                    b.Property<int>("BodyType")
+                        .HasColumnName("BODY_TYPE");
 
                     b.Property<int>("ClubId")
                         .HasColumnName("CLUB_ID");
 
                     b.Property<string>("CountryString")
                         .IsRequired()
-                        .HasColumnName("COUNTRY")
-                        .HasMaxLength(16);
+                        .HasColumnName("COUNTRY");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnName("FIRST_NAME")
                         .HasMaxLength(64);
 
-                    b.Property<string>("FirstPositionString")
-                        .IsRequired()
-                        .HasColumnName("FIRST_POSITION")
-                        .HasMaxLength(16);
+                    b.Property<int>("FirstPosition")
+                        .HasColumnName("FIRST_POSITION");
 
                     b.Property<int>("Height")
                         .HasColumnName("HEIGHT");
 
-                    b.Property<string>("HeightTypeString")
-                        .IsRequired()
-                        .HasColumnName("HEIGHT_TYPE")
-                        .HasMaxLength(16);
+                    b.Property<int>("HeightType")
+                        .HasColumnName("HEIGHT_TYPE");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnName("LAST_NAME")
                         .HasMaxLength(64);
 
-                    b.Property<string>("SecondPositionString")
-                        .HasColumnName("SECOND_POSITION")
-                        .HasMaxLength(16);
+                    b.Property<int>("SecondPosition")
+                        .HasColumnName("SECOND_POSITION");
 
                     b.Property<int>("Talent")
                         .HasColumnName("TALENT");
 
-                    b.Property<string>("ThirdPositionString")
-                        .HasColumnName("THIRD_POSITION")
-                        .HasMaxLength(16);
+                    b.Property<int>("ThirdPosition")
+                        .HasColumnName("THIRD_POSITION");
 
                     b.Property<int>("Weight")
                         .HasColumnName("WEIGHT");
@@ -252,18 +243,14 @@ namespace Backend.Migrations
                         .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("FormationPositionTypeString")
-                        .IsRequired()
-                        .HasColumnName("FORMATION_POSITION_TYPE")
-                        .HasMaxLength(16);
+                    b.Property<int>("FormationPositionType")
+                        .HasColumnName("FORMATION_POSITION_TYPE");
 
                     b.Property<int>("PlayerId")
                         .HasColumnName("PLAYER_ID");
 
-                    b.Property<string>("PlayerPositionString")
-                        .IsRequired()
-                        .HasColumnName("PLAYER_POSITION")
-                        .HasMaxLength(16);
+                    b.Property<int>("PlayerPosition")
+                        .HasColumnName("PLAYER_POSITION");
 
                     b.Property<int>("SquadId")
                         .HasColumnName("SQUAD_ID");
@@ -285,10 +272,8 @@ namespace Backend.Migrations
                     b.Property<int>("ClubId")
                         .HasColumnName("CLUB_ID");
 
-                    b.Property<string>("FormationString")
-                        .IsRequired()
-                        .HasColumnName("FORMATION")
-                        .HasMaxLength(64);
+                    b.Property<int>("Formation")
+                        .HasColumnName("FORMATION");
 
                     b.Property<bool>("IsActive")
                         .HasColumnName("IS_ACTIVE");
@@ -350,10 +335,8 @@ namespace Backend.Migrations
                     b.Property<int>("Coins")
                         .HasColumnName("COINS");
 
-                    b.Property<string>("CountryString")
-                        .IsRequired()
-                        .HasColumnName("COUNTRY")
-                        .HasMaxLength(16);
+                    b.Property<int>("Country")
+                        .HasColumnName("COUNTRY");
 
                     b.Property<string>("FirstName")
                         .IsRequired()

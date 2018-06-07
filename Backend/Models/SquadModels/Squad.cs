@@ -2,6 +2,7 @@
 using Backend.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Backend.Helpers;
 
 namespace Backend.Models.SquadModels
 {
@@ -15,7 +16,14 @@ namespace Backend.Models.SquadModels
         [Required, Column("IS_ACTIVE")]
         public bool IsActive { get; set; }
 
-        [Required, Column("FORMATION")]
+        [Required, Column("FORMATION"), MaxLength(64)]
+        public string FormationString
+        {
+            get => Formation.ToString();
+            private set => Formation = value.ParseEnum<Formation>();
+        }
+
+        [NotMapped]
         public Formation Formation { get; set; }
 
         [Required, Column("CLUB_ID")]
