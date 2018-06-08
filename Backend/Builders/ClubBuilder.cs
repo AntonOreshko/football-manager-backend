@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Backend.Builders.Buildings;
 using Backend.Builders.Data;
 using Backend.Helpers;
 using Backend.Models.BuildingModels;
@@ -35,11 +34,11 @@ namespace Backend.Builders
 
             club.Buildings = new List<Building>()
             {
-                AcademyBuilder.GetAcademy(),
-                FanClubBuilder.GetFanClub(),
-                MedicalCenterBuilder.GetMedicalCenter(),
-                StadiumBuilder.GetStadium(),
-                TrainingCenterBuilder.GetTrainingCenter()
+                BuildingsBuilder.GetAcademy(),
+                BuildingsBuilder.GetFanClub(),
+                BuildingsBuilder.GetMedicalCenter(),
+                BuildingsBuilder.GetStadium(),
+                BuildingsBuilder.GetTrainingCenter()
             };
 
             club.Staff = new List<Employee>()
