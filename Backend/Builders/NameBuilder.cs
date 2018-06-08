@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Backend.Interfaces;
 
 namespace Backend.Builders
 {
@@ -33,6 +34,12 @@ namespace Backend.Builders
             var idx = rnd.Next(_lastNames.Count);
 
             return _lastNames[idx];
+        }
+
+        public static void SetPersonInfo(IPerson person)
+        {
+            person.FirstName = GetFirstName();
+            person.LastName = GetLastName();
         }
     }
 }

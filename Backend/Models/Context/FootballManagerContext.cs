@@ -46,6 +46,8 @@ namespace Backend.Models.Context
 
         #region Staff
 
+        public DbSet<Employee> Employees { get; set; }
+
         public DbSet<HeadCoach> HeadCoaches { get; set; }
 
         public DbSet<HeadCoachAssistent> HeadCoachAssistents { get; set; }
@@ -54,7 +56,7 @@ namespace Backend.Models.Context
 
         public DbSet<Psychologist> Psychologists { get; set; }
 
-        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Scout> Scouts { get; set; }
 
         #endregion
 

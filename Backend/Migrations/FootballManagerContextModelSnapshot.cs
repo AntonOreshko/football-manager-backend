@@ -22,7 +22,12 @@ namespace Backend.Migrations
             modelBuilder.Entity("Backend.Models.BuildingModels.Building", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnName("ID");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ClubId")
+                        .HasColumnName("CLUB_ID");
 
                     b.Property<string>("Discriminator")
                         .IsRequired();
@@ -31,6 +36,8 @@ namespace Backend.Migrations
                         .HasColumnName("LEVEL");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClubId");
 
                     b.ToTable("BUILDINGS");
 
@@ -307,10 +314,13 @@ namespace Backend.Migrations
                         .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ClubId");
+                    b.Property<int>("ClubId")
+                        .HasColumnName("CLUB_ID");
 
-                    b.Property<int>("Country")
-                        .HasColumnName("COUNTRY");
+                    b.Property<string>("CountryString")
+                        .IsRequired()
+                        .HasColumnName("COUNTRY")
+                        .HasMaxLength(16);
 
                     b.Property<string>("Discriminator")
                         .IsRequired();
@@ -479,11 +489,21 @@ namespace Backend.Migrations
                     b.HasDiscriminator().HasValue("Psychologist");
                 });
 
+            modelBuilder.Entity("Backend.Models.StaffModels.Scout", b =>
+                {
+                    b.HasBaseType("Backend.Models.StaffModels.Employee");
+
+
+                    b.ToTable("SCOUTS");
+
+                    b.HasDiscriminator().HasValue("Scout");
+                });
+
             modelBuilder.Entity("Backend.Models.BuildingModels.Building", b =>
                 {
                     b.HasOne("Backend.Models.Club", "Club")
                         .WithMany("Buildings")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("ClubId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -537,9 +557,10 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Models.StaffModels.Employee", b =>
                 {
-                    b.HasOne("Backend.Models.Club")
+                    b.HasOne("Backend.Models.Club", "Club")
                         .WithMany("Staff")
-                        .HasForeignKey("ClubId");
+                        .HasForeignKey("ClubId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

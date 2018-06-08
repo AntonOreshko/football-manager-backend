@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(FootballManagerContext))]
-    [Migration("20180604225908_club country")]
-    partial class clubcountry
+    [Migration("20180608004604_Scouts")]
+    partial class Scouts
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,12 @@ namespace Backend.Migrations
             modelBuilder.Entity("Backend.Models.BuildingModels.Building", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnName("ID");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ClubId")
+                        .HasColumnName("CLUB_ID");
 
                     b.Property<string>("Discriminator")
                         .IsRequired();
@@ -33,6 +38,8 @@ namespace Backend.Migrations
                         .HasColumnName("LEVEL");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClubId");
 
                     b.ToTable("BUILDINGS");
 
@@ -46,8 +53,10 @@ namespace Backend.Migrations
                         .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Country")
-                        .HasColumnName("COUNTRY");
+                    b.Property<string>("CountryString")
+                        .IsRequired()
+                        .HasColumnName("COUNTRY")
+                        .HasMaxLength(16);
 
                     b.Property<DateTime>("FoundationDate")
                         .HasColumnName("FOUNDATION_DATE");
@@ -78,42 +87,52 @@ namespace Backend.Migrations
                     b.Property<int>("Age")
                         .HasColumnName("AGE");
 
-                    b.Property<int>("BodyType")
-                        .HasColumnName("BODY_TYPE");
+                    b.Property<string>("BodyTypeString")
+                        .IsRequired()
+                        .HasColumnName("BODY_TYPE")
+                        .HasMaxLength(16);
 
                     b.Property<int>("ClubId")
                         .HasColumnName("CLUB_ID");
 
-                    b.Property<int>("Country")
-                        .HasColumnName("COUNTRY");
+                    b.Property<string>("CountryString")
+                        .IsRequired()
+                        .HasColumnName("COUNTRY")
+                        .HasMaxLength(16);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnName("FIRST_NAME")
                         .HasMaxLength(64);
 
-                    b.Property<int>("FirstPosition")
-                        .HasColumnName("FIRST_POSITION");
+                    b.Property<string>("FirstPositionString")
+                        .IsRequired()
+                        .HasColumnName("FIRST_POSITION")
+                        .HasMaxLength(16);
 
                     b.Property<int>("Height")
                         .HasColumnName("HEIGHT");
 
-                    b.Property<int>("HeightType")
-                        .HasColumnName("HEIGHT_TYPE");
+                    b.Property<string>("HeightTypeString")
+                        .IsRequired()
+                        .HasColumnName("HEIGHT_TYPE")
+                        .HasMaxLength(16);
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnName("LAST_NAME")
                         .HasMaxLength(64);
 
-                    b.Property<int>("SecondPosition")
-                        .HasColumnName("SECOND_POSITION");
+                    b.Property<string>("SecondPositionString")
+                        .HasColumnName("SECOND_POSITION")
+                        .HasMaxLength(16);
 
                     b.Property<int>("Talent")
                         .HasColumnName("TALENT");
 
-                    b.Property<int>("ThirdPosition")
-                        .HasColumnName("THIRD_POSITION");
+                    b.Property<string>("ThirdPositionString")
+                        .HasColumnName("THIRD_POSITION")
+                        .HasMaxLength(16);
 
                     b.Property<int>("Weight")
                         .HasColumnName("WEIGHT");
@@ -145,6 +164,9 @@ namespace Backend.Migrations
                     b.Property<float>("FreeKicks")
                         .HasColumnName("FREE_CICKS");
 
+                    b.Property<float>("HandPlay")
+                        .HasColumnName("HAND_PLAY");
+
                     b.Property<float>("Heading")
                         .HasColumnName("HEADING");
 
@@ -154,6 +176,9 @@ namespace Backend.Migrations
                     b.Property<float>("Jumping")
                         .HasColumnName("JUMPING");
 
+                    b.Property<float>("Kicking")
+                        .HasColumnName("KICKING");
+
                     b.Property<float>("LongPassing")
                         .HasColumnName("LONG_PASSING");
 
@@ -162,6 +187,12 @@ namespace Backend.Migrations
 
                     b.Property<float>("Penalties")
                         .HasColumnName("PENALTIES");
+
+                    b.Property<float>("Positioning")
+                        .HasColumnName("POSITIONING");
+
+                    b.Property<float>("Reflexes")
+                        .HasColumnName("REFLEXES");
 
                     b.Property<float>("ShortPassing")
                         .HasColumnName("SHORT_PASSING");
@@ -223,27 +254,6 @@ namespace Backend.Migrations
                     b.ToTable("PLAYER_TEMPORARY_STATS");
                 });
 
-            modelBuilder.Entity("Backend.Models.SquadModels.FormationData", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("ID")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Formation")
-                        .HasColumnName("FORMATION");
-
-                    b.Property<int>("SquadId")
-                        .HasColumnName("SQUAD_ID");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SquadId")
-                        .IsUnique();
-
-                    b.ToTable("FORMATION_DATA");
-                });
-
             modelBuilder.Entity("Backend.Models.SquadModels.FormationPosition", b =>
                 {
                     b.Property<int>("Id")
@@ -251,21 +261,25 @@ namespace Backend.Migrations
                         .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("FormationDataId")
-                        .HasColumnName("FORMATION_DATA_ID");
-
-                    b.Property<int>("FormationPositionType")
-                        .HasColumnName("FORMATION_POSITION_TYPE");
+                    b.Property<string>("FormationPositionTypeString")
+                        .IsRequired()
+                        .HasColumnName("FORMATION_POSITION_TYPE")
+                        .HasMaxLength(16);
 
                     b.Property<int>("PlayerId")
                         .HasColumnName("PLAYER_ID");
 
-                    b.Property<int>("PlayerPosition")
-                        .HasColumnName("PLAYER_POSITION");
+                    b.Property<string>("PlayerPositionString")
+                        .IsRequired()
+                        .HasColumnName("PLAYER_POSITION")
+                        .HasMaxLength(16);
+
+                    b.Property<int>("SquadId")
+                        .HasColumnName("SQUAD_ID");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FormationDataId");
+                    b.HasIndex("SquadId");
 
                     b.ToTable("FORMATION_POSITIONS");
                 });
@@ -279,6 +293,11 @@ namespace Backend.Migrations
 
                     b.Property<int>("ClubId")
                         .HasColumnName("CLUB_ID");
+
+                    b.Property<string>("FormationString")
+                        .IsRequired()
+                        .HasColumnName("FORMATION")
+                        .HasMaxLength(64);
 
                     b.Property<bool>("IsActive")
                         .HasColumnName("IS_ACTIVE");
@@ -297,10 +316,13 @@ namespace Backend.Migrations
                         .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ClubId");
+                    b.Property<int>("ClubId")
+                        .HasColumnName("CLUB_ID");
 
-                    b.Property<int>("Country")
-                        .HasColumnName("COUNTRY");
+                    b.Property<string>("CountryString")
+                        .IsRequired()
+                        .HasColumnName("COUNTRY")
+                        .HasMaxLength(16);
 
                     b.Property<string>("Discriminator")
                         .IsRequired();
@@ -340,8 +362,10 @@ namespace Backend.Migrations
                     b.Property<int>("Coins")
                         .HasColumnName("COINS");
 
-                    b.Property<int>("Country")
-                        .HasColumnName("COUNTRY");
+                    b.Property<string>("CountryString")
+                        .IsRequired()
+                        .HasColumnName("COUNTRY")
+                        .HasMaxLength(16);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -467,11 +491,21 @@ namespace Backend.Migrations
                     b.HasDiscriminator().HasValue("Psychologist");
                 });
 
+            modelBuilder.Entity("Backend.Models.StaffModels.Scout", b =>
+                {
+                    b.HasBaseType("Backend.Models.StaffModels.Employee");
+
+
+                    b.ToTable("SCOUTS");
+
+                    b.HasDiscriminator().HasValue("Scout");
+                });
+
             modelBuilder.Entity("Backend.Models.BuildingModels.Building", b =>
                 {
                     b.HasOne("Backend.Models.Club", "Club")
                         .WithMany("Buildings")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("ClubId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -507,19 +541,11 @@ namespace Backend.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Backend.Models.SquadModels.FormationData", b =>
-                {
-                    b.HasOne("Backend.Models.SquadModels.Squad", "Squad")
-                        .WithOne("FormationData")
-                        .HasForeignKey("Backend.Models.SquadModels.FormationData", "SquadId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Backend.Models.SquadModels.FormationPosition", b =>
                 {
-                    b.HasOne("Backend.Models.SquadModels.FormationData", "FormationData")
+                    b.HasOne("Backend.Models.SquadModels.Squad", "Squad")
                         .WithMany("FormationPositions")
-                        .HasForeignKey("FormationDataId")
+                        .HasForeignKey("SquadId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -533,9 +559,10 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Models.StaffModels.Employee", b =>
                 {
-                    b.HasOne("Backend.Models.Club")
+                    b.HasOne("Backend.Models.Club", "Club")
                         .WithMany("Staff")
-                        .HasForeignKey("ClubId");
+                        .HasForeignKey("ClubId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

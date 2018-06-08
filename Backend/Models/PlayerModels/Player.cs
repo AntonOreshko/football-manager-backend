@@ -3,11 +3,12 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Builders;
 using Backend.Helpers;
+using Backend.Interfaces;
 
 namespace Backend.Models.PlayerModels
 {
     [Table("PLAYERS")]
-    public class Player
+    public class Player : IPerson
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key, Column("ID")]

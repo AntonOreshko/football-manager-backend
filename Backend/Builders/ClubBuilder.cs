@@ -2,10 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Backend.Builders.Buildings;
 using Backend.Builders.Data;
 using Backend.Helpers;
+using Backend.Models.BuildingModels;
 using Backend.Models.PlayerModels;
 using Backend.Models.SquadModels;
+using Backend.Models.StaffModels;
 
 namespace Backend.Builders
 {
@@ -29,6 +32,23 @@ namespace Backend.Builders
             club.Squads.Add(squad);
 
             club.Players = GetStartPlayers(clubBuilderData, squad);
+
+            club.Buildings = new List<Building>()
+            {
+                AcademyBuilder.GetAcademy(),
+                FanClubBuilder.GetFanClub(),
+                MedicalCenterBuilder.GetMedicalCenter(),
+                StadiumBuilder.GetStadium(),
+                TrainingCenterBuilder.GetTrainingCenter()
+            };
+
+            club.Staff = new List<Employee>()
+            {
+                StaffBuilder.GetHeadCoach(1, clubBuilderData.Country),
+                StaffBuilder.GetMedic(1, clubBuilderData.Country),
+                StaffBuilder.GetPsychologist(1, clubBuilderData.Country),
+                StaffBuilder.GetScout(1, clubBuilderData.Country),
+            };
 
             return club;
         }

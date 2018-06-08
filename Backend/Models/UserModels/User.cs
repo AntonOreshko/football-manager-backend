@@ -2,12 +2,13 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Helpers;
+using Backend.Interfaces;
 using Backend.ViewModels;
 
 namespace Backend.Models.UserModels
 {
     [Table("USERS")]
-    public class User
+    public class User : IPerson
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key, Column("ID")]
