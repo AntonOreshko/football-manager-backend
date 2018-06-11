@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(FootballManagerContext))]
-    [Migration("20180607231236_Init")]
+    [Migration("20180609153606_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -316,10 +316,13 @@ namespace Backend.Migrations
                         .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ClubId");
+                    b.Property<int>("ClubId")
+                        .HasColumnName("CLUB_ID");
 
-                    b.Property<int>("Country")
-                        .HasColumnName("COUNTRY");
+                    b.Property<string>("CountryString")
+                        .IsRequired()
+                        .HasColumnName("COUNTRY")
+                        .HasMaxLength(16);
 
                     b.Property<string>("Discriminator")
                         .IsRequired();
@@ -344,6 +347,96 @@ namespace Backend.Migrations
                     b.ToTable("EMPLOYEES");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Employee");
+                });
+
+            modelBuilder.Entity("Backend.Models.TournamentModels.Match", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("HomeId")
+                        .HasColumnName("HOME_ID");
+
+                    b.Property<int>("TournamentId")
+                        .HasColumnName("TOURNAMENT_ID");
+
+                    b.Property<int>("VisitorsId")
+                        .HasColumnName("VISITORS_ID");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TournamentId");
+
+                    b.ToTable("MATCHES");
+                });
+
+            modelBuilder.Entity("Backend.Models.TournamentModels.MatchEvent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("MatchEventTypeString")
+                        .IsRequired()
+                        .HasColumnName("MATCH_EVENT_TYPE")
+                        .HasMaxLength(256);
+
+                    b.Property<int>("MatchId")
+                        .HasColumnName("MATCH_ID");
+
+                    b.Property<int?>("MatchId1");
+
+                    b.Property<int>("PlayerId")
+                        .HasColumnName("PLAYER_ID");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MatchId");
+
+                    b.HasIndex("MatchId1");
+
+                    b.ToTable("MATCH_EVENTS");
+                });
+
+            modelBuilder.Entity("Backend.Models.TournamentModels.Tournament", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CurrentStage")
+                        .HasColumnName("CURRENT_STAGE");
+
+                    b.Property<int>("Level")
+                        .HasColumnName("LEVEL");
+
+                    b.Property<string>("TournamentTypeString")
+                        .IsRequired()
+                        .HasColumnName("TOURNAMENT_TYPE")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TOURNAMENTS");
+                });
+
+            modelBuilder.Entity("Backend.Models.TournamentModels.TournamentClub", b =>
+                {
+                    b.Property<int>("TournamentId")
+                        .HasColumnName("TOURNAMENT_ID");
+
+                    b.Property<int>("ClubId")
+                        .HasColumnName("CLUB_ID");
+
+                    b.HasKey("TournamentId", "ClubId");
+
+                    b.HasAlternateKey("ClubId", "TournamentId");
+
+                    b.ToTable("TOURNAMENTS_CLUBS");
                 });
 
             modelBuilder.Entity("Backend.Models.UserModels.User", b =>
@@ -488,6 +581,16 @@ namespace Backend.Migrations
                     b.HasDiscriminator().HasValue("Psychologist");
                 });
 
+            modelBuilder.Entity("Backend.Models.StaffModels.Scout", b =>
+                {
+                    b.HasBaseType("Backend.Models.StaffModels.Employee");
+
+
+                    b.ToTable("SCOUTS");
+
+                    b.HasDiscriminator().HasValue("Scout");
+                });
+
             modelBuilder.Entity("Backend.Models.BuildingModels.Building", b =>
                 {
                     b.HasOne("Backend.Models.Club", "Club")
@@ -546,9 +649,43 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Models.StaffModels.Employee", b =>
                 {
-                    b.HasOne("Backend.Models.Club")
+                    b.HasOne("Backend.Models.Club", "Club")
                         .WithMany("Staff")
-                        .HasForeignKey("ClubId");
+                        .HasForeignKey("ClubId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Backend.Models.TournamentModels.Match", b =>
+                {
+                    b.HasOne("Backend.Models.TournamentModels.Tournament", "Tournament")
+                        .WithMany("Matches")
+                        .HasForeignKey("TournamentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Backend.Models.TournamentModels.MatchEvent", b =>
+                {
+                    b.HasOne("Backend.Models.Club", "Match")
+                        .WithMany()
+                        .HasForeignKey("MatchId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Backend.Models.TournamentModels.Match")
+                        .WithMany("MatchEvents")
+                        .HasForeignKey("MatchId1");
+                });
+
+            modelBuilder.Entity("Backend.Models.TournamentModels.TournamentClub", b =>
+                {
+                    b.HasOne("Backend.Models.Club", "Club")
+                        .WithMany("TournamentClubs")
+                        .HasForeignKey("ClubId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Backend.Models.TournamentModels.Tournament", "Tournament")
+                        .WithMany("TournamentClubs")
+                        .HasForeignKey("TournamentId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

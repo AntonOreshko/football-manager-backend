@@ -1,4 +1,4 @@
-﻿namespace Backend.Enums
+﻿namespace DomainModels.Enums
 {
     public enum PlayerSpecialty
     {

@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading;
 using Backend.Enums;
 using Backend.Helpers;
+using Backend.Models.TournamentModels;
 
 namespace Backend.Models
 {
@@ -152,5 +153,7 @@ namespace Backend.Models
         public List<Employee> Staff { get; set; }
 
         public List<Squad> Squads { get; set; }
+
+        public virtual List<TournamentClub> TournamentClubs { get; set; }
     }
 }

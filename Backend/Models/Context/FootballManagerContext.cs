@@ -2,6 +2,7 @@
 using Backend.Models.PlayerModels;
 using Backend.Models.SquadModels;
 using Backend.Models.StaffModels;
+using Backend.Models.TournamentModels;
 using Backend.Models.UserModels;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,11 +10,6 @@ namespace Backend.Models.Context
 {
     public class FootballManagerContext : DbContext
     {
-        public enum Mode
-        {
-            Home, Work
-        }
-
         public DbSet<User> Users { get; set; }
 
         public DbSet<Club> Clubs { get; set; }
@@ -60,10 +56,24 @@ namespace Backend.Models.Context
 
         #endregion
 
+        public DbSet<Tournament> Tournaments { get; set; }
+
+        public DbSet<TournamentClub> TpournamentClubs { get; set; }
+
+        public DbSet<Match> Matches { get; set; }
+
+        public DbSet<MatchEvent> MatchEvents { get; set; }
+
         public FootballManagerContext(DbContextOptions<FootballManagerContext> options) : base(options)
         {
             
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TournamentClub>()
+                .ToTable("TOURNAMENTS_CLUBS")
+                .HasKey(tc => new { tc.TournamentId, tc.ClubId });
+        }
     }
 }

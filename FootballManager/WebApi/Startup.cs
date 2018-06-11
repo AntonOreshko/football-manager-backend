@@ -1,24 +1,26 @@
 ﻿using System.IO;
-using Backend.Models.Context;
+using BusinessLayer.ServiceInterfaces;
+using BusinessLayer.Services;
+using DomainModels.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using RepositoryLayer.EntityFramework;
+using RepositoryLayer.EntityFramework.Context;
+using RepositoryLayer.Repository;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace Backend
+namespace WebApi
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json");
-
-            Configuration = builder.Build();            
+            Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -26,9 +28,12 @@ namespace Backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
             services.AddMvc().AddJsonOptions(options => {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
+
             services.AddSingleton(Configuration);
 
             services.AddSwaggerGen(c =>
@@ -38,6 +43,8 @@ namespace Backend
 
             services.AddDbContext<FootballManagerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HomeConnection")));
             //services.AddDbContext<FootballManagerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WorkConnection")));
+            services.AddTransient<IRepository<User>, EfRepository<User>>();
+            services.AddTransient<IEntityService<User>, EntityService<User>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,12 +54,20 @@ namespace Backend
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+            }
+
+            app.UseHttpsRedirection();
+
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
+
             app.UseMvc();
         }
     }

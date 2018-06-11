@@ -2,21 +2,36 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Backend.Migrations
+namespace RepositoryLayer.Migrations
 {
     public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "TOURNAMENTS",
+                columns: table => new
+                {
+                    ID = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    LEVEL = table.Column<int>(nullable: false),
+                    CURRENT_STAGE = table.Column<int>(nullable: false),
+                    TOURNAMENT_TYPE = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TOURNAMENTS", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "USERS",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    ID = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     FIRST_NAME = table.Column<string>(maxLength: 64, nullable: false),
                     LAST_NAME = table.Column<string>(maxLength: 64, nullable: false),
-                    COUNTRY = table.Column<string>(maxLength: 16, nullable: false),
+                    COUNTRY = table.Column<int>(nullable: false),
                     COINS = table.Column<int>(nullable: false),
                     BOOSTERS = table.Column<int>(nullable: false),
                     LOGIN = table.Column<string>(maxLength: 64, nullable: false),
@@ -28,15 +43,36 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MATCHES",
+                columns: table => new
+                {
+                    ID = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    HOME_ID = table.Column<long>(nullable: false),
+                    VISITORS_ID = table.Column<long>(nullable: false),
+                    TOURNAMENT_ID = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MATCHES", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_MATCHES_TOURNAMENTS_TOURNAMENT_ID",
+                        column: x => x.TOURNAMENT_ID,
+                        principalTable: "TOURNAMENTS",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CLUBS",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    ID = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     NAME = table.Column<string>(maxLength: 64, nullable: false),
-                    COUNTRY = table.Column<string>(maxLength: 16, nullable: false),
+                    COUNTRY = table.Column<int>(nullable: false),
                     FOUNDATION_DATE = table.Column<DateTime>(nullable: false),
-                    USER_ID = table.Column<int>(nullable: false)
+                    USER_ID = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -50,15 +86,36 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MATCH_EVENTS",
+                columns: table => new
+                {
+                    ID = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    MATCH_ID = table.Column<long>(nullable: false),
+                    FORMATION = table.Column<int>(nullable: false),
+                    PLAYER_ID = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MATCH_EVENTS", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_MATCH_EVENTS_MATCHES_MATCH_ID",
+                        column: x => x.MATCH_ID,
+                        principalTable: "MATCHES",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "BUILDINGS",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    ID = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     LEVEL = table.Column<int>(nullable: false),
-                    CLUB_ID = table.Column<int>(nullable: false),
+                    CLUB_ID = table.Column<long>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
-                    NAME = table.Column<string>(nullable: true),
+                    NAME = table.Column<string>(maxLength: 64, nullable: true),
                     FANS_COUNT = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -76,45 +133,43 @@ namespace Backend.Migrations
                 name: "EMPLOYEES",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    ID = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     FIRST_NAME = table.Column<string>(maxLength: 64, nullable: false),
                     LAST_NAME = table.Column<string>(maxLength: 64, nullable: false),
                     COUNTRY = table.Column<int>(nullable: false),
                     LEVEL = table.Column<int>(nullable: false),
-                    ClubId = table.Column<int>(nullable: true),
+                    CLUB_ID = table.Column<long>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EMPLOYEES", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_EMPLOYEES_CLUBS_ClubId",
-                        column: x => x.ClubId,
+                        name: "FK_EMPLOYEES_CLUBS_CLUB_ID",
+                        column: x => x.CLUB_ID,
                         principalTable: "CLUBS",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "PLAYERS",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    ID = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     FIRST_NAME = table.Column<string>(maxLength: 64, nullable: false),
                     LAST_NAME = table.Column<string>(maxLength: 64, nullable: false),
+                    COUNTRY = table.Column<int>(nullable: false),
                     AGE = table.Column<int>(nullable: false),
                     TALENT = table.Column<int>(nullable: false),
-                    COUNTRY = table.Column<string>(maxLength: 16, nullable: false),
-                    FIRST_POSITION = table.Column<string>(maxLength: 16, nullable: false),
-                    SECOND_POSITION = table.Column<string>(maxLength: 16, nullable: true),
-                    THIRD_POSITION = table.Column<string>(maxLength: 16, nullable: true),
-                    HEIGHT_TYPE = table.Column<string>(maxLength: 16, nullable: false),
-                    BODY_TYPE = table.Column<string>(maxLength: 16, nullable: false),
+                    POSITION = table.Column<int>(nullable: false),
+                    HEIGHT_TYPE = table.Column<int>(nullable: false),
+                    BODY_TYPE = table.Column<int>(nullable: false),
                     HEIGHT = table.Column<int>(nullable: false),
                     WEIGHT = table.Column<int>(nullable: false),
-                    CLUB_ID = table.Column<int>(nullable: false)
+                    CLUB_ID = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -131,11 +186,11 @@ namespace Backend.Migrations
                 name: "SQUADS",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    ID = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    IS_ACTIVE = table.Column<bool>(nullable: false),
-                    FORMATION = table.Column<string>(maxLength: 64, nullable: false),
-                    CLUB_ID = table.Column<int>(nullable: false)
+                    NAME = table.Column<bool>(nullable: false),
+                    FORMATION = table.Column<int>(nullable: false),
+                    CLUB_ID = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -149,16 +204,40 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TOURNAMENT_CLUBS",
+                columns: table => new
+                {
+                    TOURNAMENT_ID = table.Column<long>(nullable: false),
+                    CLUB_ID = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TOURNAMENT_CLUBS", x => new { x.TOURNAMENT_ID, x.CLUB_ID });
+                    table.ForeignKey(
+                        name: "FK_TOURNAMENT_CLUBS_CLUBS_CLUB_ID",
+                        column: x => x.CLUB_ID,
+                        principalTable: "CLUBS",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TOURNAMENT_CLUBS_TOURNAMENTS_TOURNAMENT_ID",
+                        column: x => x.TOURNAMENT_ID,
+                        principalTable: "TOURNAMENTS",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PLAYER_STATS",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false),
+                    ID = table.Column<long>(nullable: false),
                     ACCELERATION = table.Column<float>(nullable: false),
                     SPRINT_SPEED = table.Column<float>(nullable: false),
                     SHOTS = table.Column<float>(nullable: false),
                     LONG_SHOTS = table.Column<float>(nullable: false),
                     PENALTIES = table.Column<float>(nullable: false),
-                    FREE_CICKS = table.Column<float>(nullable: false),
+                    FREE_KICKS = table.Column<float>(nullable: false),
                     SHORT_PASSING = table.Column<float>(nullable: false),
                     LONG_PASSING = table.Column<float>(nullable: false),
                     CROSSING = table.Column<float>(nullable: false),
@@ -175,8 +254,7 @@ namespace Backend.Migrations
                     HAND_PLAY = table.Column<float>(nullable: false),
                     KICKING = table.Column<float>(nullable: false),
                     REFLEXES = table.Column<float>(nullable: false),
-                    POSITIONING = table.Column<float>(nullable: false),
-                    TALENT = table.Column<float>(nullable: false)
+                    POSITIONING = table.Column<float>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -193,11 +271,11 @@ namespace Backend.Migrations
                 name: "PLAYER_TEMPORARY_STATS",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false),
+                    ID = table.Column<long>(nullable: false),
                     INJURY = table.Column<int>(nullable: false),
                     INJURY_DATE_TIME = table.Column<DateTime>(nullable: false),
-                    STAMNIA = table.Column<int>(nullable: false),
-                    STAMNIA_DATE_TIME = table.Column<DateTime>(nullable: false),
+                    STAMINA = table.Column<int>(nullable: false),
+                    STAMINA_DATE_TIME = table.Column<DateTime>(nullable: false),
                     MORALE = table.Column<int>(nullable: false),
                     MORALE_DATE_TIME = table.Column<DateTime>(nullable: false)
                 },
@@ -218,10 +296,10 @@ namespace Backend.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    PLAYER_POSITION = table.Column<string>(maxLength: 16, nullable: false),
-                    FORMATION_POSITION_TYPE = table.Column<string>(maxLength: 16, nullable: false),
-                    PLAYER_ID = table.Column<int>(nullable: false),
-                    SQUAD_ID = table.Column<int>(nullable: false)
+                    PLAYER_POSITION = table.Column<int>(nullable: false),
+                    FORMATION_POSITION_TYPE = table.Column<int>(nullable: false),
+                    PLAYER_ID = table.Column<long>(nullable: true),
+                    SQUAD_ID = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -246,14 +324,24 @@ namespace Backend.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_EMPLOYEES_ClubId",
+                name: "IX_EMPLOYEES_CLUB_ID",
                 table: "EMPLOYEES",
-                column: "ClubId");
+                column: "CLUB_ID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FORMATION_POSITIONS_SQUAD_ID",
                 table: "FORMATION_POSITIONS",
                 column: "SQUAD_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MATCH_EVENTS_MATCH_ID",
+                table: "MATCH_EVENTS",
+                column: "MATCH_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MATCHES_TOURNAMENT_ID",
+                table: "MATCHES",
+                column: "TOURNAMENT_ID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PLAYERS_CLUB_ID",
@@ -263,6 +351,11 @@ namespace Backend.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_SQUADS_CLUB_ID",
                 table: "SQUADS",
+                column: "CLUB_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TOURNAMENT_CLUBS_CLUB_ID",
+                table: "TOURNAMENT_CLUBS",
                 column: "CLUB_ID");
         }
 
@@ -278,16 +371,28 @@ namespace Backend.Migrations
                 name: "FORMATION_POSITIONS");
 
             migrationBuilder.DropTable(
+                name: "MATCH_EVENTS");
+
+            migrationBuilder.DropTable(
                 name: "PLAYER_STATS");
 
             migrationBuilder.DropTable(
                 name: "PLAYER_TEMPORARY_STATS");
 
             migrationBuilder.DropTable(
+                name: "TOURNAMENT_CLUBS");
+
+            migrationBuilder.DropTable(
                 name: "SQUADS");
 
             migrationBuilder.DropTable(
+                name: "MATCHES");
+
+            migrationBuilder.DropTable(
                 name: "PLAYERS");
+
+            migrationBuilder.DropTable(
+                name: "TOURNAMENTS");
 
             migrationBuilder.DropTable(
                 name: "CLUBS");
