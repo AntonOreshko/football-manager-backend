@@ -1,5 +1,4 @@
-﻿using System.IO;
-using BusinessLayer.ServiceInterfaces;
+﻿using BusinessLayer.ServiceInterfaces;
 using BusinessLayer.Services;
 using DomainModels.Models;
 using Microsoft.AspNetCore.Builder;
@@ -41,8 +40,8 @@ namespace WebApi
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
 
-            services.AddDbContext<FootballManagerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HomeConnection")));
-            //services.AddDbContext<FootballManagerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WorkConnection")));
+            //services.AddDbContext<FootballManagerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HomeConnection")));
+            services.AddDbContext<FootballManagerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WorkConnection")));
             services.AddTransient<IRepository<User>, EfRepository<User>>();
             services.AddTransient<IEntityService<User>, EntityService<User>>();
         }

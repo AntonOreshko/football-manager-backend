@@ -1,5 +1,12 @@
-﻿using BusinessLayer.Builders.BuildersData;
+﻿using System;
+using System.Linq;
+using BusinessLayer.Builders.BuildersData;
+using BusinessLayer.Builders.UtilityBuilder;
+using DomainModels.Enums;
+using DomainModels.Interfaces;
 using DomainModels.Models;
+using Utility;
+
 
 namespace BusinessLayer.Builders
 {
@@ -17,6 +24,34 @@ namespace BusinessLayer.Builders
             };
 
             return user;
+        }
+
+        public static User GetRandom()
+        {
+            var user = new User()
+            {
+                Country = typeof(Country).GetRandom<Country>()
+            };
+
+            PersonBuilder.SetPerson(user);
+
+            user.Login = DefaultLogin(user);
+            user.Password = RandomPassword(8);
+
+            return user;
+        }
+
+        private static string DefaultLogin(IPerson person)
+        {
+            return person.FirstName + "." + person.LastName + "@gmail.com";
+        }
+
+        private static string RandomPassword(int length)
+        {
+            var rnd = new Random();
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+                .Select(s => s[rnd.Next(s.Length)]).ToArray());
         }
     }
 }
