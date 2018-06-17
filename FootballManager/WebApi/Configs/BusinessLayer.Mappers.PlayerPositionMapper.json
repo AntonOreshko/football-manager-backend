@@ -1,0 +1,592 @@
+{
+  "Items": [
+    {
+      "StatsGenerationDelta": 10,
+      "PlayerPosition": 1,
+      "HeighTypePercents": {
+        "Little": 0,
+        "Medium": 5,
+        "UpperMedium": 40,
+        "Tall": 55
+      },
+      "BodyTypePercents": {
+        "Lean": 30,
+        "Normal": 60,
+        "Thick": 10
+      },
+      "StatsGenerationMedianas": {
+        "Speed": 0,
+        "Shooting": 0,
+        "Passing": 0,
+        "Technique": 0,
+        "Defending": 0,
+        "Physical": 0,
+        "Goalkeeping": 50
+      },
+      "StatsOverallCoefficients": {
+        "Acceleration": 0,
+        "SprintSpeed": 0,
+        "Shots": 0,
+        "LongShots": 0,
+        "Penalties": 0,
+        "FreeKicks": 0,
+        "ShortPassing": 0,
+        "LongPassing": 0,
+        "Crossing": 0,
+        "Agility": 0,
+        "BallControl": 0,
+        "Tricks": 0,
+        "Interceptions": 0,
+        "StandingTackles": 0,
+        "SlidingTackles": 0,
+        "Jumping": 0,
+        "Strength": 0,
+        "Heading": 0,
+        "Stamina": 0,
+        "HandPlay": 0.25,
+        "Kicking": 0.15,
+        "Reflexes": 0.3,
+        "Positioning": 0.3
+      }
+    },
+    {
+      "StatsGenerationDelta": 10,
+      "PlayerPosition": 2,
+      "HeighTypePercents": {
+        "Little": 5,
+        "Medium": 45,
+        "UpperMedium": 45,
+        "Tall": 5
+      },
+      "BodyTypePercents": {
+        "Lean": 30,
+        "Normal": 60,
+        "Thick": 10
+      },
+      "StatsGenerationMedianas": {
+        "Speed": 50,
+        "Shooting": 35,
+        "Passing": 40,
+        "Technique": 45,
+        "Defending": 65,
+        "Physical": 55,
+        "Goalkeeping": 0
+      },
+      "StatsOverallCoefficients": {
+        "Acceleration": 0.1,
+        "SprintSpeed": 0.1,
+        "Shots": 0.01,
+        "LongShots": 0.01,
+        "Penalties": 0.005,
+        "FreeKicks": 0.005,
+        "ShortPassing": 0.05,
+        "LongPassing": 0.04,
+        "Crossing": 0.04,
+        "Agility": 0.04,
+        "BallControl": 0.04,
+        "Tricks": 0.005,
+        "Interceptions": 0.125,
+        "StandingTackles": 0.08,
+        "SlidingTackles": 0.09,
+        "Jumping": 0.08,
+        "Strength": 0.05,
+        "Heading": 0.05,
+        "Stamina": 0.08,
+        "HandPlay": 0,
+        "Kicking": 0,
+        "Reflexes": 0,
+        "Positioning": 0
+      }
+    },
+    {
+      "StatsGenerationDelta": 10,
+      "PlayerPosition": 4,
+      "HeighTypePercents": {
+        "Little": 5,
+        "Medium": 45,
+        "UpperMedium": 45,
+        "Tall": 5
+      },
+      "BodyTypePercents": {
+        "Lean": 30,
+        "Normal": 60,
+        "Thick": 10
+      },
+      "StatsGenerationMedianas": {
+        "Speed": 50,
+        "Shooting": 35,
+        "Passing": 40,
+        "Technique": 45,
+        "Defending": 65,
+        "Physical": 55,
+        "Goalkeeping": 0
+      },
+      "StatsOverallCoefficients": {
+        "Acceleration": 0.1,
+        "SprintSpeed": 0.1,
+        "Shots": 0.01,
+        "LongShots": 0.01,
+        "Penalties": 0.005,
+        "FreeKicks": 0.005,
+        "ShortPassing": 0.05,
+        "LongPassing": 0.04,
+        "Crossing": 0.04,
+        "Agility": 0.04,
+        "BallControl": 0.04,
+        "Tricks": 0.005,
+        "Interceptions": 0.125,
+        "StandingTackles": 0.08,
+        "SlidingTackles": 0.09,
+        "Jumping": 0.08,
+        "Strength": 0.05,
+        "Heading": 0.05,
+        "Stamina": 0.08,
+        "HandPlay": 0,
+        "Kicking": 0,
+        "Reflexes": 0,
+        "Positioning": 0
+      }
+    },
+    {
+      "StatsGenerationDelta": 10,
+      "PlayerPosition": 3,
+      "HeighTypePercents": {
+        "Little": 0,
+        "Medium": 30,
+        "UpperMedium": 60,
+        "Tall": 10
+      },
+      "BodyTypePercents": {
+        "Lean": 15,
+        "Normal": 55,
+        "Thick": 30
+      },
+      "StatsGenerationMedianas": {
+        "Speed": 45,
+        "Shooting": 35,
+        "Passing": 35,
+        "Technique": 35,
+        "Defending": 65,
+        "Physical": 65,
+        "Goalkeeping": 0
+      },
+      "StatsOverallCoefficients": {
+        "Acceleration": 0.08,
+        "SprintSpeed": 0.08,
+        "Shots": 0.01,
+        "LongShots": 0.01,
+        "Penalties": 0.005,
+        "FreeKicks": 0.005,
+        "ShortPassing": 0.01,
+        "LongPassing": 0.04,
+        "Crossing": 0.04,
+        "Agility": 0.03,
+        "BallControl": 0.03,
+        "Tricks": 0.05,
+        "Interceptions": 0.145,
+        "StandingTackles": 0.1,
+        "SlidingTackles": 0.1,
+        "Jumping": 0.09,
+        "Strength": 0.08,
+        "Heading": 0.07,
+        "Stamina": 0.07,
+        "HandPlay": 0,
+        "Kicking": 0,
+        "Reflexes": 0,
+        "Positioning": 0
+      }
+    },
+    {
+      "StatsGenerationDelta": 10,
+      "PlayerPosition": 5,
+      "HeighTypePercents": {
+        "Little": 5,
+        "Medium": 45,
+        "UpperMedium": 45,
+        "Tall": 5
+      },
+      "BodyTypePercents": {
+        "Lean": 10,
+        "Normal": 70,
+        "Thick": 20
+      },
+      "StatsGenerationMedianas": {
+        "Speed": 40,
+        "Shooting": 45,
+        "Passing": 55,
+        "Technique": 40,
+        "Defending": 55,
+        "Physical": 55,
+        "Goalkeeping": 0
+      },
+      "StatsOverallCoefficients": {
+        "Acceleration": 0.06,
+        "SprintSpeed": 0.06,
+        "Shots": 0.02,
+        "LongShots": 0.02,
+        "Penalties": 0.005,
+        "FreeKicks": 0.005,
+        "ShortPassing": 0.02,
+        "LongPassing": 0.1,
+        "Crossing": 0.08,
+        "Agility": 0.03,
+        "BallControl": 0.05,
+        "Tricks": 0.005,
+        "Interceptions": 0.11,
+        "StandingTackles": 0.085,
+        "SlidingTackles": 0.09,
+        "Jumping": 0.08,
+        "Strength": 0.07,
+        "Heading": 0.05,
+        "Stamina": 0.06,
+        "HandPlay": 0,
+        "Kicking": 0,
+        "Reflexes": 0,
+        "Positioning": 0
+      }
+    },
+    {
+      "StatsGenerationDelta": 10,
+      "PlayerPosition": 6,
+      "HeighTypePercents": {
+        "Little": 5,
+        "Medium": 45,
+        "UpperMedium": 45,
+        "Tall": 5
+      },
+      "BodyTypePercents": {
+        "Lean": 25,
+        "Normal": 60,
+        "Thick": 15
+      },
+      "StatsGenerationMedianas": {
+        "Speed": 40,
+        "Shooting": 50,
+        "Passing": 65,
+        "Technique": 55,
+        "Defending": 45,
+        "Physical": 45,
+        "Goalkeeping": 0
+      },
+      "StatsOverallCoefficients": {
+        "Acceleration": 0.05,
+        "SprintSpeed": 0.04,
+        "Shots": 0.04,
+        "LongShots": 0.04,
+        "Penalties": 0.005,
+        "FreeKicks": 0.005,
+        "ShortPassing": 0.02,
+        "LongPassing": 0.15,
+        "Crossing": 0.125,
+        "Agility": 0.05,
+        "BallControl": 0.08,
+        "Tricks": 0.005,
+        "Interceptions": 0.07,
+        "StandingTackles": 0.05,
+        "SlidingTackles": 0.04,
+        "Jumping": 0.05,
+        "Strength": 0.06,
+        "Heading": 0.05,
+        "Stamina": 0.07,
+        "HandPlay": 0,
+        "Kicking": 0,
+        "Reflexes": 0,
+        "Positioning": 0
+      }
+    },
+    {
+      "StatsGenerationDelta": 10,
+      "PlayerPosition": 7,
+      "HeighTypePercents": {
+        "Little": 10,
+        "Medium": 50,
+        "UpperMedium": 35,
+        "Tall": 5
+      },
+      "BodyTypePercents": {
+        "Lean": 20,
+        "Normal": 70,
+        "Thick": 10
+      },
+      "StatsGenerationMedianas": {
+        "Speed": 55,
+        "Shooting": 50,
+        "Passing": 55,
+        "Technique": 60,
+        "Defending": 40,
+        "Physical": 35,
+        "Goalkeeping": 0
+      },
+      "StatsOverallCoefficients": {
+        "Acceleration": 0.1,
+        "SprintSpeed": 0.1,
+        "Shots": 0.03,
+        "LongShots": 0.03,
+        "Penalties": 0.005,
+        "FreeKicks": 0.005,
+        "ShortPassing": 0.05,
+        "LongPassing": 0.08,
+        "Crossing": 0.08,
+        "Agility": 0.1,
+        "BallControl": 0.1,
+        "Tricks": 0.05,
+        "Interceptions": 0.05,
+        "StandingTackles": 0.015,
+        "SlidingTackles": 0.02,
+        "Jumping": 0.05,
+        "Strength": 0.04,
+        "Heading": 0.05,
+        "Stamina": 0.09,
+        "HandPlay": 0,
+        "Kicking": 0,
+        "Reflexes": 0,
+        "Positioning": 0
+      }
+    },
+    {
+      "StatsGenerationDelta": 10,
+      "PlayerPosition": 8,
+      "HeighTypePercents": {
+        "Little": 10,
+        "Medium": 50,
+        "UpperMedium": 35,
+        "Tall": 5
+      },
+      "BodyTypePercents": {
+        "Lean": 20,
+        "Normal": 70,
+        "Thick": 10
+      },
+      "StatsGenerationMedianas": {
+        "Speed": 55,
+        "Shooting": 50,
+        "Passing": 55,
+        "Technique": 60,
+        "Defending": 40,
+        "Physical": 35,
+        "Goalkeeping": 0
+      },
+      "StatsOverallCoefficients": {
+        "Acceleration": 0.1,
+        "SprintSpeed": 0.1,
+        "Shots": 0.03,
+        "LongShots": 0.03,
+        "Penalties": 0.005,
+        "FreeKicks": 0.005,
+        "ShortPassing": 0.05,
+        "LongPassing": 0.08,
+        "Crossing": 0.08,
+        "Agility": 0.1,
+        "BallControl": 0.1,
+        "Tricks": 0.05,
+        "Interceptions": 0.05,
+        "StandingTackles": 0.015,
+        "SlidingTackles": 0.02,
+        "Jumping": 0.05,
+        "Strength": 0.04,
+        "Heading": 0.05,
+        "Stamina": 0.09,
+        "HandPlay": 0,
+        "Kicking": 0,
+        "Reflexes": 0,
+        "Positioning": 0
+      }
+    },
+    {
+      "StatsGenerationDelta": 10,
+      "PlayerPosition": 9,
+      "HeighTypePercents": {
+        "Little": 15,
+        "Medium": 50,
+        "UpperMedium": 30,
+        "Tall": 5
+      },
+      "BodyTypePercents": {
+        "Lean": 20,
+        "Normal": 70,
+        "Thick": 10
+      },
+      "StatsGenerationMedianas": {
+        "Speed": 50,
+        "Shooting": 60,
+        "Passing": 65,
+        "Technique": 60,
+        "Defending": 35,
+        "Physical": 35,
+        "Goalkeeping": 0
+      },
+      "StatsOverallCoefficients": {
+        "Acceleration": 0.08,
+        "SprintSpeed": 0.08,
+        "Shots": 0.1,
+        "LongShots": 0.1,
+        "Penalties": 0.005,
+        "FreeKicks": 0.005,
+        "ShortPassing": 0.02,
+        "LongPassing": 0.12,
+        "Crossing": 0.07,
+        "Agility": 0.1,
+        "BallControl": 0.1,
+        "Tricks": 0.005,
+        "Interceptions": 0.025,
+        "StandingTackles": 0.01,
+        "SlidingTackles": 0.01,
+        "Jumping": 0.03,
+        "Strength": 0.03,
+        "Heading": 0.003,
+        "Stamina": 0.08,
+        "HandPlay": 0,
+        "Kicking": 0,
+        "Reflexes": 0,
+        "Positioning": 0
+      }
+    },
+    {
+      "StatsGenerationDelta": 10,
+      "PlayerPosition": 10,
+      "HeighTypePercents": {
+        "Little": 15,
+        "Medium": 50,
+        "UpperMedium": 30,
+        "Tall": 5
+      },
+      "BodyTypePercents": {
+        "Lean": 30,
+        "Normal": 65,
+        "Thick": 5
+      },
+      "StatsGenerationMedianas": {
+        "Speed": 65,
+        "Shooting": 55,
+        "Passing": 45,
+        "Technique": 60,
+        "Defending": 35,
+        "Physical": 35,
+        "Goalkeeping": 0
+      },
+      "StatsOverallCoefficients": {
+        "Acceleration": 0.1,
+        "SprintSpeed": 0.1,
+        "Shots": 0.11,
+        "LongShots": 0.05,
+        "Penalties": 0.005,
+        "FreeKicks": 0.005,
+        "ShortPassing": 0.05,
+        "LongPassing": 0.07,
+        "Crossing": 0.03,
+        "Agility": 0.12,
+        "BallControl": 0.12,
+        "Tricks": 0.05,
+        "Interceptions": 0.015,
+        "StandingTackles": 0.01,
+        "SlidingTackles": 0.01,
+        "Jumping": 0.03,
+        "Strength": 0.04,
+        "Heading": 0.03,
+        "Stamina": 0.1,
+        "HandPlay": 0,
+        "Kicking": 0,
+        "Reflexes": 0,
+        "Positioning": 0
+      }
+    },
+    {
+      "StatsGenerationDelta": 10,
+      "PlayerPosition": 11,
+      "HeighTypePercents": {
+        "Little": 15,
+        "Medium": 50,
+        "UpperMedium": 30,
+        "Tall": 5
+      },
+      "BodyTypePercents": {
+        "Lean": 30,
+        "Normal": 65,
+        "Thick": 5
+      },
+      "StatsGenerationMedianas": {
+        "Speed": 65,
+        "Shooting": 55,
+        "Passing": 45,
+        "Technique": 60,
+        "Defending": 35,
+        "Physical": 35,
+        "Goalkeeping": 0
+      },
+      "StatsOverallCoefficients": {
+        "Acceleration": 0.1,
+        "SprintSpeed": 0.1,
+        "Shots": 0.11,
+        "LongShots": 0.05,
+        "Penalties": 0.005,
+        "FreeKicks": 0.005,
+        "ShortPassing": 0.05,
+        "LongPassing": 0.07,
+        "Crossing": 0.03,
+        "Agility": 0.12,
+        "BallControl": 0.12,
+        "Tricks": 0.05,
+        "Interceptions": 0.015,
+        "StandingTackles": 0.01,
+        "SlidingTackles": 0.01,
+        "Jumping": 0.03,
+        "Strength": 0.04,
+        "Heading": 0.03,
+        "Stamina": 0.1,
+        "HandPlay": 0,
+        "Kicking": 0,
+        "Reflexes": 0,
+        "Positioning": 0
+      }
+    },
+    {
+      "StatsGenerationDelta": 10,
+      "PlayerPosition": 12,
+      "HeighTypePercents": {
+        "Little": 5,
+        "Medium": 45,
+        "UpperMedium": 40,
+        "Tall": 10
+      },
+      "BodyTypePercents": {
+        "Lean": 30,
+        "Normal": 55,
+        "Thick": 15
+      },
+      "StatsGenerationMedianas": {
+        "Speed": 60,
+        "Shooting": 65,
+        "Passing": 35,
+        "Technique": 55,
+        "Defending": 35,
+        "Physical": 50,
+        "Goalkeeping": 0
+      },
+      "StatsOverallCoefficients": {
+        "Acceleration": 0.1,
+        "SprintSpeed": 0.1,
+        "Shots": 0.14,
+        "LongShots": 0.08,
+        "Penalties": 0.005,
+        "FreeKicks": 0.005,
+        "ShortPassing": 0.01,
+        "LongPassing": 0.03,
+        "Crossing": 0.01,
+        "Agility": 0.1,
+        "BallControl": 0.12,
+        "Tricks": 0.005,
+        "Interceptions": 0.015,
+        "StandingTackles": 0.01,
+        "SlidingTackles": 0.01,
+        "Jumping": 0.06,
+        "Strength": 0.06,
+        "Heading": 0.06,
+        "Stamina": 0.08,
+        "HandPlay": 0,
+        "Kicking": 0,
+        "Reflexes": 0,
+        "Positioning": 0
+      }
+    }
+  ]
+}

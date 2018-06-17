@@ -1,0 +1,62 @@
+{
+  "Items": [
+    {
+      "StatsGroup": 0,
+      "StatsGroupCoefficients": {
+        "Acceleration": 0.5,
+        "SprintSpeed": 0.5
+      }
+    },
+    {
+      "StatsGroup": 1,
+      "StatsGroupCoefficients": {
+        "Shots": 0.6,
+        "LongShots": 0.3,
+        "Penalties": 0.05,
+        "FreeKicks": 0.05
+      }
+    },
+    {
+      "StatsGroup": 2,
+      "StatsGroupCoefficients": {
+        "LongPassing": 0.5,
+        "Crossing": 0.25,
+        "ShortPassing": 0.25
+      }
+    },
+    {
+      "StatsGroup": 3,
+      "StatsGroupCoefficients": {
+        "Agility": 0.45,
+        "BallControl": 0.45,
+        "Tricks": 0.1
+      }
+    },
+    {
+      "StatsGroup": 4,
+      "StatsGroupCoefficients": {
+        "Interceptions": 0.4,
+        "StandingTackles": 0.3,
+        "SlidingTackles": 0.3
+      }
+    },
+    {
+      "StatsGroup": 5,
+      "StatsGroupCoefficients": {
+        "Jumping": 0.2,
+        "Strength": 0.5,
+        "Heading": 0.2,
+        "Stamina": 0.1
+      }
+    },
+    {
+      "StatsGroup": 6,
+      "StatsGroupCoefficients": {
+        "HandPlay": 0.25,
+        "Kicking": 0.15,
+        "Reflexes": 0.3,
+        "Positioning": 0.3
+      }
+    }
+  ]
+}

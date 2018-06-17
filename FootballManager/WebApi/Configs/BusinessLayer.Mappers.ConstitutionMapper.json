@@ -1,0 +1,149 @@
+{
+  "BoostValue": 2.5,
+  "Items": [
+    {
+      "HeightType": 0,
+      "BodyType": 0,
+      "StatsBoosters": {
+        "Acceleration": 2,
+        "SprintSpeed": 2,
+        "Agility": 2,
+        "Tricks": 2,
+        "Jumping": 2,
+        "Strength": -3,
+        "Heading": -3,
+        "Stamina": 2,
+        "Interceptions": -2,
+        "StandingTackles": -2,
+        "SlidingTackles": -2
+      }
+    },
+    {
+      "HeightType": 0,
+      "BodyType": 1,
+      "StatsBoosters": {
+        "Acceleration": 1,
+        "SprintSpeed": 1,
+        "Agility": 1,
+        "Tricks": 1,
+        "Jumping": 1,
+        "Strength": -2,
+        "Heading": -2,
+        "Stamina": 1,
+        "Interceptions": -1,
+        "StandingTackles": -1,
+        "SlidingTackles": -1
+      }
+    },
+    {
+      "HeightType": 0,
+      "BodyType": 2,
+      "StatsBoosters": {
+        "Strength": -1,
+        "Heading": -1
+      }
+    },
+    {
+      "HeightType": 1,
+      "BodyType": 0,
+      "StatsBoosters": {
+        "Acceleration": 1,
+        "SprintSpeed": 1,
+        "Agility": 1,
+        "Tricks": 1,
+        "Jumping": 1,
+        "Strength": -2,
+        "Heading": -2,
+        "Stamina": 1,
+        "Interceptions": -1,
+        "StandingTackles": -1,
+        "SlidingTackles": -1
+      }
+    },
+    {
+      "HeightType": 1,
+      "BodyType": 1,
+      "StatsBoosters": {
+        "Strength": -1,
+        "Heading": -1
+      }
+    },
+    {
+      "HeightType": 1,
+      "BodyType": 2,
+      "StatsBoosters": {}
+    },
+    {
+      "HeightType": 2,
+      "BodyType": 0,
+      "StatsBoosters": {}
+    },
+    {
+      "HeightType": 2,
+      "BodyType": 1,
+      "StatsBoosters": {
+        "Strength": 1,
+        "Heading": 1
+      }
+    },
+    {
+      "HeightType": 2,
+      "BodyType": 2,
+      "StatsBoosters": {
+        "Acceleration": -1,
+        "SprintSpeed": -1,
+        "Agility": -1,
+        "Tricks": -1,
+        "Jumping": -1,
+        "Strength": 2,
+        "Heading": 2,
+        "Stamina": -1,
+        "Interceptions": 1,
+        "StandingTackles": 1,
+        "SlidingTackles": 1
+      }
+    },
+    {
+      "HeightType": 3,
+      "BodyType": 0,
+      "StatsBoosters": {
+        "Strength": 1,
+        "Heading": 1
+      }
+    },
+    {
+      "HeightType": 3,
+      "BodyType": 1,
+      "StatsBoosters": {
+        "Acceleration": -1,
+        "SprintSpeed": -1,
+        "Agility": -1,
+        "Tricks": -1,
+        "Jumping": -1,
+        "Strength": 2,
+        "Heading": 2,
+        "Stamina": -1,
+        "Interceptions": 1,
+        "StandingTackles": 1,
+        "SlidingTackles": 1
+      }
+    },
+    {
+      "HeightType": 3,
+      "BodyType": 2,
+      "StatsBoosters": {
+        "Acceleration": -2,
+        "SprintSpeed": -2,
+        "Agility": -2,
+        "Tricks": -2,
+        "Jumping": -2,
+        "Strength": 3,
+        "Heading": 3,
+        "Stamina": -2,
+        "Interceptions": 2,
+        "StandingTackles": 2,
+        "SlidingTackles": 2
+      }
+    }
+  ]
+}

@@ -7,8 +7,15 @@ namespace Utility.Helpers
     {
         protected readonly List<KeyValuePair<T, KeyValuePair<int, int>>> ranges;
 
+        public IReadOnlyList<T> Types;
+
+        public List<int> Ranges;
+
         public RandomRangesCreator(IReadOnlyList<T> types, List<int> ranges)
         {
+            Types = types;
+            Ranges = ranges;
+
             if (CheckRanges(ranges, out var sum))
             {
                 this.ranges = new List<KeyValuePair<T, KeyValuePair<int, int>>>();

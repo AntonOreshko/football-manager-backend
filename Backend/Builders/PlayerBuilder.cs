@@ -884,7 +884,7 @@ namespace Backend.Builders
 
     public class PlayerPositionDependentBuilder
     {
-        public static int StatsGenerationDelta = 10;
+        public int StatsGenerationDelta = 10;
 
         public PlayerPosition PlayerPosition { get; set; }
 

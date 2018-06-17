@@ -1,4 +1,6 @@
-﻿using BusinessLayer.ServiceInterfaces;
+﻿using BusinessLayer.Configs;
+using BusinessLayer.Mappers;
+using BusinessLayer.ServiceInterfaces;
 using BusinessLayer.Services;
 using DomainModels.Models;
 using Microsoft.AspNetCore.Builder;
@@ -29,8 +31,10 @@ namespace WebApi
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddMvc().AddJsonOptions(options => {
+            services.AddMvc().AddJsonOptions(options => 
+            {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
             });
 
             services.AddSingleton(Configuration);
@@ -40,10 +44,11 @@ namespace WebApi
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
 
-            //services.AddDbContext<FootballManagerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HomeConnection")));
-            services.AddDbContext<FootballManagerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WorkConnection")));
+            services.AddDbContext<FootballManagerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HomeConnection")));
+            //services.AddDbContext<FootballManagerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WorkConnection")));
             services.AddTransient<IRepository<User>, EfRepository<User>>();
             services.AddTransient<IEntityService<User>, EntityService<User>>();
+            services.AddTransient<IConfigItem<CountryNameMapper>, JsonConfigItem<CountryNameMapper>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,10 +67,7 @@ namespace WebApi
 
 
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
 
             app.UseMvc();
         }

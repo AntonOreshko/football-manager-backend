@@ -1,0 +1,54 @@
+{
+  "Items": [
+    {
+      "Level": 1,
+      "MinOverallRating": 50,
+      "MaxOverallRating": 55
+    },
+    {
+      "Level": 2,
+      "MinOverallRating": 55,
+      "MaxOverallRating": 60
+    },
+    {
+      "Level": 3,
+      "MinOverallRating": 60,
+      "MaxOverallRating": 65
+    },
+    {
+      "Level": 4,
+      "MinOverallRating": 65,
+      "MaxOverallRating": 70
+    },
+    {
+      "Level": 5,
+      "MinOverallRating": 70,
+      "MaxOverallRating": 75
+    },
+    {
+      "Level": 6,
+      "MinOverallRating": 75,
+      "MaxOverallRating": 80
+    },
+    {
+      "Level": 7,
+      "MinOverallRating": 80,
+      "MaxOverallRating": 85
+    },
+    {
+      "Level": 8,
+      "MinOverallRating": 85,
+      "MaxOverallRating": 90
+    },
+    {
+      "Level": 9,
+      "MinOverallRating": 90,
+      "MaxOverallRating": 95
+    },
+    {
+      "Level": 10,
+      "MinOverallRating": 95,
+      "MaxOverallRating": 100
+    }
+  ]
+}

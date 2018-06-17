@@ -23,10 +23,10 @@ namespace BusinessLayer.Data
 
         private int _lastNamesCount;
 
-        public CountryNameMap(Country country, CountryMapper mapper)
+        public CountryNameMap(Country country, CountryNameMapper nameMapper)
         {
             Country = country;
-            var nameSources = mapper.NamesGenerationKeys[country];
+            var nameSources = nameMapper.NamesGenerationKeys[country];
 
             // loading of first names
             var firstNamesPathes = new List<string>();

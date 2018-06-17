@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using BusinessLayer.Configs;
 using BusinessLayer.Data;
 using BusinessLayer.Mappers;
 using DomainModels.Enums;
@@ -10,27 +11,30 @@ namespace BusinessLayer.Builders.UtilityBuilder
 {
     public static class PersonBuilder
     {
-        private static CountryMapper countryMapper = new CountryMapper();
+        private static readonly IConfigItem<CountryNameMapper> CountryNameMapperConfig;
 
-        private static HashSet<CountryNameMap> countryNameMaps = new HashSet<CountryNameMap>();
+        private static readonly HashSet<CountryNameMap> CountryNameMaps = new HashSet<CountryNameMap>();
 
         static PersonBuilder()
         {
+            CountryNameMapperConfig = ConfigBuilder.GetConfig<CountryNameMapper>();
+
             var countryList = typeof(Country).ToList<Country>();
+
             foreach (var country in countryList)
             {
-                countryNameMaps.Add(new CountryNameMap(country, countryMapper));
+                CountryNameMaps.Add(new CountryNameMap(country, CountryNameMapperConfig.Get()));
             }
         }
 
-        public static string GetFirstName(Country country)
+        private static string GetFirstName(Country country)
         {
-            return countryNameMaps.First(cm => cm.Country == country).GetRandomFirstName();
+            return CountryNameMaps.First(cm => cm.Country == country).GetRandomFirstName();
         }
 
-        public static string GetLastName(Country country)
+        private static string GetLastName(Country country)
         {
-            return countryNameMaps.First(cm => cm.Country == country).GetRandomLastName();
+            return CountryNameMaps.First(cm => cm.Country == country).GetRandomLastName();
         }
 
         public static void SetPerson(IPerson person)

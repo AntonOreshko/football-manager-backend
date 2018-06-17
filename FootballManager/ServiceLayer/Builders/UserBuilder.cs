@@ -33,10 +33,14 @@ namespace BusinessLayer.Builders
                 Country = typeof(Country).GetRandom<Country>()
             };
 
+            user.Country = Country.Ukraine;
+
             PersonBuilder.SetPerson(user);
 
             user.Login = DefaultLogin(user);
             user.Password = RandomPassword(8);
+
+            PlayerBuilder.Get();
 
             return user;
         }
