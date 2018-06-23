@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Configs;
+﻿using BusinessLayer.Builders.BuildersData;
+using BusinessLayer.Configs;
 using BusinessLayer.Mappers;
 using DomainModels.Models.PlayerEntities;
 
@@ -28,7 +29,7 @@ namespace BusinessLayer.Builders
             TalentConfig = ConfigBuilder.GetConfig<TalentMapper>();
         }
 
-        public static Player Get()
+        public static Player Get(IPlayerBuilderData playerBuilderData)
         {
             return new Player();
         }
