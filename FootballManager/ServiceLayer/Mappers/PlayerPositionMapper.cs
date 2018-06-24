@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using DomainModels.Enums;
-using Newtonsoft.Json;
-using Utility.Helpers;
 
 namespace BusinessLayer.Mappers
 {
@@ -16,13 +14,7 @@ namespace BusinessLayer.Mappers
 
         public PlayerPosition PlayerPosition { get; set; }
 
-        [JsonIgnore]
-        public RandomRangesCreator<HeightType> HeightCreator { get; set; }
-
         public Dictionary<HeightType, int> HeighTypePercents { get; set; }
-
-        [JsonIgnore]
-        public RandomRangesCreator<BodyType> BodyCreator { get; set; }
 
         public Dictionary<BodyType, int> BodyTypePercents { get; set; }
 

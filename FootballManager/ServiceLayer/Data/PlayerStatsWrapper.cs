@@ -44,13 +44,13 @@ namespace BusinessLayer.Wrappers
 
         private readonly PlayerStats _playerStats;
 
-        private List<PlayerStat> _stats;
+        public List<PlayerStat> Stats;
 
         public PlayerStatsWrapper(PlayerStats stats)
         {
             _playerStats = stats;
 
-            _stats = new List<PlayerStat>()
+            Stats = new List<PlayerStat>()
             {
                 new PlayerStat(ACCELERATION, StatsGroup.Speed, f => _playerStats.Acceleration = f, () => _playerStats.Acceleration),
                 new PlayerStat(SPRINT_SPEED, StatsGroup.Speed, f => _playerStats.SprintSpeed = f, () => _playerStats.SprintSpeed),
@@ -86,14 +86,14 @@ namespace BusinessLayer.Wrappers
 
         public void SetValue(string statName, float value)
         {
-            var stat = _stats.FirstOrDefault(s => s.Name == statName);
+            var stat = Stats.FirstOrDefault(s => s.Name == statName);
             if (stat != null) stat.Value = value;
             else throw new Exception("Stat \"" + statName + "\" not found!");
         }
 
         public float GetValue(string statName)
         {
-            var stat = _stats.FirstOrDefault(s => s.Name == statName);
+            var stat = Stats.FirstOrDefault(s => s.Name == statName);
             if (stat != null) return stat.Value;
             throw new Exception("Stat \"" + statName + "\" not found!");
         }

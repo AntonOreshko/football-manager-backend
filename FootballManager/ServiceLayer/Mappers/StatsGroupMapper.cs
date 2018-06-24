@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using BusinessLayer.Wrappers;
 using DomainModels.Enums;
 
 namespace BusinessLayer.Mappers
@@ -15,14 +14,14 @@ namespace BusinessLayer.Mappers
 
         public Dictionary<string, float> StatsGroupCoefficients { get; set; }
 
-        public float GetStatsGroupRating(PlayerStatsWrapper stats)
-        {
-            var rating = 0.0f;
-            foreach (var s in StatsGroupCoefficients)
-            {
-                rating += s.Value * stats.GetValue(s.Key);
-            }
-            return rating;
-        }
+        //public float GetStatsGroupRating(PlayerStatsWrapper stats)
+        //{
+        //    var rating = 0.0f;
+        //    foreach (var s in StatsGroupCoefficients)
+        //    {
+        //        rating += s.Value * stats.GetValue(s.Key);
+        //    }
+        //    return rating;
+        //}
     }
 }

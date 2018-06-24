@@ -5,13 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DomainModels\DomainModels.csproj" />
-    <ProjectReference Include="..\RepositoryLayer\RepositoryLayer.csproj" />
-    <ProjectReference Include="..\Utility\Utility.csproj" />
+    <Compile Remove="Resources\Mappers\**" />
+    <EmbeddedResource Remove="Resources\Mappers\**" />
+    <None Remove="Resources\Mappers\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Mappers\" />
+    <ProjectReference Include="..\DomainModels\DomainModels.csproj" />
+    <ProjectReference Include="..\RepositoryLayer\RepositoryLayer.csproj" />
+    <ProjectReference Include="..\Utility\Utility.csproj" />
   </ItemGroup>
 
   <ItemGroup>
