@@ -34,6 +34,11 @@ namespace BusinessLayer.Services
             Repository.Update(entity);
         }
 
+        public void Clear()
+        {
+            Repository.Clear();
+        }
+
         public void SaveChanges()
         {
             Repository.SaveChanges();

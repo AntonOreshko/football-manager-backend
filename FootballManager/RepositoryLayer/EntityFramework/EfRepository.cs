@@ -67,6 +67,11 @@ namespace RepositoryLayer.EntityFramework
             _entities.Remove(entity);
         }
 
+        public void Clear()
+        {
+            _context.RemoveRange(_entities);
+        }
+
         public void SaveChanges()
         {
             _context.SaveChanges();

@@ -51,5 +51,16 @@ namespace WebApi.Controllers
             return Ok(viewModels);
         }
 
+        // GET: api/fill/clear
+        [HttpGet("clear")]
+        public IActionResult ClearContext()
+        {
+            _userService.Clear();
+            _userService.SaveChanges();
+
+            return Ok();
+        }
+
+
     }
 }

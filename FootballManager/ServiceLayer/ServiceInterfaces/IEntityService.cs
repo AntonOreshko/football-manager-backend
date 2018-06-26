@@ -16,6 +16,8 @@ namespace BusinessLayer.ServiceInterfaces
 
         void Update(T entity);
 
+        void Clear();
+
         void SaveChanges();
     }
 }

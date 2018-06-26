@@ -103,7 +103,7 @@ namespace BusinessLayer.Builders
 
             player.Stats = stats;
 
-            return new Player();
+            return player;
         }
 
         private static int GetRandomHeight(HeightType heightType)

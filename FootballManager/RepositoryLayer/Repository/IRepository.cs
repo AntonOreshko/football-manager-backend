@@ -17,6 +17,8 @@ namespace RepositoryLayer.Repository
 
         void Remove(T entity);
 
+        void Clear();
+
         void SaveChanges();
     }
 }
