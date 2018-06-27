@@ -4,7 +4,7 @@ using System.Linq;
 using DomainModels.Enums;
 using DomainModels.Models.PlayerEntities;
 
-namespace BusinessLayer.Wrappers
+namespace BusinessLayer.Data
 {
     public class PlayerStatsWrapper
     {
@@ -41,6 +41,22 @@ namespace BusinessLayer.Wrappers
         public const string POSITIONING = "Positioning";
 
         #endregion
+
+        public float OverallRating { get; set; }
+
+        public float Speed { get; set; }
+
+        public float Shooting { get; set; }
+
+        public float Passing { get; set; }
+
+        public float Technique { get; set; }
+
+        public float Defending { get; set; }
+
+        public float Physical { get; set; }
+
+        public float Goalkeeping { get; set; }
 
         private readonly PlayerStats _playerStats;
 
@@ -97,6 +113,12 @@ namespace BusinessLayer.Wrappers
             if (stat != null) return stat.Value;
             throw new Exception("Stat \"" + statName + "\" not found!");
         }
+
+        private float GetOverallRating()
+        {
+
+        }
+        
     }
 
     public class PlayerStat

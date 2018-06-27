@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BusinessLayer.Builders.BuildersData;
 using BusinessLayer.Mappers;
 using DomainModels.Enums;
@@ -48,6 +49,7 @@ namespace BusinessLayer.Builders
                 Squads = new List<Squad>()
             };
 
+            club.FoundationDate = DateTime.Now;
 
             var squad = SquadBuilder.GetRandomSquad();
             club.Squads.Add(squad);
