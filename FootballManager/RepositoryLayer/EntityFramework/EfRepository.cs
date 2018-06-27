@@ -10,24 +10,29 @@ namespace RepositoryLayer.EntityFramework
 {
     public class EfRepository<T> : IRepository<T> where T : class, IDatabaseEntity
     {
-        private readonly FootballManagerContext _context;
+        protected readonly FootballManagerContext Context;
 
-        private readonly DbSet<T> _entities;
+        protected readonly DbSet<T> Entities;
 
         public EfRepository(FootballManagerContext context)
         {
-            _context = context;
-            _entities = context.Set<T>();
+            Context = context;
+            Entities = context.Set<T>();
         }
 
         public IEnumerable<T> GetAll()
         {
-            return _entities.AsEnumerable();
+            return Entities.AsEnumerable();
         }
 
         public T Get(long id)
         {
-            return _entities.SingleOrDefault(s => s.Id == id);
+            return Entities.SingleOrDefault(s => s.Id == id);
+        }
+
+        public virtual T GetWithRelations(long id)
+        {
+            return Entities.SingleOrDefault(s => s.Id == id);
         }
 
         public void Insert(T entity)
@@ -36,8 +41,7 @@ namespace RepositoryLayer.EntityFramework
             {
                 throw new ArgumentNullException(nameof(entity));
             }
-            _entities.Add(entity);
-            _context.SaveChanges();
+            Entities.Add(entity);
         }
 
         public void Update(T entity)
@@ -46,35 +50,25 @@ namespace RepositoryLayer.EntityFramework
             {
                 throw new ArgumentNullException(nameof(entity));
             }
-            _context.SaveChanges();
         }
 
-        public void Delete(T entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-            _entities.Remove(entity);
-            _context.SaveChanges();
-        }
         public void Remove(T entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
-            _entities.Remove(entity);
+            Entities.Remove(entity);
         }
 
         public void Clear()
         {
-            _context.RemoveRange(_entities);
+            Context.RemoveRange(Entities);
         }
 
         public void SaveChanges()
         {
-            _context.SaveChanges();
+            Context.SaveChanges();
         }
     }
 }

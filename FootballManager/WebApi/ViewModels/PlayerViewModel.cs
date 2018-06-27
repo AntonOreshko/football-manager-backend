@@ -20,6 +20,8 @@ namespace WebApi.ViewModels
 
         public int Weight { get; set; }
 
+        public PlayerStatsViewModel Stats { get; set; }
+
         public static PlayerViewModel Get(Player player)
         {
             return new PlayerViewModel
@@ -31,7 +33,8 @@ namespace WebApi.ViewModels
                 Talent = player.Talent,
                 Position = player.Position.ToString(),
                 Height = player.Height,
-                Weight = player.Weight
+                Weight = player.Weight,
+                Stats = PlayerStatsViewModel.Get(player)
             };
         }
     }

@@ -92,7 +92,8 @@ namespace BusinessLayer.Builders
             player.Talent = TalentGenerator.GetRandom();
 
             var stats = new PlayerStats();
-            var statsWrapper = new PlayerStatsWrapper(stats);
+            player.Stats = stats;
+            var statsWrapper = new PlayerStatsWrapper(player);
 
             GenerateStats(statsWrapper, playerPositionMapper);
 
@@ -101,7 +102,6 @@ namespace BusinessLayer.Builders
 
             UpdatePlayerStats(statsWrapper, overallRating, wantedOverallRating);
 
-            player.Stats = stats;
 
             return player;
         }
@@ -229,6 +229,16 @@ namespace BusinessLayer.Builders
             var rnd = new Random();
 
             return rnd.Next(item.MinOverallRating, item.MaxOverallRating);
+        }
+
+        public static PlayerPositionItem GetPlayerPositionMap(PlayerPosition position)
+        {
+            return PlayerPositionMapper.Items.First(i => i.PlayerPosition == position);
+        }
+
+        public static StatsGroupItem GetStatsGroupMap(StatsGroup statsGroup)
+        {
+            return StatsGroupMapper.Items.First(i => i.StatsGroup == statsGroup);
         }
     }
 }

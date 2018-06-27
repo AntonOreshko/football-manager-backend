@@ -67,14 +67,21 @@ namespace WebApi.ViewModels
 
         public float Positioning { get; set; }
 
-        public static PlayerStatsViewModel Get(PlayerStats stats)
+        public static PlayerStatsViewModel Get(Player player)
         {
-            var statsWrapper = new PlayerStatsWrapper(stats);
-
-
+            var statsWrapper = new PlayerStatsWrapper(player);
+            var stats = player.Stats;
 
             return new PlayerStatsViewModel
             {
+                OverallRating = statsWrapper.OverallRating,
+                Speed = statsWrapper.Speed,
+                Shooting = statsWrapper.Shooting,
+                Passing = statsWrapper.Passing,
+                Technique = statsWrapper.Technique,
+                Defending = statsWrapper.Defending,
+                Physical = statsWrapper.Physical,
+                Goalkeeping = statsWrapper.Goalkeeping,
                 Acceleration = stats.Acceleration,
                 SprintSpeed = stats.SprintSpeed,
                 Shots = stats.Shots,

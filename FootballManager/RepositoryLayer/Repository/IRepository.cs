@@ -9,11 +9,11 @@ namespace RepositoryLayer.Repository
 
         T Get(long id);
 
+        T GetWithRelations(long id);
+
         void Insert(T entity);
 
         void Update(T entity);
-
-        void Delete(T entity);
 
         void Remove(T entity);
 

@@ -12,9 +12,9 @@ namespace WebApi.Controllers
     [ApiController]
     public class DatabaseFillController : ControllerBase
     {
-        private readonly IEntityService<User> _userService;
+        private readonly IUserService _userService;
 
-        public DatabaseFillController(IEntityService<User> userService)
+        public DatabaseFillController(IUserService userService)
         {
             _userService = userService;
         }

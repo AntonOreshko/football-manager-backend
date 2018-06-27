@@ -24,6 +24,11 @@ namespace BusinessLayer.Services
             return Repository.Get(id);
         }
 
+        public T GetWithRelations(long id)
+        {
+            return Repository.GetWithRelations(id);
+        }
+
         public void Insert(T entity)
         {
             Repository.Insert(entity);

@@ -3,6 +3,7 @@ using BusinessLayer.Mappers;
 using BusinessLayer.ServiceInterfaces;
 using BusinessLayer.Services;
 using DomainModels.Models;
+using DomainModels.Models.PlayerEntities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -44,10 +45,14 @@ namespace WebApi
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
 
-            //services.AddDbContext<FootballManagerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HomeConnection")));
-            services.AddDbContext<FootballManagerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WorkConnection")));
-            services.AddTransient<IRepository<User>, EfRepository<User>>();
-            services.AddTransient<IEntityService<User>, EntityService<User>>();
+            services.AddDbContext<FootballManagerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HomeConnection")));
+            //services.AddDbContext<FootballManagerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WorkConnection")));
+            services.AddTransient<IUserRepository, EfUserRepositiory>();
+            services.AddTransient<IClubRepository, EfClubRepository>();
+            services.AddTransient<IPlayerRepository, EfPlayerRepository>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IClubService, ClubService>();
+            services.AddTransient<IPlayerService, PlayerService>();
             services.AddTransient<IConfigItem<CountryNameMapper>, JsonConfigItem<CountryNameMapper>>();
         }
 

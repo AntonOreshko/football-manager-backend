@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using DomainModels.Enums;
+using DomainModels.Models;
 
 namespace WebApi.ViewModels
 {
@@ -11,13 +13,22 @@ namespace WebApi.ViewModels
 
         public DateTime FoundationDate { get; set; }
 
-        public static ClubViewModel Get(ClubViewModel club)
+        public List<PlayerViewModel> Players { get; set; }
+
+        public static ClubViewModel Get(Club club)
         {
+            var players = new List<PlayerViewModel>();
+            foreach (var p in club.Players)
+            {
+                players.Add(PlayerViewModel.Get(p));
+            }
+
             return new ClubViewModel
             {
                 Name = club.Name,
                 Country = club.Country,
-                FoundationDate = club.FoundationDate
+                FoundationDate = club.FoundationDate,
+                Players = players
             };
         }
     }

@@ -2,7 +2,6 @@
 using System.Linq;
 using BusinessLayer.Builders;
 using Microsoft.AspNetCore.Mvc;
-using DomainModels.Models;
 using BusinessLayer.ServiceInterfaces;
 using WebApi.BuilderData;
 using WebApi.ViewModels;
@@ -13,9 +12,9 @@ namespace WebApi.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IEntityService<User> _userService;
+        private readonly IUserService _userService;
 
-        public UsersController(IEntityService<User> userService)
+        public UsersController(IUserService userService)
         {
             _userService = userService;
         }

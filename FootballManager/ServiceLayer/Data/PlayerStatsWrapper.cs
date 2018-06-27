@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BusinessLayer.Builders;
 using DomainModels.Enums;
 using DomainModels.Models.PlayerEntities;
 
@@ -42,29 +43,36 @@ namespace BusinessLayer.Data
 
         #endregion
 
-        public float OverallRating { get; set; }
+        #region Computed properties
 
-        public float Speed { get; set; }
+        public float OverallRating => GetOverallRating();
 
-        public float Shooting { get; set; }
+        public float Speed => GetStatsGroupRating(StatsGroup.Speed);
 
-        public float Passing { get; set; }
+        public float Shooting => GetStatsGroupRating(StatsGroup.Shooting);
 
-        public float Technique { get; set; }
+        public float Passing => GetStatsGroupRating(StatsGroup.Passing);
 
-        public float Defending { get; set; }
+        public float Technique => GetStatsGroupRating(StatsGroup.Technique);
 
-        public float Physical { get; set; }
+        public float Defending => GetStatsGroupRating(StatsGroup.Defending);
 
-        public float Goalkeeping { get; set; }
+        public float Physical => GetStatsGroupRating(StatsGroup.Physical);
+
+        public float Goalkeeping => GetStatsGroupRating(StatsGroup.Goalkeeping);
+
+        #endregion
+
+        private readonly Player _player;
 
         private readonly PlayerStats _playerStats;
 
         public List<PlayerStat> Stats;
 
-        public PlayerStatsWrapper(PlayerStats stats)
+        public PlayerStatsWrapper(Player player)
         {
-            _playerStats = stats;
+            _player = player;
+            _playerStats = player.Stats;
 
             Stats = new List<PlayerStat>()
             {
@@ -116,9 +124,29 @@ namespace BusinessLayer.Data
 
         private float GetOverallRating()
         {
+            var positionMapper = PlayerBuilder.GetPlayerPositionMap(_player.Position);
 
+            var overallRating = 0.0f;
+
+            foreach (var stat in Stats)
+            {
+                overallRating += stat.Value * positionMapper.StatsOverallCoefficients[stat.Name];
+            }
+
+            return overallRating;
         }
-        
+
+        private float GetStatsGroupRating(StatsGroup group)
+        {
+            var statsGroupMapper = PlayerBuilder.GetStatsGroupMap(group);
+
+            var rating = 0.0f;
+            foreach (var s in statsGroupMapper.StatsGroupCoefficients)
+            {
+                rating += s.Value * GetValue(s.Key);
+            }
+            return rating;
+        }
     }
 
     public class PlayerStat
