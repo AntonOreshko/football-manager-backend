@@ -1,6 +1,6 @@
 ﻿namespace BusinessLayer.Builders
 {
-    public class TournamentsBuilder
+    public static class TournamentsBuilder
     {
 
     }

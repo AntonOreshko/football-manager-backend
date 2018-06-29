@@ -7,6 +7,12 @@ namespace DomainModels.Models.TournamentEntities
     {
         public long Id { get; set; }
 
+        public int Stage { get; set; }
+
+        public int SubStage { get; set; }
+
+        public int GroupStage { get; set; }
+
         public long HomeId { get; set; }
 
         public long VisitorsId { get; set; }

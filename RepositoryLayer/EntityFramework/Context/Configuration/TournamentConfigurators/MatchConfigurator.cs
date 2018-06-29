@@ -12,6 +12,15 @@ namespace RepositoryLayer.EntityFramework.Context.Configuration.TournamentConfig
                 .ValueGeneratedOnAdd()
                 .HasColumnName("ID");
 
+            builder.Property(e => e.Stage)
+                .HasColumnName("STAGE");
+
+            builder.Property(e => e.SubStage)
+                .HasColumnName("SUB_STAGE");
+
+            builder.Property(e => e.GroupStage)
+                .HasColumnName("GROUP_STAGE");
+
             builder.Property(e => e.HomeId)
                 .HasColumnName("HOME_ID");
 
