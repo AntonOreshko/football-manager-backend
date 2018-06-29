@@ -5,6 +5,7 @@ using BusinessLayer.Services;
 using DomainModels.Models;
 using DomainModels.Models.ClubEntities;
 using DomainModels.Models.PlayerEntities;
+using DomainModels.Models.TournamentEntities;
 using DomainModels.Models.UserEntities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -53,14 +54,18 @@ namespace WebApi
             services.AddTransient<IRepository<User>, EfUserRepositiory>();
             services.AddTransient<IRepository<Club>, EfClubRepository>();
             services.AddTransient<IRepository<Player>, EfPlayerRepository>();
+            services.AddTransient<IRepository<Tournament>, EfTournamentRepository>();
 
             services.AddTransient<IUserRepository, EfUserRepositiory>();
             services.AddTransient<IClubRepository, EfClubRepository>();
             services.AddTransient<IPlayerRepository, EfPlayerRepository>();
+            services.AddTransient<ITournamentRepository, EfTournamentRepository>();
 
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IClubService, ClubService>();
             services.AddTransient<IPlayerService, PlayerService>();
+            services.AddTransient<ITournamentService, TournamentService>();
+
             services.AddTransient<IConfigItem<CountryNameMapper>, JsonConfigItem<CountryNameMapper>>();
         }
 
