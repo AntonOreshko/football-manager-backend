@@ -12,10 +12,14 @@ namespace DomainModels.Models.TournamentEntities
 
         public int CurrentStage { get; set; }
 
+        public bool IsFinished { get; set; }
+
         public TournamentType TournamentType { get; set; }
 
         public List<TournamentClub> TournamentClubs { get; set; }
 
         public List<Match> Matches { get; set; }
+
+        public List<TournamentPlayer> TournamentPlayers { get; set; }
     }
 }

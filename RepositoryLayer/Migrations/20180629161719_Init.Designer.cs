@@ -10,7 +10,7 @@ using RepositoryLayer.EntityFramework.Context;
 namespace RepositoryLayer.Migrations
 {
     [DbContext(typeof(FootballManagerContext))]
-    [Migration("20180610120246_Init")]
+    [Migration("20180629161719_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,7 +46,7 @@ namespace RepositoryLayer.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Building");
                 });
 
-            modelBuilder.Entity("DomainModels.Models.Club", b =>
+            modelBuilder.Entity("DomainModels.Models.ClubEntities.Club", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -58,6 +58,11 @@ namespace RepositoryLayer.Migrations
 
                     b.Property<DateTime>("FoundationDate")
                         .HasColumnName("FOUNDATION_DATE");
+
+                    b.Property<int>("Level")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("LEVEL")
+                        .HasDefaultValue(1);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -73,6 +78,49 @@ namespace RepositoryLayer.Migrations
                         .IsUnique();
 
                     b.ToTable("CLUBS");
+                });
+
+            modelBuilder.Entity("DomainModels.Models.ClubEntities.ClubHistory", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnName("ID");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CLUBS_HISTORY");
+                });
+
+            modelBuilder.Entity("DomainModels.Models.ClubEntities.HollOfFame", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnName("ID");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("HOLLS_OF_FAME");
+                });
+
+            modelBuilder.Entity("DomainModels.Models.ClubEntities.SeasonResult", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("ClubHistoryId")
+                        .HasColumnName("CLUB_HISTORY_ID");
+
+                    b.Property<int>("LeaguePlace")
+                        .HasColumnName("LEAGUE_PLACE");
+
+                    b.Property<int>("SuperleagueStage")
+                        .HasColumnName("SUPERLEAGUE_STAGE");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClubHistoryId");
+
+                    b.ToTable("SEASON_RESULTS");
                 });
 
             modelBuilder.Entity("DomainModels.Models.EmployeeEntities.Employee", b =>
@@ -111,6 +159,29 @@ namespace RepositoryLayer.Migrations
                     b.ToTable("EMPLOYEES");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Employee");
+                });
+
+            modelBuilder.Entity("DomainModels.Models.PlayerEntities.Legend", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("HollOfFameId");
+
+                    b.Property<int>("LegendType");
+
+                    b.Property<int>("Matches");
+
+                    b.Property<long>("PlayerId");
+
+                    b.Property<int>("Result");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HollOfFameId");
+
+                    b.ToTable("Legend");
                 });
 
             modelBuilder.Entity("DomainModels.Models.PlayerEntities.Player", b =>
@@ -162,6 +233,64 @@ namespace RepositoryLayer.Migrations
                     b.HasIndex("ClubId");
 
                     b.ToTable("PLAYERS");
+                });
+
+            modelBuilder.Entity("DomainModels.Models.PlayerEntities.PlayerScores", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnName("ID");
+
+                    b.Property<int>("CurrentLeagueAssists")
+                        .HasColumnName("CURRENT_LEAGUE_ASSISTS");
+
+                    b.Property<int>("CurrentLeagueMatches")
+                        .HasColumnName("CURRENT_LEAGUE_MATCHES");
+
+                    b.Property<float>("CurrentLeagueRating")
+                        .HasColumnName("CURRENT_LEAGUE_RATING");
+
+                    b.Property<int>("CurrentLeagueScores")
+                        .HasColumnName("CURRENT_LEAGUE_SCORES");
+
+                    b.Property<int>("CurrentSuperleagueAssists")
+                        .HasColumnName("CURRENT_SUPERLEAGUE_ASSISTS");
+
+                    b.Property<int>("CurrentSuperleagueMatches")
+                        .HasColumnName("CURRENT_SUPERLEAGUE_MATCHES");
+
+                    b.Property<float>("CurrentSuperleagueRating")
+                        .HasColumnName("CURRENT_SUPERLEAGUE_RATING");
+
+                    b.Property<int>("CurrentSuperleagueScores")
+                        .HasColumnName("CURRENT_SUPERLEAGUE_SCORES");
+
+                    b.Property<int>("TotalLeagueAssists")
+                        .HasColumnName("TOTAL_LEAGUE_ASSISTS");
+
+                    b.Property<int>("TotalLeagueMatches")
+                        .HasColumnName("TOTAL_LEAGUE_MATCHES");
+
+                    b.Property<float>("TotalLeagueRating")
+                        .HasColumnName("TOTAL_LEAGUE_RATING");
+
+                    b.Property<int>("TotalLeagueScores")
+                        .HasColumnName("TOTAL_LEAGUE_SCORES");
+
+                    b.Property<int>("TotalSuperleagueAssists")
+                        .HasColumnName("TOTAL_SUPERLEAGUE_ASSISTS");
+
+                    b.Property<int>("TotalSuperleagueMatches")
+                        .HasColumnName("TOTAL_SUPERLEAGUE_MATCHES");
+
+                    b.Property<float>("TotalSuperleagueRating")
+                        .HasColumnName("TOTAL_SUPERLEAGUE_RATING");
+
+                    b.Property<int>("TotalSuperleagueScores")
+                        .HasColumnName("TOTAL_SUPERLEAGUE_SCORES");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PLAYER_SCORES");
                 });
 
             modelBuilder.Entity("DomainModels.Models.PlayerEntities.PlayerStats", b =>
@@ -376,6 +505,9 @@ namespace RepositoryLayer.Migrations
                     b.Property<int>("CurrentStage")
                         .HasColumnName("CURRENT_STAGE");
 
+                    b.Property<bool>("IsFinished")
+                        .HasColumnName("IS_FINISHED");
+
                     b.Property<int>("Level")
                         .HasColumnName("LEVEL");
 
@@ -402,7 +534,20 @@ namespace RepositoryLayer.Migrations
                     b.ToTable("TOURNAMENT_CLUBS");
                 });
 
-            modelBuilder.Entity("DomainModels.Models.User", b =>
+            modelBuilder.Entity("DomainModels.Models.TournamentEntities.TournamentPlayer", b =>
+                {
+                    b.Property<long>("TournamentId")
+                        .HasColumnName("TOURNAMENT_ID");
+
+                    b.Property<long>("PlayerId")
+                        .HasColumnName("PLAYER_ID");
+
+                    b.HasKey("TournamentId", "PlayerId");
+
+                    b.ToTable("TOURNAMENT_PLAYERS");
+                });
+
+            modelBuilder.Entity("DomainModels.Models.UserEntities.User", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -556,33 +701,73 @@ namespace RepositoryLayer.Migrations
 
             modelBuilder.Entity("DomainModels.Models.BuildingEntities.Building", b =>
                 {
-                    b.HasOne("DomainModels.Models.Club", "Club")
+                    b.HasOne("DomainModels.Models.ClubEntities.Club", "Club")
                         .WithMany("Buildings")
                         .HasForeignKey("ClubId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DomainModels.Models.Club", b =>
+            modelBuilder.Entity("DomainModels.Models.ClubEntities.Club", b =>
                 {
-                    b.HasOne("DomainModels.Models.User", "User")
+                    b.HasOne("DomainModels.Models.UserEntities.User", "User")
                         .WithOne("Club")
-                        .HasForeignKey("DomainModels.Models.Club", "UserId")
+                        .HasForeignKey("DomainModels.Models.ClubEntities.Club", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DomainModels.Models.ClubEntities.ClubHistory", b =>
+                {
+                    b.HasOne("DomainModels.Models.ClubEntities.Club", "Club")
+                        .WithOne("History")
+                        .HasForeignKey("DomainModels.Models.ClubEntities.ClubHistory", "Id")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DomainModels.Models.ClubEntities.HollOfFame", b =>
+                {
+                    b.HasOne("DomainModels.Models.ClubEntities.Club", "Club")
+                        .WithOne("HollOfFame")
+                        .HasForeignKey("DomainModels.Models.ClubEntities.HollOfFame", "Id")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DomainModels.Models.ClubEntities.SeasonResult", b =>
+                {
+                    b.HasOne("DomainModels.Models.ClubEntities.ClubHistory", "ClubHistory")
+                        .WithMany("SeasonResults")
+                        .HasForeignKey("ClubHistoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DomainModels.Models.EmployeeEntities.Employee", b =>
                 {
-                    b.HasOne("DomainModels.Models.Club", "Club")
+                    b.HasOne("DomainModels.Models.ClubEntities.Club", "Club")
                         .WithMany("Employees")
                         .HasForeignKey("ClubId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("DomainModels.Models.PlayerEntities.Legend", b =>
+                {
+                    b.HasOne("DomainModels.Models.ClubEntities.HollOfFame", "HollOfFame")
+                        .WithMany("Legends")
+                        .HasForeignKey("HollOfFameId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("DomainModels.Models.PlayerEntities.Player", b =>
                 {
-                    b.HasOne("DomainModels.Models.Club", "Club")
+                    b.HasOne("DomainModels.Models.ClubEntities.Club", "Club")
                         .WithMany("Players")
                         .HasForeignKey("ClubId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DomainModels.Models.PlayerEntities.PlayerScores", b =>
+                {
+                    b.HasOne("DomainModels.Models.PlayerEntities.Player", "Player")
+                        .WithOne("Scores")
+                        .HasForeignKey("DomainModels.Models.PlayerEntities.PlayerScores", "Id")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -612,7 +797,7 @@ namespace RepositoryLayer.Migrations
 
             modelBuilder.Entity("DomainModels.Models.SquadEntities.Squad", b =>
                 {
-                    b.HasOne("DomainModels.Models.Club", "Club")
+                    b.HasOne("DomainModels.Models.ClubEntities.Club", "Club")
                         .WithMany("Squads")
                         .HasForeignKey("ClubId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -636,13 +821,21 @@ namespace RepositoryLayer.Migrations
 
             modelBuilder.Entity("DomainModels.Models.TournamentEntities.TournamentClub", b =>
                 {
-                    b.HasOne("DomainModels.Models.Club", "Club")
+                    b.HasOne("DomainModels.Models.ClubEntities.Club", "Club")
                         .WithMany("TournamentClubs")
                         .HasForeignKey("ClubId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DomainModels.Models.TournamentEntities.Tournament", "Tournament")
                         .WithMany("TournamentClubs")
+                        .HasForeignKey("TournamentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DomainModels.Models.TournamentEntities.TournamentPlayer", b =>
+                {
+                    b.HasOne("DomainModels.Models.TournamentEntities.Tournament", "Tournament")
+                        .WithMany("TournamentPlayers")
                         .HasForeignKey("TournamentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

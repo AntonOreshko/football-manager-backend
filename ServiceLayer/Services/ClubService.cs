@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.ServiceInterfaces;
 using DomainModels.Models;
+using DomainModels.Models.ClubEntities;
 using RepositoryLayer.Repository;
 
 namespace BusinessLayer.Services

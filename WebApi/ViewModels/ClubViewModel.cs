@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DomainModels.Enums;
 using DomainModels.Models;
+using DomainModels.Models.ClubEntities;
 
 namespace WebApi.ViewModels
 {

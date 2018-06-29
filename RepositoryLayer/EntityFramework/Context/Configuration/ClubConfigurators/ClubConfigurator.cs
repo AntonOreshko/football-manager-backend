@@ -1,8 +1,8 @@
-﻿using DomainModels.Models;
+﻿using DomainModels.Models.ClubEntities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace RepositoryLayer.EntityFramework.Context.Configuration
+namespace RepositoryLayer.EntityFramework.Context.Configuration.ClubConfigurators
 {
     public class ClubConfigurator : IEntityTypeConfiguration<Club>
     {
@@ -23,6 +23,11 @@ namespace RepositoryLayer.EntityFramework.Context.Configuration
 
             builder.Property(e => e.FoundationDate)
                 .HasColumnName("FOUNDATION_DATE")
+                .IsRequired();
+
+            builder.Property(e => e.Level)
+                .HasColumnName("LEVEL")
+                .HasDefaultValue(1)
                 .IsRequired();
 
             builder.Property(e => e.UserId)
@@ -48,6 +53,14 @@ namespace RepositoryLayer.EntityFramework.Context.Configuration
             builder.HasMany(e => e.TournamentClubs)
                 .WithOne(e => e.Club)
                 .HasForeignKey(e => e.ClubId);
+
+            builder.HasOne(e => e.History)
+                .WithOne(e => e.Club)
+                .HasForeignKey<ClubHistory>(e => e.Id);
+
+            builder.HasOne(e => e.HollOfFame)
+                .WithOne(e => e.Club)
+                .HasForeignKey<HollOfFame>(e => e.Id);
 
             builder.HasKey(e => e.Id);
 

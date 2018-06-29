@@ -1,4 +1,5 @@
 ﻿using DomainModels.Interfaces;
+using DomainModels.Models.ClubEntities;
 
 namespace DomainModels.Models.BuildingEntities
 {

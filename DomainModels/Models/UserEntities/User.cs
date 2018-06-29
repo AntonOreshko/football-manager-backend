@@ -1,7 +1,8 @@
 ﻿using DomainModels.Enums;
 using DomainModels.Interfaces;
+using DomainModels.Models.ClubEntities;
 
-namespace DomainModels.Models
+namespace DomainModels.Models.UserEntities
 {
     public class User : IDatabaseEntity, IPerson
     {

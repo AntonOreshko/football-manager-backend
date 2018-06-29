@@ -16,6 +16,7 @@ namespace RepositoryLayer.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     LEVEL = table.Column<int>(nullable: false),
                     CURRENT_STAGE = table.Column<int>(nullable: false),
+                    IS_FINISHED = table.Column<bool>(nullable: false),
                     TOURNAMENT_TYPE = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -64,6 +65,24 @@ namespace RepositoryLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TOURNAMENT_PLAYERS",
+                columns: table => new
+                {
+                    TOURNAMENT_ID = table.Column<long>(nullable: false),
+                    PLAYER_ID = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TOURNAMENT_PLAYERS", x => new { x.TOURNAMENT_ID, x.PLAYER_ID });
+                    table.ForeignKey(
+                        name: "FK_TOURNAMENT_PLAYERS_TOURNAMENTS_TOURNAMENT_ID",
+                        column: x => x.TOURNAMENT_ID,
+                        principalTable: "TOURNAMENTS",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CLUBS",
                 columns: table => new
                 {
@@ -72,6 +91,7 @@ namespace RepositoryLayer.Migrations
                     NAME = table.Column<string>(maxLength: 64, nullable: false),
                     COUNTRY = table.Column<int>(nullable: false),
                     FOUNDATION_DATE = table.Column<DateTime>(nullable: false),
+                    LEVEL = table.Column<int>(nullable: false, defaultValue: 1),
                     USER_ID = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
@@ -130,6 +150,23 @@ namespace RepositoryLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CLUBS_HISTORY",
+                columns: table => new
+                {
+                    ID = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CLUBS_HISTORY", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_CLUBS_HISTORY_CLUBS_ID",
+                        column: x => x.ID,
+                        principalTable: "CLUBS",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "EMPLOYEES",
                 columns: table => new
                 {
@@ -148,6 +185,23 @@ namespace RepositoryLayer.Migrations
                     table.ForeignKey(
                         name: "FK_EMPLOYEES_CLUBS_CLUB_ID",
                         column: x => x.CLUB_ID,
+                        principalTable: "CLUBS",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HOLLS_OF_FAME",
+                columns: table => new
+                {
+                    ID = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HOLLS_OF_FAME", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_HOLLS_OF_FAME_CLUBS_ID",
+                        column: x => x.ID,
                         principalTable: "CLUBS",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -223,6 +277,83 @@ namespace RepositoryLayer.Migrations
                         name: "FK_TOURNAMENT_CLUBS_TOURNAMENTS_TOURNAMENT_ID",
                         column: x => x.TOURNAMENT_ID,
                         principalTable: "TOURNAMENTS",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SEASON_RESULTS",
+                columns: table => new
+                {
+                    ID = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    LEAGUE_PLACE = table.Column<int>(nullable: false),
+                    SUPERLEAGUE_STAGE = table.Column<int>(nullable: false),
+                    CLUB_HISTORY_ID = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SEASON_RESULTS", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_SEASON_RESULTS_CLUBS_HISTORY_CLUB_HISTORY_ID",
+                        column: x => x.CLUB_HISTORY_ID,
+                        principalTable: "CLUBS_HISTORY",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Legend",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    LegendType = table.Column<int>(nullable: false),
+                    Result = table.Column<int>(nullable: false),
+                    Matches = table.Column<int>(nullable: false),
+                    HollOfFameId = table.Column<long>(nullable: false),
+                    PlayerId = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Legend", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Legend_HOLLS_OF_FAME_HollOfFameId",
+                        column: x => x.HollOfFameId,
+                        principalTable: "HOLLS_OF_FAME",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PLAYER_SCORES",
+                columns: table => new
+                {
+                    ID = table.Column<long>(nullable: false),
+                    TOTAL_LEAGUE_SCORES = table.Column<int>(nullable: false),
+                    TOTAL_LEAGUE_ASSISTS = table.Column<int>(nullable: false),
+                    TOTAL_LEAGUE_MATCHES = table.Column<int>(nullable: false),
+                    TOTAL_LEAGUE_RATING = table.Column<float>(nullable: false),
+                    CURRENT_LEAGUE_SCORES = table.Column<int>(nullable: false),
+                    CURRENT_LEAGUE_ASSISTS = table.Column<int>(nullable: false),
+                    CURRENT_LEAGUE_MATCHES = table.Column<int>(nullable: false),
+                    CURRENT_LEAGUE_RATING = table.Column<float>(nullable: false),
+                    TOTAL_SUPERLEAGUE_SCORES = table.Column<int>(nullable: false),
+                    TOTAL_SUPERLEAGUE_ASSISTS = table.Column<int>(nullable: false),
+                    TOTAL_SUPERLEAGUE_MATCHES = table.Column<int>(nullable: false),
+                    TOTAL_SUPERLEAGUE_RATING = table.Column<float>(nullable: false),
+                    CURRENT_SUPERLEAGUE_SCORES = table.Column<int>(nullable: false),
+                    CURRENT_SUPERLEAGUE_ASSISTS = table.Column<int>(nullable: false),
+                    CURRENT_SUPERLEAGUE_MATCHES = table.Column<int>(nullable: false),
+                    CURRENT_SUPERLEAGUE_RATING = table.Column<float>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PLAYER_SCORES", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_PLAYER_SCORES_PLAYERS_ID",
+                        column: x => x.ID,
+                        principalTable: "PLAYERS",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -334,6 +465,11 @@ namespace RepositoryLayer.Migrations
                 column: "SQUAD_ID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Legend_HollOfFameId",
+                table: "Legend",
+                column: "HollOfFameId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_MATCH_EVENTS_MATCH_ID",
                 table: "MATCH_EVENTS",
                 column: "MATCH_ID");
@@ -347,6 +483,11 @@ namespace RepositoryLayer.Migrations
                 name: "IX_PLAYERS_CLUB_ID",
                 table: "PLAYERS",
                 column: "CLUB_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SEASON_RESULTS_CLUB_HISTORY_ID",
+                table: "SEASON_RESULTS",
+                column: "CLUB_HISTORY_ID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SQUADS_CLUB_ID",
@@ -371,7 +512,13 @@ namespace RepositoryLayer.Migrations
                 name: "FORMATION_POSITIONS");
 
             migrationBuilder.DropTable(
+                name: "Legend");
+
+            migrationBuilder.DropTable(
                 name: "MATCH_EVENTS");
+
+            migrationBuilder.DropTable(
+                name: "PLAYER_SCORES");
 
             migrationBuilder.DropTable(
                 name: "PLAYER_STATS");
@@ -380,16 +527,28 @@ namespace RepositoryLayer.Migrations
                 name: "PLAYER_TEMPORARY_STATS");
 
             migrationBuilder.DropTable(
+                name: "SEASON_RESULTS");
+
+            migrationBuilder.DropTable(
                 name: "TOURNAMENT_CLUBS");
 
             migrationBuilder.DropTable(
+                name: "TOURNAMENT_PLAYERS");
+
+            migrationBuilder.DropTable(
                 name: "SQUADS");
+
+            migrationBuilder.DropTable(
+                name: "HOLLS_OF_FAME");
 
             migrationBuilder.DropTable(
                 name: "MATCHES");
 
             migrationBuilder.DropTable(
                 name: "PLAYERS");
+
+            migrationBuilder.DropTable(
+                name: "CLUBS_HISTORY");
 
             migrationBuilder.DropTable(
                 name: "TOURNAMENTS");

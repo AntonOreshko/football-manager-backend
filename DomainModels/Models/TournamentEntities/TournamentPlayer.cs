@@ -1,9 +1,9 @@
 ﻿using DomainModels.Interfaces;
-using DomainModels.Models.ClubEntities;
+using DomainModels.Models.PlayerEntities;
 
 namespace DomainModels.Models.TournamentEntities
 {
-    public class TournamentClub : IDatabaseEntity
+    public class TournamentPlayer: IDatabaseEntity
     {
         public long Id { get; set; }
 
@@ -11,8 +11,6 @@ namespace DomainModels.Models.TournamentEntities
 
         public Tournament Tournament { get; set; }
 
-        public long ClubId { get; set; }
-
-        public Club Club { get; set; }
+        public long PlayerId { get; set; }
     }
 }

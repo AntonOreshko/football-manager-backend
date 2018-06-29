@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using BusinessLayer.Builders.BuildersData;
 using BusinessLayer.Mappers;
 using DomainModels.Enums;
-using DomainModels.Models;
+using DomainModels.Models.ClubEntities;
 using DomainModels.Models.PlayerEntities;
 using DomainModels.Models.SquadEntities;
+using DomainModels.Models.UserEntities;
 using Utility.Helpers;
 
 namespace BusinessLayer.Builders
@@ -46,10 +47,10 @@ namespace BusinessLayer.Builders
                 Name = user.FirstName + "'s Club",
                 Country = user.Country,
                 Players = new List<Player>(),
-                Squads = new List<Squad>()
+                Squads = new List<Squad>(),
+                FoundationDate = DateTime.Now
             };
 
-            club.FoundationDate = DateTime.Now;
 
             var squad = SquadBuilder.GetRandomSquad();
             club.Squads.Add(squad);

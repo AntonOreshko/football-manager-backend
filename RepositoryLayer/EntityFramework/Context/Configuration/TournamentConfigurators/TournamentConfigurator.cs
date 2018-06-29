@@ -21,6 +21,10 @@ namespace RepositoryLayer.EntityFramework.Context.Configuration.TournamentConfig
                 .IsRequired()
                 .HasColumnName("CURRENT_STAGE");
 
+            builder.Property(e => e.IsFinished)
+                .IsRequired()
+                .HasColumnName("IS_FINISHED");
+
             builder.Property(e => e.TournamentType)
                 .IsRequired()
                 .HasColumnName("TOURNAMENT_TYPE");
@@ -30,6 +34,10 @@ namespace RepositoryLayer.EntityFramework.Context.Configuration.TournamentConfig
                 .HasForeignKey(e => e.TournamentId);
 
             builder.HasMany(e => e.Matches)
+                .WithOne(e => e.Tournament)
+                .HasForeignKey(e => e.TournamentId);
+
+            builder.HasMany(e => e.TournamentPlayers)
                 .WithOne(e => e.Tournament)
                 .HasForeignKey(e => e.TournamentId);
 

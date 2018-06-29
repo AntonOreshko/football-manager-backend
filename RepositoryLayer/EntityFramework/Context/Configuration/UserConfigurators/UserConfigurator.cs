@@ -1,9 +1,10 @@
-﻿using DomainModels.Models;
+﻿using DomainModels.Models.ClubEntities;
+using DomainModels.Models.UserEntities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 
-namespace RepositoryLayer.EntityFramework.Context.Configuration
+namespace RepositoryLayer.EntityFramework.Context.Configuration.UserConfigurators
 {
     public class UserConfigurator : IEntityTypeConfiguration<User>
     {

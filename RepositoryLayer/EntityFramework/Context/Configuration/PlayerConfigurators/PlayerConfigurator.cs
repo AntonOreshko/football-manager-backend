@@ -66,6 +66,10 @@ namespace RepositoryLayer.EntityFramework.Context.Configuration.PlayerConfigurat
                 .WithOne(e => e.Player)
                 .HasForeignKey<PlayerTemporaryStats>(e => e.Id);
 
+            builder.HasOne(e => e.Scores)
+                .WithOne(e => e.Player)
+                .HasForeignKey<PlayerScores>(e => e.Id);
+
             builder.HasKey(e => e.Id);
 
             builder.ToTable("PLAYERS");

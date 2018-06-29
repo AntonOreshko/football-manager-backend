@@ -1,16 +1,18 @@
-﻿using DomainModels.Models;
-using DomainModels.Models.BuildingEntities;
+﻿using DomainModels.Models.BuildingEntities;
+using DomainModels.Models.ClubEntities;
 using DomainModels.Models.EmployeeEntities;
 using DomainModels.Models.PlayerEntities;
 using DomainModels.Models.SquadEntities;
 using DomainModels.Models.TournamentEntities;
+using DomainModels.Models.UserEntities;
 using Microsoft.EntityFrameworkCore;
-using RepositoryLayer.EntityFramework.Context.Configuration;
 using RepositoryLayer.EntityFramework.Context.Configuration.BuildingConfigurators;
+using RepositoryLayer.EntityFramework.Context.Configuration.ClubConfigurators;
 using RepositoryLayer.EntityFramework.Context.Configuration.EmployeeConfigurators;
 using RepositoryLayer.EntityFramework.Context.Configuration.PlayerConfigurators;
 using RepositoryLayer.EntityFramework.Context.Configuration.SquadConfigurators;
 using RepositoryLayer.EntityFramework.Context.Configuration.TournamentConfigurators;
+using RepositoryLayer.EntityFramework.Context.Configuration.UserConfigurators;
 
 namespace RepositoryLayer.EntityFramework.Context
 {
@@ -92,7 +94,11 @@ namespace RepositoryLayer.EntityFramework.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new UserConfigurator());
+
             modelBuilder.ApplyConfiguration(new ClubConfigurator());
+            modelBuilder.ApplyConfiguration(new ClubHistoryConfigurator());
+            modelBuilder.ApplyConfiguration(new HollOfFameConfigurator());
+            modelBuilder.ApplyConfiguration(new SeasonResultConfigurator());
 
             modelBuilder.ApplyConfiguration(new BuildingConfigurator());
             modelBuilder.ApplyConfiguration(new AcademyConfigurator());
@@ -111,6 +117,7 @@ namespace RepositoryLayer.EntityFramework.Context
             modelBuilder.ApplyConfiguration(new PlayerConfigurator());
             modelBuilder.ApplyConfiguration(new PlayerStatsConfigurator());
             modelBuilder.ApplyConfiguration(new PlayerTemporaryStatsConfigurator());
+            modelBuilder.ApplyConfiguration(new PlayerScoresConfigurator());
 
             modelBuilder.ApplyConfiguration(new FormationPositionConfigurator());
             modelBuilder.ApplyConfiguration(new SquadConfigurator());
@@ -119,6 +126,7 @@ namespace RepositoryLayer.EntityFramework.Context
             modelBuilder.ApplyConfiguration(new MatchEventConfigurator());
             modelBuilder.ApplyConfiguration(new TournamentClubConfigurator());
             modelBuilder.ApplyConfiguration(new TournamentConfigurator());
+            modelBuilder.ApplyConfiguration(new TournamentPlayerConfigurator());
         }
     }
 }

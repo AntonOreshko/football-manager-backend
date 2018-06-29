@@ -7,8 +7,9 @@ using DomainModels.Models.EmployeeEntities;
 using DomainModels.Models.PlayerEntities;
 using DomainModels.Models.SquadEntities;
 using DomainModels.Models.TournamentEntities;
+using DomainModels.Models.UserEntities;
 
-namespace DomainModels.Models
+namespace DomainModels.Models.ClubEntities
 {
     public class Club : IDatabaseEntity
     {
@@ -19,6 +20,8 @@ namespace DomainModels.Models
         public Country Country { get; set; }
 
         public DateTime FoundationDate { get; set; }
+
+        public int Level { get; set; }
 
         public long UserId { get; set; }
 
@@ -33,5 +36,9 @@ namespace DomainModels.Models
         public List<Squad> Squads { get; set; }
 
         public List<TournamentClub> TournamentClubs { get; set; }
+
+        public ClubHistory History { get; set; }
+
+        public HollOfFame HollOfFame { get; set; }
     }
 }

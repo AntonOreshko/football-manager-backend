@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using DomainModels.Enums;
 using DomainModels.Interfaces;
+using DomainModels.Models.ClubEntities;
 
 namespace DomainModels.Models.SquadEntities
 {

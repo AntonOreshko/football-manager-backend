@@ -1,5 +1,6 @@
 ﻿using DomainModels.Enums;
 using DomainModels.Interfaces;
+using DomainModels.Models.ClubEntities;
 
 namespace DomainModels.Models.PlayerEntities
 {
@@ -34,5 +35,7 @@ namespace DomainModels.Models.PlayerEntities
         public PlayerStats Stats { get; set; }
 
         public PlayerTemporaryStats TemporaryStats { get; set; }
+
+        public PlayerScores Scores { get; set; }
     }
 }

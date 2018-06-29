@@ -1,4 +1,5 @@
 ﻿using DomainModels.Models;
+using DomainModels.Models.ClubEntities;
 
 namespace RepositoryLayer.Repository
 {

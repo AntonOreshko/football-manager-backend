@@ -3,6 +3,7 @@ using System.Linq;
 using BusinessLayer.Builders;
 using BusinessLayer.ServiceInterfaces;
 using DomainModels.Models;
+using DomainModels.Models.UserEntities;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.ViewModels;
 

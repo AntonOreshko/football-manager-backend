@@ -5,6 +5,7 @@ using BusinessLayer.Builders.UtilityBuilder;
 using DomainModels.Enums;
 using DomainModels.Interfaces;
 using DomainModels.Models;
+using DomainModels.Models.UserEntities;
 using Utility;
 
 

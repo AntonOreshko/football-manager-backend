@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using DomainModels.Models;
+using DomainModels.Models.ClubEntities;
 using Microsoft.EntityFrameworkCore;
 using RepositoryLayer.EntityFramework.Context;
 using RepositoryLayer.Repository;
