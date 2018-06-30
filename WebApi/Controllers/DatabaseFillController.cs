@@ -14,10 +14,12 @@ namespace WebApi.Controllers
     public class DatabaseFillController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly ITournamentService _tournamentService;
 
-        public DatabaseFillController(IUserService userService)
+        public DatabaseFillController(IUserService userService, ITournamentService tournamentService)
         {
             _userService = userService;
+            _tournamentService = tournamentService;
         }
 
         // GET: api/fill/add
@@ -58,6 +60,9 @@ namespace WebApi.Controllers
         {
             _userService.Clear();
             _userService.SaveChanges();
+
+            _tournamentService.Clear();
+            _tournamentService.SaveChanges();
 
             return Ok();
         }

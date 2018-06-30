@@ -1,0 +1,478 @@
+{
+  "LeagueStages": [
+    {
+      "Stage": 1,
+      "Matches": [
+        {
+          "HomeId": 1,
+          "VisitorsId": 2,
+          "Number": 1,
+          "Substage": 0,
+          "Group": "A"
+        },
+        {
+          "HomeId": 3,
+          "VisitorsId": 4,
+          "Number": 2,
+          "Substage": 0,
+          "Group": "A"
+        },
+        {
+          "HomeId": 5,
+          "VisitorsId": 6,
+          "Number": 3,
+          "Substage": 0,
+          "Group": "B"
+        },
+        {
+          "HomeId": 7,
+          "VisitorsId": 8,
+          "Number": 4,
+          "Substage": 0,
+          "Group": "B"
+        },
+        {
+          "HomeId": 9,
+          "VisitorsId": 10,
+          "Number": 5,
+          "Substage": 0,
+          "Group": "C"
+        },
+        {
+          "HomeId": 11,
+          "VisitorsId": 12,
+          "Number": 6,
+          "Substage": 0,
+          "Group": "C"
+        },
+        {
+          "HomeId": 13,
+          "VisitorsId": 14,
+          "Number": 7,
+          "Substage": 0,
+          "Group": "D"
+        },
+        {
+          "HomeId": 15,
+          "VisitorsId": 16,
+          "Number": 8,
+          "Substage": 0,
+          "Group": "D"
+        }
+      ]
+    },
+    {
+      "Stage": 1,
+      "Matches": [
+        {
+          "HomeId": 4,
+          "VisitorsId": 1,
+          "Number": 9,
+          "Substage": 0,
+          "Group": "A"
+        },
+        {
+          "HomeId": 2,
+          "VisitorsId": 3,
+          "Number": 10,
+          "Substage": 0,
+          "Group": "A"
+        },
+        {
+          "HomeId": 6,
+          "VisitorsId": 7,
+          "Number": 11,
+          "Substage": 0,
+          "Group": "B"
+        },
+        {
+          "HomeId": 8,
+          "VisitorsId": 5,
+          "Number": 12,
+          "Substage": 0,
+          "Group": "B"
+        },
+        {
+          "HomeId": 10,
+          "VisitorsId": 11,
+          "Number": 13,
+          "Substage": 0,
+          "Group": "C"
+        },
+        {
+          "HomeId": 12,
+          "VisitorsId": 9,
+          "Number": 14,
+          "Substage": 0,
+          "Group": "C"
+        },
+        {
+          "HomeId": 14,
+          "VisitorsId": 15,
+          "Number": 15,
+          "Substage": 0,
+          "Group": "D"
+        },
+        {
+          "HomeId": 16,
+          "VisitorsId": 13,
+          "Number": 16,
+          "Substage": 0,
+          "Group": "D"
+        }
+      ]
+    },
+    {
+      "Stage": 1,
+      "Matches": [
+        {
+          "HomeId": 2,
+          "VisitorsId": 4,
+          "Number": 17,
+          "Substage": 0,
+          "Group": "A"
+        },
+        {
+          "HomeId": 3,
+          "VisitorsId": 1,
+          "Number": 18,
+          "Substage": 0,
+          "Group": "A"
+        },
+        {
+          "HomeId": 8,
+          "VisitorsId": 6,
+          "Number": 19,
+          "Substage": 0,
+          "Group": "B"
+        },
+        {
+          "HomeId": 5,
+          "VisitorsId": 7,
+          "Number": 20,
+          "Substage": 0,
+          "Group": "B"
+        },
+        {
+          "HomeId": 12,
+          "VisitorsId": 10,
+          "Number": 21,
+          "Substage": 0,
+          "Group": "C"
+        },
+        {
+          "HomeId": 9,
+          "VisitorsId": 11,
+          "Number": 22,
+          "Substage": 0,
+          "Group": "C"
+        },
+        {
+          "HomeId": 16,
+          "VisitorsId": 14,
+          "Number": 23,
+          "Substage": 0,
+          "Group": "D"
+        },
+        {
+          "HomeId": 13,
+          "VisitorsId": 15,
+          "Number": 24,
+          "Substage": 0,
+          "Group": "D"
+        }
+      ]
+    },
+    {
+      "Stage": 1,
+      "Matches": [
+        {
+          "HomeId": 2,
+          "VisitorsId": 1,
+          "Number": 25,
+          "Substage": 0,
+          "Group": "A"
+        },
+        {
+          "HomeId": 4,
+          "VisitorsId": 3,
+          "Number": 26,
+          "Substage": 0,
+          "Group": "A"
+        },
+        {
+          "HomeId": 6,
+          "VisitorsId": 5,
+          "Number": 27,
+          "Substage": 0,
+          "Group": "B"
+        },
+        {
+          "HomeId": 8,
+          "VisitorsId": 7,
+          "Number": 28,
+          "Substage": 0,
+          "Group": "B"
+        },
+        {
+          "HomeId": 10,
+          "VisitorsId": 9,
+          "Number": 29,
+          "Substage": 0,
+          "Group": "C"
+        },
+        {
+          "HomeId": 12,
+          "VisitorsId": 11,
+          "Number": 30,
+          "Substage": 0,
+          "Group": "C"
+        },
+        {
+          "HomeId": 14,
+          "VisitorsId": 13,
+          "Number": 31,
+          "Substage": 0,
+          "Group": "D"
+        },
+        {
+          "HomeId": 16,
+          "VisitorsId": 15,
+          "Number": 32,
+          "Substage": 0,
+          "Group": "D"
+        }
+      ]
+    },
+    {
+      "Stage": 1,
+      "Matches": [
+        {
+          "HomeId": 1,
+          "VisitorsId": 4,
+          "Number": 33,
+          "Substage": 0,
+          "Group": "A"
+        },
+        {
+          "HomeId": 3,
+          "VisitorsId": 2,
+          "Number": 34,
+          "Substage": 0,
+          "Group": "A"
+        },
+        {
+          "HomeId": 7,
+          "VisitorsId": 6,
+          "Number": 35,
+          "Substage": 0,
+          "Group": "B"
+        },
+        {
+          "HomeId": 5,
+          "VisitorsId": 8,
+          "Number": 36,
+          "Substage": 0,
+          "Group": "B"
+        },
+        {
+          "HomeId": 11,
+          "VisitorsId": 10,
+          "Number": 37,
+          "Substage": 0,
+          "Group": "C"
+        },
+        {
+          "HomeId": 9,
+          "VisitorsId": 12,
+          "Number": 38,
+          "Substage": 0,
+          "Group": "C"
+        },
+        {
+          "HomeId": 15,
+          "VisitorsId": 14,
+          "Number": 39,
+          "Substage": 0,
+          "Group": "D"
+        },
+        {
+          "HomeId": 13,
+          "VisitorsId": 16,
+          "Number": 40,
+          "Substage": 0,
+          "Group": "D"
+        }
+      ]
+    },
+    {
+      "Stage": 1,
+      "Matches": [
+        {
+          "HomeId": 4,
+          "VisitorsId": 2,
+          "Number": 41,
+          "Substage": 0,
+          "Group": "A"
+        },
+        {
+          "HomeId": 1,
+          "VisitorsId": 3,
+          "Number": 42,
+          "Substage": 0,
+          "Group": "A"
+        },
+        {
+          "HomeId": 6,
+          "VisitorsId": 8,
+          "Number": 43,
+          "Substage": 0,
+          "Group": "B"
+        },
+        {
+          "HomeId": 7,
+          "VisitorsId": 5,
+          "Number": 44,
+          "Substage": 0,
+          "Group": "B"
+        },
+        {
+          "HomeId": 10,
+          "VisitorsId": 12,
+          "Number": 45,
+          "Substage": 0,
+          "Group": "C"
+        },
+        {
+          "HomeId": 11,
+          "VisitorsId": 9,
+          "Number": 46,
+          "Substage": 0,
+          "Group": "C"
+        },
+        {
+          "HomeId": 14,
+          "VisitorsId": 16,
+          "Number": 47,
+          "Substage": 0,
+          "Group": "D"
+        },
+        {
+          "HomeId": 15,
+          "VisitorsId": 13,
+          "Number": 48,
+          "Substage": 0,
+          "Group": "D"
+        }
+      ]
+    }
+  ],
+  "CupStages": [
+    {
+      "Stage": 1,
+      "Matches": [
+        {
+          "HomeId": -1,
+          "VisitorsId": -1,
+          "Number": 49,
+          "Substage": 1,
+          "Group": null
+        },
+        {
+          "HomeId": -1,
+          "VisitorsId": -1,
+          "Number": 50,
+          "Substage": 1,
+          "Group": null
+        },
+        {
+          "HomeId": -1,
+          "VisitorsId": -1,
+          "Number": 51,
+          "Substage": 1,
+          "Group": null
+        },
+        {
+          "HomeId": -1,
+          "VisitorsId": -1,
+          "Number": 52,
+          "Substage": 1,
+          "Group": null
+        },
+        {
+          "HomeId": -1,
+          "VisitorsId": -1,
+          "Number": 53,
+          "Substage": 2,
+          "Group": null
+        },
+        {
+          "HomeId": -1,
+          "VisitorsId": -1,
+          "Number": 54,
+          "Substage": 2,
+          "Group": null
+        },
+        {
+          "HomeId": -1,
+          "VisitorsId": -1,
+          "Number": 55,
+          "Substage": 2,
+          "Group": null
+        },
+        {
+          "HomeId": -1,
+          "VisitorsId": -1,
+          "Number": 56,
+          "Substage": 2,
+          "Group": null
+        }
+      ]
+    },
+    {
+      "Stage": 2,
+      "Matches": [
+        {
+          "HomeId": -1,
+          "VisitorsId": -1,
+          "Number": 57,
+          "Substage": 1,
+          "Group": null
+        },
+        {
+          "HomeId": -1,
+          "VisitorsId": -1,
+          "Number": 58,
+          "Substage": 1,
+          "Group": null
+        },
+        {
+          "HomeId": -1,
+          "VisitorsId": -1,
+          "Number": 59,
+          "Substage": 2,
+          "Group": null
+        },
+        {
+          "HomeId": -1,
+          "VisitorsId": -1,
+          "Number": 60,
+          "Substage": 2,
+          "Group": null
+        }
+      ]
+    },
+    {
+      "Stage": 3,
+      "Matches": [
+        {
+          "HomeId": -1,
+          "VisitorsId": -1,
+          "Number": 61,
+          "Substage": 0,
+          "Group": null
+        }
+      ]
+    }
+  ]
+}

@@ -11,7 +11,9 @@ namespace DomainModels.Models.TournamentEntities
 
         public int SubStage { get; set; }
 
-        public int GroupStage { get; set; }
+        public string Group { get; set; }
+
+        public int Number { get; set; }
 
         public long HomeId { get; set; }
 

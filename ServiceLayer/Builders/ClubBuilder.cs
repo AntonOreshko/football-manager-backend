@@ -13,7 +13,7 @@ namespace BusinessLayer.Builders
 {
     public static class ClubBuilder
     {
-        class PlayerBuilderData : IPlayerBuilderData
+        private class PlayerBuilderData : IPlayerBuilderData
         {
             public Country Country { get; set; }
 

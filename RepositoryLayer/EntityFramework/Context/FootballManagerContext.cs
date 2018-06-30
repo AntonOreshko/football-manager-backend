@@ -118,6 +118,7 @@ namespace RepositoryLayer.EntityFramework.Context
             modelBuilder.ApplyConfiguration(new PlayerStatsConfigurator());
             modelBuilder.ApplyConfiguration(new PlayerTemporaryStatsConfigurator());
             modelBuilder.ApplyConfiguration(new PlayerScoresConfigurator());
+            modelBuilder.ApplyConfiguration(new LegendConfigurator());
 
             modelBuilder.ApplyConfiguration(new FormationPositionConfigurator());
             modelBuilder.ApplyConfiguration(new SquadConfigurator());

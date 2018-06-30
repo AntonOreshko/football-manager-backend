@@ -57,16 +57,19 @@ namespace WebApi
             services.AddTransient<IRepository<Club>, EfClubRepository>();
             services.AddTransient<IRepository<Player>, EfPlayerRepository>();
             services.AddTransient<IRepository<Tournament>, EfTournamentRepository>();
+            services.AddTransient<IRepository<Match>, EfMatchRepository>();
 
             services.AddTransient<IUserRepository, EfUserRepositiory>();
             services.AddTransient<IClubRepository, EfClubRepository>();
             services.AddTransient<IPlayerRepository, EfPlayerRepository>();
             services.AddTransient<ITournamentRepository, EfTournamentRepository>();
+            services.AddTransient<IMatchRepository, EfMatchRepository>();
 
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IClubService, ClubService>();
             services.AddTransient<IPlayerService, PlayerService>();
             services.AddTransient<ITournamentService, TournamentService>();
+            services.AddTransient<IMatchService, MatchService>();
 
             services.AddTransient<IConfigItem<CountryNameMapper>, JsonConfigItem<CountryNameMapper>>();
         }

@@ -43,6 +43,40 @@ namespace BusinessLayer.Builders
             return basketsForLeague;
         }
 
+        private static List<DrawBasket> GetDrawBasketsForCup(int level, IClubService clubService)
+        {
+            var clubs = clubService.GetByLevel(level).ToList();
+            var cupClubsCount = clubs.Count / 10 * 4;
+
+            var cupClubs = new List<Club>();
+            for (int i = 0; i < cupClubsCount; i++)
+            {
+                cupClubs.Add(clubs[i]);
+            }
+
+            var averageRatings = cupClubs.Select(p => new KeyValuePair<long, float>(p.Id, clubService.GetAverageSquadRating(p.Id))).ToList();
+
+            int[] potSizes = { cupClubsCount / 4, cupClubsCount / 4, cupClubsCount / 4, cupClubsCount / 4 };
+
+            var basketsForLeague = new List<DrawBasket>();
+            foreach (var ps in potSizes)
+            {
+                var ratings = averageRatings.GetRange(0, ps).ToList();
+                var keys = ratings.Select(ar => ar.Key).ToList();
+                var potClubs = cupClubs.Where(p => keys.Contains(p.Id)).ToList();
+
+                cupClubs.RemoveAll(p => keys.Contains(p.Id));
+                averageRatings.RemoveAll(ar => ratings.Contains(ar));
+
+                basketsForLeague.Add(new DrawBasket()
+                {
+                    Clubs = potClubs.ToList()
+                });
+            }
+
+            return basketsForLeague;
+        }
+
         public static List<Tournament> GetLeagues(int level, IClubService clubService)
         {
             int tournamentsCount = clubService.GetClubsCountByLevel(level) / 10;
@@ -83,6 +117,55 @@ namespace BusinessLayer.Builders
                     });
                 }
                 
+                tournaments.Add(tournament);
+            }
+
+            return tournaments;
+        }
+
+        public static List<Tournament> GetCups(int level, IClubService clubService)
+        {
+            int tournamentsCount = clubService.GetClubsCountByLevel(level) / 10 * 4 / 16;
+            var baskets = GetDrawBasketsForCup(level, clubService);
+            var tournaments = new List<Tournament>();
+
+            for (int i = 0; i < tournamentsCount; i++)
+            {
+                var tournament = new Tournament
+                {
+                    Level = level,
+                    CurrentStage = 0,
+                    IsFinished = false,
+                    TournamentType = TournamentType.Cup,
+                    TournamentClubs = new List<TournamentClub>()
+                };
+
+                var clubs = new List<Club>();
+                for (int j = 0; j < 4; j++)
+                {
+                    clubs.Add(baskets[0].GetRandomClub());
+                }
+                for (int j = 0; j < 4; j++)
+                {
+                    clubs.Add(baskets[1].GetRandomClub());
+                }
+                for (int j = 0; j < 4; j++)
+                {
+                    clubs.Add(baskets[2].GetRandomClub());
+                }
+                for (int j = 0; j < 4; j++)
+                {
+                    clubs.Add(baskets[3].GetRandomClub());
+                }
+                foreach (var c in clubs)
+                {
+                    tournament.TournamentClubs.Add(new TournamentClub
+                    {
+                        Tournament = tournament,
+                        Club = c
+                    });
+                }
+
                 tournaments.Add(tournament);
             }
 

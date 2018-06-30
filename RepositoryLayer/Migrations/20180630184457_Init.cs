@@ -49,6 +49,10 @@ namespace RepositoryLayer.Migrations
                 {
                     ID = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    STAGE = table.Column<int>(nullable: false),
+                    SUB_STAGE = table.Column<int>(nullable: false),
+                    GROUP = table.Column<string>(nullable: true),
+                    NUMBER = table.Column<int>(nullable: false),
                     HOME_ID = table.Column<long>(nullable: false),
                     VISITORS_ID = table.Column<long>(nullable: false),
                     TOURNAMENT_ID = table.Column<long>(nullable: false)
@@ -303,23 +307,23 @@ namespace RepositoryLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Legend",
+                name: "LEGENDS",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    ID = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    LegendType = table.Column<int>(nullable: false),
-                    Result = table.Column<int>(nullable: false),
-                    Matches = table.Column<int>(nullable: false),
-                    HollOfFameId = table.Column<long>(nullable: false),
+                    LEGEND_TYPE = table.Column<int>(nullable: false),
+                    RESULT = table.Column<int>(nullable: false),
+                    MATCHES = table.Column<int>(nullable: false),
+                    PLAYER_ID = table.Column<long>(nullable: false),
                     PlayerId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Legend", x => x.Id);
+                    table.PrimaryKey("PK_LEGENDS", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Legend_HOLLS_OF_FAME_HollOfFameId",
-                        column: x => x.HollOfFameId,
+                        name: "FK_LEGENDS_HOLLS_OF_FAME_PLAYER_ID",
+                        column: x => x.PLAYER_ID,
                         principalTable: "HOLLS_OF_FAME",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -465,9 +469,9 @@ namespace RepositoryLayer.Migrations
                 column: "SQUAD_ID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Legend_HollOfFameId",
-                table: "Legend",
-                column: "HollOfFameId");
+                name: "IX_LEGENDS_PLAYER_ID",
+                table: "LEGENDS",
+                column: "PLAYER_ID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MATCH_EVENTS_MATCH_ID",
@@ -512,7 +516,7 @@ namespace RepositoryLayer.Migrations
                 name: "FORMATION_POSITIONS");
 
             migrationBuilder.DropTable(
-                name: "Legend");
+                name: "LEGENDS");
 
             migrationBuilder.DropTable(
                 name: "MATCH_EVENTS");

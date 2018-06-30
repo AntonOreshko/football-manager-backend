@@ -1,5 +1,8 @@
-﻿using BusinessLayer.Builders;
+﻿using System.Collections.Generic;
+using System.Linq;
+using BusinessLayer.Builders;
 using BusinessLayer.ServiceInterfaces;
+using DomainModels.Models.TournamentEntities;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.ViewModels;
 
@@ -24,12 +27,33 @@ namespace WebApi.Controllers
         {
             var tournaments = TournamentsBuilder.GetLeagues(level, _clubService);
 
+            foreach (var tournament in tournaments)
+            {
+                tournament.Matches = MatchBuilder.GetLeagueMatches(tournament).ToList();
+            }
+
             _tournamentService.InsertRange(tournaments);
             _tournamentService.SaveChanges();
 
             return Ok();
         }
 
+        // GET: api/Tournaments/generate/cups/5
+        [HttpGet("generate/cups/{level}")]
+        public IActionResult GenerateCups([FromRoute] int level)
+        {
+            var tournaments = TournamentsBuilder.GetCups(level, _clubService);
+
+            foreach (var tournament in tournaments)
+            {
+                tournament.Matches = MatchBuilder.GetCupMatches(tournament).ToList();
+            }
+
+            _tournamentService.InsertRange(tournaments);
+            _tournamentService.SaveChanges();
+
+            return Ok();
+        }
 
         // GET: api/Tournaments/5
         [HttpGet("{id}")]

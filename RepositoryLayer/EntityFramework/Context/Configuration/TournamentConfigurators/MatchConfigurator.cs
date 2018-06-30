@@ -18,8 +18,11 @@ namespace RepositoryLayer.EntityFramework.Context.Configuration.TournamentConfig
             builder.Property(e => e.SubStage)
                 .HasColumnName("SUB_STAGE");
 
-            builder.Property(e => e.GroupStage)
-                .HasColumnName("GROUP_STAGE");
+            builder.Property(e => e.Group)
+                .HasColumnName("GROUP");
+
+            builder.Property(e => e.Number)
+                .HasColumnName("NUMBER");
 
             builder.Property(e => e.HomeId)
                 .HasColumnName("HOME_ID");

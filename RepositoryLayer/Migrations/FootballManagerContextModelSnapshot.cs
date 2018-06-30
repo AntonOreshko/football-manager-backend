@@ -163,23 +163,28 @@ namespace RepositoryLayer.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("HollOfFameId");
+                    b.Property<long>("HollOfFameId")
+                        .HasColumnName("PLAYER_ID");
 
-                    b.Property<int>("LegendType");
+                    b.Property<int>("LegendType")
+                        .HasColumnName("LEGEND_TYPE");
 
-                    b.Property<int>("Matches");
+                    b.Property<int>("Matches")
+                        .HasColumnName("MATCHES");
 
                     b.Property<long>("PlayerId");
 
-                    b.Property<int>("Result");
+                    b.Property<int>("Result")
+                        .HasColumnName("RESULT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("HollOfFameId");
 
-                    b.ToTable("Legend");
+                    b.ToTable("LEGENDS");
                 });
 
             modelBuilder.Entity("DomainModels.Models.PlayerEntities.Player", b =>
@@ -454,11 +459,14 @@ namespace RepositoryLayer.Migrations
                         .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("GroupStage")
-                        .HasColumnName("GROUP_STAGE");
+                    b.Property<string>("Group")
+                        .HasColumnName("GROUP");
 
                     b.Property<long>("HomeId")
                         .HasColumnName("HOME_ID");
+
+                    b.Property<int>("Number")
+                        .HasColumnName("NUMBER");
 
                     b.Property<int>("Stage")
                         .HasColumnName("STAGE");
