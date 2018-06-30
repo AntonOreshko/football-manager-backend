@@ -28,7 +28,7 @@ namespace RepositoryLayer.EntityFramework.Context.Configuration.PlayerConfigurat
                 .HasColumnName("HOLL_OF_FAME_ID")
                 .IsRequired();
 
-            builder.Property(e => e.HollOfFameId)
+            builder.Property(e => e.PlayerId)
                 .HasColumnName("PLAYER_ID")
                 .IsRequired();
 

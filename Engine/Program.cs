@@ -1,11 +1,8 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using RepositoryLayer.EntityFramework.Context;
 using Microsoft.Extensions.DependencyInjection;
-using Hangfire;
-using Hangfire.Storage;
 
 namespace Engine
 {
@@ -23,9 +20,6 @@ namespace Engine
 
             var config = builder.Build();
 
-
-            GlobalConfiguration.Configuration.UseSqlServerStorage(config.GetConnectionString(connectionName));
-
             // services
             var services = new ServiceCollection();
 
@@ -33,23 +27,6 @@ namespace Engine
             services.AddDbContext<FootballManagerContext>(o => o.UseSqlServer(config.GetConnectionString(connectionName)));
 
             var serviceProvider = services.BuildServiceProvider();
-
-            using (var server = new BackgroundJobServer())
-            {
-                Console.WriteLine("Hangfire Server started. Press any key to exit...");
-
-                RecurringJob.AddOrUpdate(() => Console.Write("Easy!"), Cron.Minutely);
-
-                Console.ReadLine();
-            }
-
-            using (var connection = JobStorage.Current.GetConnection())
-            {
-                foreach (var recurringJob in connection.GetRecurringJobs())
-                {
-                    RecurringJob.RemoveIfExists(recurringJob.Id);
-                }
-            }
         }
     }
 }
