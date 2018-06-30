@@ -93,7 +93,7 @@ namespace BusinessLayer.Builders
 
             var stats = new PlayerStats();
             player.Stats = stats;
-            var statsWrapper = new PlayerStatsWrapper(player);
+            var statsWrapper = PlayerStatsWrapper.Get(player);
 
             GenerateStats(statsWrapper, playerPositionMapper);
 

@@ -1,4 +1,6 @@
-﻿using BusinessLayer.Configs;
+﻿using System;
+using BusinessLayer.Builders;
+using BusinessLayer.Configs;
 using BusinessLayer.Mappers;
 using BusinessLayer.ServiceInterfaces;
 using BusinessLayer.Services;
@@ -70,7 +72,7 @@ namespace WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider ser)
         {
             if (env.IsDevelopment())
             {

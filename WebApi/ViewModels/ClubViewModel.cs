@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using DomainModels.Enums;
-using DomainModels.Models;
 using DomainModels.Models.ClubEntities;
 
 namespace WebApi.ViewModels
@@ -19,9 +18,12 @@ namespace WebApi.ViewModels
         public static ClubViewModel Get(Club club)
         {
             var players = new List<PlayerViewModel>();
-            foreach (var p in club.Players)
+            if (club.Players != null)
             {
-                players.Add(PlayerViewModel.Get(p));
+                foreach (var p in club.Players)
+                {
+                    players.Add(PlayerViewModel.Get(p));
+                }
             }
 
             return new ClubViewModel

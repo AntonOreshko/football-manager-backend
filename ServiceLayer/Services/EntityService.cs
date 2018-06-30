@@ -34,6 +34,11 @@ namespace BusinessLayer.Services
             Repository.Insert(entity);
         }
 
+        public void InsertRange(IEnumerable<T> entities)
+        {
+            Repository.InsertRange(entities);
+        }
+
         public void Update(T entity)
         {
             Repository.Update(entity);

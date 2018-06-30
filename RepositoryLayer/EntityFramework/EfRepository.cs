@@ -44,6 +44,15 @@ namespace RepositoryLayer.EntityFramework
             Entities.Add(entity);
         }
 
+        public void InsertRange(IEnumerable<T> entities)
+        {
+            if (entities == null)
+            {
+                throw new ArgumentNullException(nameof(entities));
+            }
+            Entities.AddRange(entities);
+        }
+
         public void Update(T entity)
         {
             if (entity == null)

@@ -69,7 +69,7 @@ namespace WebApi.ViewModels
 
         public static PlayerStatsViewModel Get(Player player)
         {
-            var statsWrapper = new PlayerStatsWrapper(player);
+            var statsWrapper = PlayerStatsWrapper.Get(player);
             var stats = player.Stats;
 
             return new PlayerStatsViewModel

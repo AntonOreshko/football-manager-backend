@@ -16,6 +16,8 @@ namespace BusinessLayer.ServiceInterfaces
 
         void Insert(T entity);
 
+        void InsertRange(IEnumerable<T> entities);
+
         void Update(T entity);
 
         void Clear();

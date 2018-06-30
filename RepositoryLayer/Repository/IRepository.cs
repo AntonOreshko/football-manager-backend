@@ -13,6 +13,8 @@ namespace RepositoryLayer.Repository
 
         void Insert(T entity);
 
+        void InsertRange(IEnumerable<T> entities);
+
         void Update(T entity);
 
         void Remove(T entity);

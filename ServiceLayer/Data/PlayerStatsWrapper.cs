@@ -69,7 +69,7 @@ namespace BusinessLayer.Data
 
         public List<PlayerStat> Stats;
 
-        public PlayerStatsWrapper(Player player)
+        private PlayerStatsWrapper(Player player)
         {
             _player = player;
             _playerStats = player.Stats;
@@ -146,6 +146,11 @@ namespace BusinessLayer.Data
                 rating += s.Value * GetValue(s.Key);
             }
             return rating;
+        }
+
+        public static PlayerStatsWrapper Get(Player player)
+        {
+            return new PlayerStatsWrapper(player);
         }
     }
 
