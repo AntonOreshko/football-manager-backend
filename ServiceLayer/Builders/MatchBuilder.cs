@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BusinessLayer.Builders.BuildersData;
+using BusinessLayer.Mappers;
 using BusinessLayer.Mappers.TournamentMappers;
 using DomainModels.Models.ClubEntities;
 using DomainModels.Models.TournamentEntities;
@@ -29,10 +30,13 @@ namespace BusinessLayer.Builders
 
         private static readonly CupMapper CupMapper;
 
+        private static readonly MatchTimeIntervalMapper MatchTimeIntervalMapper;
+
         static MatchBuilder()
         {
             LeagueMapper = ConfigBuilder.GetConfig<LeagueMapper>().Get();
             CupMapper = ConfigBuilder.GetConfig<CupMapper>().Get();
+            MatchTimeIntervalMapper = ConfigBuilder.GetConfig<MatchTimeIntervalMapper>().Get();
         }
 
         public static Match Get(IMatchBuilderData matchBuilderData)

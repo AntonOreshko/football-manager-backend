@@ -1,0 +1,294 @@
+{
+  "Items": [
+    {
+      "DayOfWeek": 1,
+      "TournamentType": 0,
+      "MatchesInterval": [
+        1,
+        5
+      ],
+      "BeginHour": 5,
+      "EndHour": 8
+    },
+    {
+      "DayOfWeek": 1,
+      "TournamentType": 1,
+      "MatchesInterval": [
+        1,
+        8
+      ],
+      "BeginHour": 9,
+      "EndHour": 12
+    },
+    {
+      "DayOfWeek": 1,
+      "TournamentType": 0,
+      "MatchesInterval": [
+        6,
+        10
+      ],
+      "BeginHour": 13,
+      "EndHour": 16
+    },
+    {
+      "DayOfWeek": 1,
+      "TournamentType": 1,
+      "MatchesInterval": [
+        9,
+        16
+      ],
+      "BeginHour": 17,
+      "EndHour": 20
+    },
+    {
+      "DayOfWeek": 1,
+      "TournamentType": 0,
+      "MatchesInterval": [
+        11,
+        15
+      ],
+      "BeginHour": 21,
+      "EndHour": 24
+    },
+    {
+      "DayOfWeek": 2,
+      "TournamentType": 0,
+      "MatchesInterval": [
+        16,
+        20
+      ],
+      "BeginHour": 5,
+      "EndHour": 8
+    },
+    {
+      "DayOfWeek": 2,
+      "TournamentType": 1,
+      "MatchesInterval": [
+        17,
+        24
+      ],
+      "BeginHour": 9,
+      "EndHour": 12
+    },
+    {
+      "DayOfWeek": 2,
+      "TournamentType": 0,
+      "MatchesInterval": [
+        21,
+        25
+      ],
+      "BeginHour": 13,
+      "EndHour": 16
+    },
+    {
+      "DayOfWeek": 2,
+      "TournamentType": 1,
+      "MatchesInterval": [
+        25,
+        32
+      ],
+      "BeginHour": 17,
+      "EndHour": 20
+    },
+    {
+      "DayOfWeek": 2,
+      "TournamentType": 0,
+      "MatchesInterval": [
+        26,
+        30
+      ],
+      "BeginHour": 21,
+      "EndHour": 24
+    },
+    {
+      "DayOfWeek": 3,
+      "TournamentType": 0,
+      "MatchesInterval": [
+        31,
+        35
+      ],
+      "BeginHour": 5,
+      "EndHour": 8
+    },
+    {
+      "DayOfWeek": 3,
+      "TournamentType": 1,
+      "MatchesInterval": [
+        33,
+        40
+      ],
+      "BeginHour": 9,
+      "EndHour": 12
+    },
+    {
+      "DayOfWeek": 3,
+      "TournamentType": 0,
+      "MatchesInterval": [
+        36,
+        40
+      ],
+      "BeginHour": 13,
+      "EndHour": 16
+    },
+    {
+      "DayOfWeek": 3,
+      "TournamentType": 1,
+      "MatchesInterval": [
+        41,
+        48
+      ],
+      "BeginHour": 17,
+      "EndHour": 20
+    },
+    {
+      "DayOfWeek": 3,
+      "TournamentType": 0,
+      "MatchesInterval": [
+        41,
+        45
+      ],
+      "BeginHour": 21,
+      "EndHour": 24
+    },
+    {
+      "DayOfWeek": 4,
+      "TournamentType": 0,
+      "MatchesInterval": [
+        46,
+        50
+      ],
+      "BeginHour": 5,
+      "EndHour": 8
+    },
+    {
+      "DayOfWeek": 4,
+      "TournamentType": 1,
+      "MatchesInterval": [
+        49,
+        52
+      ],
+      "BeginHour": 9,
+      "EndHour": 12
+    },
+    {
+      "DayOfWeek": 4,
+      "TournamentType": 0,
+      "MatchesInterval": [
+        51,
+        55
+      ],
+      "BeginHour": 13,
+      "EndHour": 16
+    },
+    {
+      "DayOfWeek": 4,
+      "TournamentType": 1,
+      "MatchesInterval": [
+        53,
+        56
+      ],
+      "BeginHour": 17,
+      "EndHour": 20
+    },
+    {
+      "DayOfWeek": 4,
+      "TournamentType": 0,
+      "MatchesInterval": [
+        56,
+        60
+      ],
+      "BeginHour": 21,
+      "EndHour": 24
+    },
+    {
+      "DayOfWeek": 5,
+      "TournamentType": 0,
+      "MatchesInterval": [
+        61,
+        65
+      ],
+      "BeginHour": 5,
+      "EndHour": 8
+    },
+    {
+      "DayOfWeek": 5,
+      "TournamentType": 1,
+      "MatchesInterval": [
+        57,
+        58
+      ],
+      "BeginHour": 9,
+      "EndHour": 12
+    },
+    {
+      "DayOfWeek": 5,
+      "TournamentType": 0,
+      "MatchesInterval": [
+        66,
+        70
+      ],
+      "BeginHour": 13,
+      "EndHour": 16
+    },
+    {
+      "DayOfWeek": 5,
+      "TournamentType": 1,
+      "MatchesInterval": [
+        59,
+        60
+      ],
+      "BeginHour": 17,
+      "EndHour": 20
+    },
+    {
+      "DayOfWeek": 5,
+      "TournamentType": 0,
+      "MatchesInterval": [
+        71,
+        75
+      ],
+      "BeginHour": 21,
+      "EndHour": 24
+    },
+    {
+      "DayOfWeek": 6,
+      "TournamentType": 0,
+      "MatchesInterval": [
+        76,
+        80
+      ],
+      "BeginHour": 5,
+      "EndHour": 8
+    },
+    {
+      "DayOfWeek": 6,
+      "TournamentType": 0,
+      "MatchesInterval": [
+        81,
+        85
+      ],
+      "BeginHour": 13,
+      "EndHour": 16
+    },
+    {
+      "DayOfWeek": 6,
+      "TournamentType": 1,
+      "MatchesInterval": [
+        61,
+        61
+      ],
+      "BeginHour": 17,
+      "EndHour": 20
+    },
+    {
+      "DayOfWeek": 6,
+      "TournamentType": 0,
+      "MatchesInterval": [
+        86,
+        90
+      ],
+      "BeginHour": 21,
+      "EndHour": 24
+    }
+  ]
+}
