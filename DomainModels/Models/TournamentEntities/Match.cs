@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DomainModels.Enums;
 using DomainModels.Interfaces;
 
 namespace DomainModels.Models.TournamentEntities
@@ -21,6 +22,8 @@ namespace DomainModels.Models.TournamentEntities
         public long VisitorsId { get; set; }
 
         public DateTime StartTime { get; set; }
+
+        public TournamentType TournamentType { get; set; }
 
         public long TournamentId { get; set; }
 

@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BusinessLayer.Builders.BuildersData;
 using BusinessLayer.Mappers;
 using BusinessLayer.Mappers.TournamentMappers;
 using BusinessLayer.ServiceInterfaces;
+using DomainModels.Enums;
 using DomainModels.Models.ClubEntities;
 using DomainModels.Models.TournamentEntities;
 using Utility.Helpers;
@@ -25,6 +27,10 @@ namespace BusinessLayer.Builders
             public long HomeId { get; set; }
 
             public long VisitorsId { get; set; }
+
+            public DateTime StartTime { get; set; }
+
+            public TournamentType TournamentType { get; set; }
         }
 
         private static readonly LeagueMapper LeagueMapper;
@@ -49,7 +55,9 @@ namespace BusinessLayer.Builders
                 Group = matchBuilderData.Group,
                 Number = matchBuilderData.Number,
                 HomeId = matchBuilderData.HomeId,
-                VisitorsId = matchBuilderData.VisitorsId
+                VisitorsId = matchBuilderData.VisitorsId,
+                StartTime = matchBuilderData.StartTime,
+                TournamentType = matchBuilderData.TournamentType
             };
         }
 
@@ -75,6 +83,7 @@ namespace BusinessLayer.Builders
                         Number = match.Number,
                         HomeId = clubKeyValues[match.HomeId].Id,
                         VisitorsId = clubKeyValues[match.VisitorsId].Id,
+                        TournamentType = TournamentType.League
                     });
 
                     matches.Add(m);
@@ -107,6 +116,7 @@ namespace BusinessLayer.Builders
                         HomeId = clubKeyValues[match.HomeId].Id,
                         VisitorsId = clubKeyValues[match.VisitorsId].Id,
                         Group = match.Group,
+                        TournamentType = TournamentType.Cup
                     });
 
                     matches.Add(m);
@@ -124,6 +134,7 @@ namespace BusinessLayer.Builders
                         HomeId = match.HomeId,
                         VisitorsId = match.VisitorsId,
                         SubStage = match.Substage,
+                        TournamentType = TournamentType.Cup
                     });
 
                     matches.Add(m);
@@ -139,10 +150,51 @@ namespace BusinessLayer.Builders
 
             foreach (var item in MatchTimeIntervalMapper.Items)
             {
-                
+                var itemMatches = matches.Where(m => (m.TournamentType == item.TournamentType)
+                                                     && m.Number >= item.MatchesInterval[0]
+                                                     && m.Number <= item.MatchesInterval[1])
+                    .Select(m => m).ToList();
+
+                var intervalMinutes = (item.EndHour - item.BeginHour) * 60;
+                var matchDate = GetNextDayOfWeek(item.DayOfWeek);
+
+                matchDate = matchDate.AddHours(item.BeginHour);
+
+                var matchesPerMinute = (int) Math.Ceiling((double)itemMatches.Count / intervalMinutes);
+
+                var currentMinute = 0;
+                var counter = 0;
+                foreach (var m in itemMatches)
+                {
+                    m.StartTime = matchDate.AddMinutes(currentMinute);
+
+                    counter++;
+                    if (counter == matchesPerMinute)
+                    {
+                        currentMinute++;
+                        counter = 0;
+                    }
+                }
             }
 
             return matches;
+        }
+
+        private static DateTime GetNextDayOfWeek(DayOfWeek dayOfWeek)
+        {
+            DateTime startTime = DateTime.Now.Date;
+
+            while (startTime.DayOfWeek != DayOfWeek.Monday)
+            {
+                startTime = startTime.AddDays(1);
+            }
+
+            while (startTime.DayOfWeek != dayOfWeek)
+            {
+                startTime = startTime.AddDays(1);
+            }
+
+            return startTime;
         }
     }
 }

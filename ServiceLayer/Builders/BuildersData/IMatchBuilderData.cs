@@ -1,4 +1,7 @@
-﻿namespace BusinessLayer.Builders.BuildersData
+﻿using System;
+using DomainModels.Enums;
+
+namespace BusinessLayer.Builders.BuildersData
 {
     public interface IMatchBuilderData
     {
@@ -13,5 +16,9 @@
         long HomeId { get; set; }
 
         long VisitorsId { get; set; }
+
+        DateTime StartTime { get; set; }
+
+        TournamentType TournamentType { get; set; }
     }
 }
