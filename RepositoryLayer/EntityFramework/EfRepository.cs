@@ -61,6 +61,15 @@ namespace RepositoryLayer.EntityFramework
             }
         }
 
+        public void UpdateRange(IEnumerable<T> entities)
+        {
+            if (entities == null)
+            {
+                throw new ArgumentNullException(nameof(entities));
+            }
+            Entities.UpdateRange(entities);
+        }
+
         public void Remove(T entity)
         {
             if (entity == null)
@@ -68,6 +77,15 @@ namespace RepositoryLayer.EntityFramework
                 throw new ArgumentNullException(nameof(entity));
             }
             Entities.Remove(entity);
+        }
+
+        public void RemoveRange(IEnumerable<T> entities)
+        {
+            if (entities == null)
+            {
+                throw new ArgumentNullException(nameof(entities));
+            }
+            Entities.RemoveRange(entities);
         }
 
         public void Clear()

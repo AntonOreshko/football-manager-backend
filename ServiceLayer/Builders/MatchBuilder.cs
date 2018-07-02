@@ -3,6 +3,7 @@ using System.Linq;
 using BusinessLayer.Builders.BuildersData;
 using BusinessLayer.Mappers;
 using BusinessLayer.Mappers.TournamentMappers;
+using BusinessLayer.ServiceInterfaces;
 using DomainModels.Models.ClubEntities;
 using DomainModels.Models.TournamentEntities;
 using Utility.Helpers;
@@ -127,6 +128,18 @@ namespace BusinessLayer.Builders
 
                     matches.Add(m);
                 }
+            }
+
+            return matches;
+        }
+
+        public static IEnumerable<Match> SetStartTimeForAllMatches(IMatchService matchService)
+        {
+            var matches = matchService.GetAll().ToList();
+
+            foreach (var item in MatchTimeIntervalMapper.Items)
+            {
+                
             }
 
             return matches;

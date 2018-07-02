@@ -30,6 +30,9 @@ namespace RepositoryLayer.EntityFramework.Context.Configuration.TournamentConfig
             builder.Property(e => e.VisitorsId)
                 .HasColumnName("VISITORS_ID");
 
+            builder.Property(e => e.StartTime)
+                .HasColumnName("START_TIME");
+
             builder.Property(e => e.TournamentId)
                 .IsRequired()
                 .HasColumnName("TOURNAMENT_ID");

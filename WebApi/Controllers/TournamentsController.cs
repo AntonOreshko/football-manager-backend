@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using BusinessLayer.Builders;
 using BusinessLayer.ServiceInterfaces;
-using DomainModels.Models.TournamentEntities;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.ViewModels;
 
@@ -13,6 +11,7 @@ namespace WebApi.Controllers
     public class TournamentsController : ControllerBase
     {
         private readonly ITournamentService _tournamentService;
+
         private readonly IClubService _clubService;
 
         public TournamentsController(ITournamentService tournamentService, IClubService clubService)

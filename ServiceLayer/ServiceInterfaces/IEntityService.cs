@@ -20,6 +20,12 @@ namespace BusinessLayer.ServiceInterfaces
 
         void Update(T entity);
 
+        void UpdateRange(IEnumerable<T> entities);
+
+        void Remove(T entity);
+
+        void RemoveRange(IEnumerable<T> entities);
+
         void Clear();
 
         void SaveChanges();

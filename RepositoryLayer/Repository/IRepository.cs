@@ -17,7 +17,11 @@ namespace RepositoryLayer.Repository
 
         void Update(T entity);
 
+        void UpdateRange(IEnumerable<T> entities);
+
         void Remove(T entity);
+
+        void RemoveRange(IEnumerable<T> entities);
 
         void Clear();
 

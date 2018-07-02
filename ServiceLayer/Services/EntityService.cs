@@ -44,6 +44,21 @@ namespace BusinessLayer.Services
             Repository.Update(entity);
         }
 
+        public void UpdateRange(IEnumerable<T> entities)
+        {
+            Repository.UpdateRange(entities);
+        }
+
+        public void Remove(T entity)
+        {
+            Repository.Remove(entity);
+        }
+
+        public void RemoveRange(IEnumerable<T> entities)
+        {
+            Repository.RemoveRange(entities);
+        }
+
         public void Clear()
         {
             Repository.Clear();
