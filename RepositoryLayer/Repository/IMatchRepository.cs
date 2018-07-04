@@ -2,7 +2,7 @@
 
 namespace RepositoryLayer.Repository
 {
-    public interface IMatchRepository : IRepository<Match>
+    public interface IMatchRepository : IRepository<Match>, IRepositoryAsync<Match>
     {
 
     }

@@ -2,7 +2,7 @@
 
 namespace RepositoryLayer.Repository
 {
-    public interface ITournamentRepository : IRepository<Tournament>
+    public interface ITournamentRepository : IRepository<Tournament>, IRepositoryAsync<Tournament>
     {
 
     }

@@ -1,9 +1,8 @@
-﻿using DomainModels.Models;
-using DomainModels.Models.UserEntities;
+﻿using DomainModels.Models.UserEntities;
 
 namespace RepositoryLayer.Repository
 {
-    public interface IUserRepository: IRepository<User>
+    public interface IUserRepository: IRepository<User>, IRepositoryAsync<User>
     {
 
     }
