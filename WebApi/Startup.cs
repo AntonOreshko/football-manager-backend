@@ -37,6 +37,8 @@ namespace WebApi
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddCors();
+
             services.AddMvc().AddJsonOptions(options => 
             {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
@@ -85,6 +87,8 @@ namespace WebApi
             {
                 app.UseHsts();
             }
+
+            app.UseCors(builder => builder.AllowAnyOrigin());
 
             app.UseHttpsRedirection();
 
