@@ -22,6 +22,8 @@ namespace DomainModels.Models.UserEntities
 
         public string Password { get; set; }
 
+        public UserRole Role { get; set; }
+
         public Club Club { get; set; }
     }
 }

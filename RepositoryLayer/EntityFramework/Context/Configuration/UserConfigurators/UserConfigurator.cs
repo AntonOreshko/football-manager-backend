@@ -46,6 +46,10 @@ namespace RepositoryLayer.EntityFramework.Context.Configuration.UserConfigurator
                 .IsRequired()
                 .HasMaxLength(64);
 
+            builder.Property(e => e.Role)
+                .HasColumnName("ROLE")
+                .IsRequired();
+
             builder.HasOne(e => e.Club)
                 .WithOne(e => e.User)
                 .HasForeignKey<Club>(e => e.UserId);

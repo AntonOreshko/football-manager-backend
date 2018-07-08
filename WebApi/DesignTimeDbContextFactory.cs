@@ -17,8 +17,8 @@ namespace WebApi
 
             var builder = new DbContextOptionsBuilder<FootballManagerContext>();
 
-            //var connectionString = configuration.GetConnectionString("HomeConnection");
-            var connectionString = configuration.GetConnectionString("WorkConnection");
+            var connectionString = configuration.GetConnectionString("HomeConnection");
+            //var connectionString = configuration.GetConnectionString("WorkConnection");
 
             builder.UseSqlServer(connectionString);
 
